@@ -1,0 +1,586 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Cloud Computing Course in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="cloud computing course Ahmednagar, IT training institute Ahmednagar, digital marketing company Ahmednagar, Java full stack course Ahmednagar, digital marketing course Ahmednagar, cloud technology training Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s trusted IT company offering expert cloud computing courses alongside web development, mobile apps, digital marketing, and graphic design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<%-include('header.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body {
+             background: linear-gradient(135deg, rgba(70, 186, 231, 0.1), rgba(175, 11, 78, 0.1));
+        background-attachment: fixed;
+        font-family: sans-serif;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            margin-bottom: 20px;
+            padding: 30px;
+        }
+
+        .registration-card {
+            border-radius: 12px;
+            background-color: white;
+        }
+
+        .header-title {
+            font-size: 26px;
+            text-align: center;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .sub-header {
+            color: black;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            font-size: 17px;
+        }
+
+        .description {
+            color: black;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: justify;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+        }
+
+        .website-link a {
+            font-weight: bold;
+            color: #2575fc;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .website-link a:hover {
+            color: #6a11cb;
+        }
+
+        .experience-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+            margin-top: 20px;
+        }
+
+        .experience-list {
+            padding: 0;
+            list-style-type: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .experience-list li {
+            font-size: 18px;
+            padding: 8px 0;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .info-banner {
+            background: #6a11cb;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 18px;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-container input {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            transition: border-bottom 0.3s ease-in-out;
+        }
+
+        .input-container input:focus {
+            border-bottom: 2px solid transparent;
+        }
+
+        .input-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: #4d0997;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .input-container input:focus~.input-underline {
+            width: 100%;
+            left: 0;
+        }
+
+        .input-underline {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: #4d0997;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .form-card {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            padding-bottom: 0px;
+            border-radius: 12px;
+        }
+
+        .form-title {
+            font-size: 17px;
+            color: black;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .custom-radio {
+            display: flex;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .custom-input {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 17px;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .custom-input:checked+label {
+            color: #6a11cb;
+            font-weight: 600;
+        }
+
+        .custom-radio input[type="radio"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #444;
+            border-radius: 50%;
+            position: relative;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .custom-radio input[type="radio"]:checked {
+            background-color: rgb(150, 10, 65);
+            border: 5px solid rgb(255, 255, 255);
+            box-shadow: 0 0 0 2px rgb(150, 10, 65);
+        }
+
+        .custom-radio label {
+            color: black;
+            font-weight: 500;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+        
+    </style>
+    </head>
+
+    <body>
+        <!-- Banner Start -->
+        <section class="inner-banner">
+            <div class="main-banner-bg-shape">
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+            </div>
+            <div class="inner-banner-bg-aliment-wp">
+                <div class="bg-aliment-1 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-2 animate-this">
+                    <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-3 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-4 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-5 animate-this">
+                    <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-6 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-7 rotate-animation">
+                    <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-8 animate-this">
+                    <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+                </div>
+                <div class="bg-aliment-9 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+                </div>
+                <div class="bg-aliment-10 rotate-animation">
+                    <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-11 animate-this">
+                    <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+                </div>
+                <div class="bg-aliment-12 animate-this">
+                    <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-13 rotate-animation">
+                    <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-14 animate-this">
+                    <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1 class="h1-title">Start Your Industrial Visit Journey</h1>
+                            <div class="banner-breadcrum">
+                                <ul>
+                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="/ind-visit" title="Industrial Visit">Industrial
+                                            Visit</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner End -->
+
+        <div class="container">
+            <div class="form-container">
+                <div class="registration-card border p-4 rounded shadow">
+                    <h3 class="header-title">
+                        Registrations for Industrial Visit @
+                        <strong>Kanak Digifex Pvt. Ltd.</strong> Ahilyanagar's First Corporate IT Company - 22 March
+                        2025
+                    </h3>
+
+                    <h5 class="sub-header">Hello Students of ND kasar college of engineering and technology, walki, Ahilyanagar
+                    </h5>
+
+                    <hr>
+
+                    <p class="description">
+                        It will be our immense pleasure to have you visit Ahilyanagar’s First Corporate IT Company,
+                        <strong>Kanak Digifex Pvt. Ltd.</strong>, with its Registered Office in Mumbai and a Branch in
+                        Ahilyanagar.
+                    </p>
+
+                    <p class="description">
+                        We are proudly working with various corporate clients globally and delivering seamless IT
+                        Solutions since 2015.
+                    </p>
+                    <hr>
+
+                    <p class="website-link" style="font-family:'Roboto', sans-serif;font-size: 18px;">
+                        Before Coming to the Industrial Visit, We Urge You to Check Our Official Websites –
+                         <a href="https://www.kanakdigifex.in" target="_blank">www.kanakdigifex.in</a> &nbsp; & &nbsp;
+                        <a href="https://www.kanakdigifex.com" target="_blank">www.kanakdigifex.com</a>
+                    </p>
+                    <hr>
+                    <h5 class="experience-title">In This Industrial Visit You will get a chance to Experience:</h5>
+                    <ul class="experience-list">
+                        <li>🔹 Working Culture of IT Companies</li>
+                        <li>🔹 Working Strategies and Flow of Various IT Projects like Web Development, Mobile <span
+                                style="margin-left: 31px;">App</span>
+                            Development, Software Development & Web App Development</li>
+                        <li>🔹 Career Opportunities in the IT Industry in the Era of Artificial Intelligence</li>
+                        <li>🔹 Choosing of Various Technologies as Career</li>
+                        <li>🔹 Why IT Companies required 6 Months Internships & Benefits of Internships</li>
+                        <li>🔹 What Challenges Developers Facing</li>
+                        <li>🔹 Question and Answer Session With Students</li>
+                    </ul>
+
+                    <hr>
+
+                    <div class="info-banner">
+                        We have Taken the First Step Towards Making Ahilyanagar an IT Hub to Create More Opportunities
+                        for IT Students!
+                    </div>
+                </div>
+                <form action="/save_industrial_visit" method="post" class="mt-5" id="myForm">
+                    <div class="form-group border p-4 font-weight-bold rounded">
+                        <div class="input-container">
+                            <label>Your First Name <span class="text-danger">*</span></label>
+                            <input type="text" class="p-0 mt-4" name="first_name" placeholder="Your answer" required>
+                            <span class="input-underline"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group border p-4 font-weight-bold rounded">
+                        <div class="input-container">
+                            <label>Your Last Name<span class="text-danger">*</span></label>
+                            <input type="text" class="p-0 mt-4" name="last_name" placeholder="Your answer" required>
+                            <span class="input-underline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group border p-4 font-weight-bold rounded">
+                        <div class="input-container">
+                            <label>Email ID <span class="text-danger">*</span></label>
+                            <input type="email" class="p-0 mt-4" id="email" name="email_id" placeholder="Your answer"
+                                required>
+                            <span class="input-underline"></span>
+                            <small id="emailError" class="text-danger font-weight-bold d-none">
+                                Please enter a valid email address (e.g., example@domain.com)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group border p-4 font-weight-bold rounded">
+                        <div class="input-container">
+                            <label>Mobile (WhatsApp) <span class="text-danger">*</span></label>
+                            <input type="text" class="p-0 mt-4" id="mobile" name="mobile" placeholder="Your answer"
+                                pattern="[6-9]{1}[0-9]{9}" maxlength="10" required>
+                            <span class="input-underline"></span>
+                            <small id="mobileError" class="text-danger font-weight-bold d-none">Enter a valid 10-digit
+                                number starting with 6-9</small>
+                        </div>
+                    </div>
+
+                    <div class="form-card border">
+                        <h4 class="form-title">In Which Technology You Want to Make Your Career? <span
+                                class="text-danger">*</span></h4>
+
+                        <div class="form-group">
+                            <div class="custom-radio">
+                                <input type="radio" id="web-tech" value="Web Technology" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="web-tech">Web Technology</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="mobile-dev" value="Mobile App Development" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="mobile-dev">Mobile App Development</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="digital-marketing" value="Digital Marketing" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="digital-marketing">Digital Marketing</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="python-dev" value="Python Developer" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="python-dev">Python Developer</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="java-fullstack" value="Java Full Stack Developer" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="java-fullstack">Java Full Stack Developer</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="graphic-design" value="Corporate Graphic Designer" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="graphic-design">Corporate Graphic Designer</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="cyber-security" value="Ethical Hacking & Cyber Security"
+                                    name="career" class="custom-input" required>
+                                <label class="mt-2" for="cyber-security">Ethical Hacking & Cyber Security</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="data-science" value="Data Science" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="data-science">Data Science</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="cloud-computing" value="Cloud Computing" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="cloud-computing">Cloud Computing</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="wordpress-shopify" value="WordPress & Shopify" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="wordpress-shopify">WordPress & Shopify</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="software-dev" value="Software Developer" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="software-dev">Software Developer</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="software-dev" value="Software Tester" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="software-dev">Software Tester</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="software-dev" value="React.JS Developer" name="career"
+                                    class="custom-input" required>
+                                <label class="mt-2" for="software-dev">React.JS Developer</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="other" value="Any Other" name="career" class="custom-input"
+                                    required>
+                                <label class="mt-2" for="other">Any Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card border">
+                        <h4 class="form-title">Are You Interested in Internships? </span></h4>
+
+                        <div class="form-group">
+                            <div class="custom-radio">
+                                <input type="radio" id="intern-yes" value="internship-yes" name="internship"
+                                    class="custom-input">
+                                <label class="mt-2" for="intern-yes">Yes</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="intern-no" value="internship-no" name="internship"
+                                    class="custom-input">
+                                <label class="mt-2" for="intern-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guest Lecture Section -->
+                    <div class="form-card border">
+                        <h4 class="form-title">Are You Interested in Guest Lectures and Workshops on Various Career
+                            Oriented IT Technologies from Our Industry Experts?</h4>
+
+                        <div class="form-group">
+                            <div class="custom-radio">
+                                <input type="radio" id="guest-lecture-yes" value="guest-lecture-yes"
+                                    name="guest_lecture" class="custom-input">
+                                <label class="mt-2" for="guest-lecture-yes">Yes</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="guest-lecture-no" value="guest-lecture-no" name="guest_lecture"
+                                    class="custom-input">
+                                <label class="mt-2" for="guest-lecture-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Alerts Section -->
+                    <div class="form-card border">
+                        <h4 class="form-title">Would You Like To Get Information About Internship, Job Openings, Current
+                            Updates in IT Industry on Your WhatsApp?</h4>
+
+                        <div class="form-group">
+                            <div class="custom-radio">
+                                <input type="radio" id="job-alerts-yes" value="job-alerts-yes" name="job_alerts"
+                                    class="custom-input">
+                                <label class="mt-2" for="job-alerts-yes">Yes</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="job-alerts-no" value="job-alerts-no" name="job_alerts"
+                                    class="custom-input">
+                                <label class="mt-2" for="job-alerts-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        style="background: #00008B; color: white; border: none; padding: 10px 25px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        Submit
+                    </button>
+
+                    <button type="button" id="clearBtn"
+                        style="background: #00008B; color: white; border: none; padding: 10px 25px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 10px;">
+                        Clear Form
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("clearBtn").addEventListener("click", function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you really want to clear the form?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, clear it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById("myForm").reset();
+                        Swal.fire("Cleared!", "The form has been cleared.", "success");
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById("mobile").addEventListener("input", function () {
+                let mobileInput = this.value;
+                let mobilePattern = /^[6-9][0-9]{9}$/;
+                let errorMessage = document.getElementById("mobileError");
+
+                if (mobilePattern.test(mobileInput)) {
+                    this.classList.remove("is-invalid");
+                    errorMessage.classList.add("d-none");
+                } else {
+                    this.classList.add("is-invalid");
+                    errorMessage.classList.remove("d-none");
+                }
+            });
+        </script>
+
+        <script>
+            document.getElementById("email").addEventListener("input", function () {
+                let emailInput = this.value;
+                let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let errorMessage = document.getElementById("emailError");
+
+                if (emailPattern.test(emailInput)) {
+                    this.classList.remove("is-invalid");
+                    errorMessage.classList.add("d-none");
+                } else {
+                    this.classList.add("is-invalid");
+                    errorMessage.classList.remove("d-none");
+                }
+            });
+        </script>
+
+        <%-include('footer.ejs') %>

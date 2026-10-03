@@ -1,0 +1,451 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        .status-done {
+            background-color: #d4edda !important;
+            color: #155724 !important;
+            border-color: #c3e6cb !important;
+        }
+
+        .status-not-interested {
+            background-color: #f8d7da !important;
+            color: #721c24 !important;
+            border-color: #f5c6cb !important;
+        }
+
+        .half-status-done {
+            background-color: darkblue;
+            color: white;
+        }
+
+        /* CARD */
+        .reg-card {
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .reg-header {
+            background: linear-gradient(90deg, #5b21b6, #7c3aed);
+            color: #fff;
+            padding: 18px 24px;
+        }
+
+        /* TABLE */
+        .table-modern thead th {
+            background: #2d0659;
+            color: #fff;
+            padding: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .table-modern tbody td {
+            padding: 10px;
+            vertical-align: top;
+            border-top: 1px solid #eee;
+        }
+
+        .table-modern tbody tr:hover {
+            background: #f5f3ff;
+        }
+
+        /* CONTROLS */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .input-search {
+            width: 320px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .count-pill {
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .student-cell {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            width: 100%;
+        }
+
+
+        .student-name {
+            white-space: nowrap;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+
+
+        .student-scroll {
+            display: flex;
+            gap: 10px;
+            white-space: nowrap;
+
+            max-width: 630px;
+            /* 🔥 THIS IS KEY */
+            overflow-x: auto;
+
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE / Edge */
+        }
+
+        .student-scroll::-webkit-scrollbar {
+            display: none;
+            /* Chrome / Safari */
+        }
+
+
+
+        /* INFO BLOCK */
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            min-width: max-content;
+            background: #f5f3ff;
+            border: 1px solid rgba(76, 29, 149, 0.15);
+            border-radius: 4px;
+            padding: 4px 10px;
+        }
+
+        /* HEADING */
+        .info-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #6d28d9;
+            line-height: 1;
+        }
+
+        /* VALUE */
+        .info-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 4px;
+        }
+
+        .table-modern td {
+            overflow: hidden;
+            /* table-level scroll बंद */
+        }
+    </style>
+
+    <div class="container-fluid mt-5">
+        <div class="reg-card">
+
+            <!-- HEADER -->
+            <div class="reg-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1 text-white">Internship Registrations - 2026</h3>
+                    <b>Latest registrations shown first</b>
+                </div>
+                <div>
+                    <div class="count-pill" style="font-size: 14px;background-color: white;">Total Registrations - <%=
+                            intern_reg.length %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div class="p-4">
+
+                <!-- CONTROLS -->
+                <div class="controls">
+                    <input id="liveSearch" class="input-search" placeholder="Search anything...">
+                    <button id="clearBtn" class="btn btn-outline-secondary btn-sm">Clear</button>
+
+                    <span id="resultsCount" class="count-pill">
+                        <%= intern_reg.length %> Results
+                    </span>
+                </div>
+
+                <!-- TABLE -->
+                <table class="table-modern w-100">
+                    <thead>
+                        <tr>
+                            <th>Sr</th>
+                            <th style="width:700px;">Student Name</th>
+                            <th style="width: 200px;">Payment Status</th>
+                            <!-- <th>Offer Letter</th>
+                            <th>Completion</th> -->
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tableBody">
+                        <% intern_reg.forEach((r,i)=>{ %>
+                            <tr data-id="<%= r.id %>">
+                                <!-- 🔴 SEARCH HELPER (HIDDEN) -->
+                                <td style="display:none" class="search-data">
+                                    <%= [ r.student_name, r.student_email, r.student_mobile, r.internship_domain,
+                                        r.internship_duration, r.internship_mode, r.internship_type, r.college_name,
+                                        r.hod_name, r.hod_contact, r.payment_status ].join(' ').toLowerCase() %>
+                                </td>
+                                <td>
+                                    <span style="position: relative;top: 11px;">
+                                        <%= i + 1 %>
+                                    </span>
+                                </td>
+
+                                <!-- STUDENT + SCROLL INFO -->
+                                <td style="min-width:600px;">
+
+                                    <div class="student-cell">
+
+                                        <!-- NAME LOCKED -->
+                                        <div class="student-name" style="width: 240px;">
+                                            <%= r.student_name %>
+                                        </div>
+
+                                        <!-- ALL DATA HORIZONTAL WITH HEADINGS -->
+                                        <div class="student-scroll">
+<!-- 
+                                            <div class="info-block">
+                                                <span class="info-label">Email</span>
+                                                <span class="info-value">
+                                                    <%= r.student_email %>
+                                                </span>
+                                            </div> -->
+
+                                            <div class="info-block">
+                                                <span class="info-label">Mobile</span>
+                                                <span class="info-value">
+                                                    <%= r.student_mobile %>
+                                                </span>
+                                            </div>
+
+                                            <div class="info-block">
+                                                <span class="info-label">Domain</span>
+                                                <span class="info-value">
+                                                    <%= r.internship_domain %>
+                                                </span>
+                                            </div>
+
+                                            <div class="info-block">
+                                                <span class="info-label">Duration</span>
+                                                <span class="info-value">
+                                                    <%= r.internship_duration %>
+                                                </span>
+                                            </div>
+
+                                            <div class="info-block">
+                                                <span class="info-label">Mode</span>
+                                                <span class="info-value">
+                                                    <%= r.internship_mode %>
+                                                </span>
+                                            </div>
+
+                                            <!-- Type (always show) -->
+                                            <div class="info-block">
+                                                <span class="info-label">Type</span>
+                                                <span class="info-value">
+                                                    <%= r.internship_type %>
+                                                </span>
+                                            </div>
+
+                                            <!-- 🔥 Only show Academic Details if NOT Corporate -->
+                                            <% if (r.internship_type !== "Corporate") { %>
+
+                                                <div class="info-block">
+                                                    <span class="info-label">College</span>
+                                                    <span class="info-value">
+                                                        <%= r.college_name %>
+                                                    </span>
+                                                </div>
+
+                                                <div class="info-block">
+                                                    <span class="info-label">HOD</span>
+                                                    <span class="info-value">
+                                                        <%= r.hod_name %>
+                                                    </span>
+                                                </div>
+
+                                                <div class="info-block">
+                                                    <span class="info-label">HOD Contact</span>
+                                                    <span class="info-value">
+                                                        <%= r.hod_contact %>
+                                                    </span>
+                                                </div>
+
+                                            <% } %>
+
+
+                                            <div class="info-block">
+                                                <span class="info-label">Start Date</span>
+                                                <span class="info-value">
+                                                    <%= new Date(r.internship_start_date).toLocaleDateString() %>
+                                                </span>
+                                            </div>
+
+                                            <div class="info-block">
+                                                <span class="info-label">Registered</span>
+                                                <span class="info-value">
+                                                    <%= new Date(r.created_at).toLocaleDateString() %>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td style="width: 220px;">
+                                    <select class="form-control payment-select" style="height: 41px;">
+
+                                        <option value="">Select Status</option>
+                                        <option value="Payment Done" <%=r.payment_status=="Payment Done" ?"selected":""
+                                            %>>Payment Done</option>
+                                             <option value="Half Payment" <%=r.payment_status=="Half Payment" ?"selected":""
+                                            %>>Half Payment </option>
+                                        <option value="Ringing but not responded"
+                                            <%=r.payment_status=="Ringing but not responded" ?"selected":"" %>
+                                            >Ringing but not responded</option>
+                                        <option value="Promised to pay" <%=r.payment_status=="Promised to pay"
+                                            ?"selected":"" %>>Promised to pay</option>
+                                        <option value="Call again" <%=r.payment_status=="Call again" ?"selected":"" %>
+                                            >Call again</option>
+                                        <option value="Not interested" <%=r.payment_status=="Not interested"
+                                            ?"selected":"" %>>Not interested</option>
+                                    </select>
+
+                                </td>
+
+                                <!-- <td><button class="btn btn-success">Generate +</button></td>
+                                <td><button class="btn btn-primary">Generate +</button></td> -->
+
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll(' .student-scroll').forEach(el => {
+            el.addEventListener('wheel', e => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    el.scrollLeft += e.deltaY;
+                }
+            }, { passive: false });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("change", function (e) {
+
+            if (e.target.classList.contains("payment-select")) {
+                const row = e.target.closest("tr");
+                const id = row.dataset.id;
+
+                const payment_status = row.querySelector(".payment-select").value;
+
+                fetch("/admin/update-internship-payment-status", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        id,
+                        payment_status,
+                    })
+                });
+            }
+
+        });
+    </script>
+
+    <script>
+        function applyPaymentColor(select) {
+            select.classList.remove("status-done", "status-not-interested");
+
+            if (select.value === "Payment Done") {
+                select.classList.add("status-done");
+            }
+
+            if (select.value === "Half Payment") {
+                select.classList.add("half-status-done");
+            }
+
+            if (select.value === "Not interested") {
+                select.classList.add("status-not-interested");
+            }
+        }
+
+        // Page load वर आधीच saved value ला color
+        document.querySelectorAll(".payment-select").forEach(select => {
+            applyPaymentColor(select);
+        });
+
+        // Change झाल्यावर color change
+        document.addEventListener("change", function (e) {
+            if (e.target.classList.contains("payment-select")) {
+                applyPaymentColor(e.target);
+            }
+        });
+    </script>
+
+    <script>
+        const searchInput = document.getElementById("liveSearch");
+        const rows = document.querySelectorAll("#tableBody tr");
+        const count = document.getElementById("resultsCount");
+
+        function performSearch() {
+            const q = searchInput.value.toLowerCase().trim();
+            let visible = 0;
+
+            rows.forEach(row => {
+                const searchCell = row.querySelector(".search-data");
+                const text = searchCell ? searchCell.innerText : "";
+
+                if (!q || text.includes(q)) {
+                    row.style.display = "";
+                    visible++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            count.innerText = visible + " Results";
+        }
+
+        searchInput.addEventListener("input", performSearch);
+
+        document.getElementById("clearBtn").onclick = () => {
+            searchInput.value = "";
+            performSearch();
+        };
+    </script>
+    <script>
+        document.addEventListener("change", function (e) {
+            if (e.target.classList.contains("payment-select")) {
+
+                const row = e.target.closest("tr");
+                const searchCell = row.querySelector(".search-data");
+
+                if (searchCell) {
+                    searchCell.innerText += " " + e.target.value.toLowerCase();
+                }
+            }
+        });
+    </script>
+
+                                        <%- include('footer.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/update_about_card" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+        <input type="hidden" name="about_card_id" value="<%=edit_about_card.about_card_id%>">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">About Card Section</h3>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="font-weight-bold" for="">Upload Card Logo</label>
+                <input type="file" accept="image/*" name="about_card_logo" value="" class="form-control">
+            </div>
+            <div class="col-md-6 mb-2 mt-2">
+                <img src="/uploads/<%= edit_about_card.add_card_logo %>" class="w-25">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Card Header</label>
+                <input type="text" name="about_card_header" value="<%= edit_about_card.add_card_heading %>"  class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Add Card Button (Link)</label>
+                <input type="text" name="about_card_button" value="<%= edit_about_card.add_card_button %>" class="form-control">
+            </div>
+            <div class="col-md-12 mb-5">
+                <label class="font-weight-bold" for="">Enter Card Sub-Headings</label>
+                <textarea name="about_card_sub_heading"  class="form-control"><%- edit_about_card.add_card_sub_heading %></textarea>
+            </div>
+            
+            <div class="col-md-12 text-center">
+                <button class="font-weight-bold btn btn-primary">Save Details</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<%- include('footer.ejs') %>

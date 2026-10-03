@@ -1,0 +1,34 @@
+<%- include('navbar.ejs') %>
+
+    <form action="/admin/update_banner_images" method="post" enctype="multipart/form-data" style="width: 100%;">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="home_banner_Id" value="<%=edit_home_banner.home_banner_Id%>">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Edit Banner Images For Home
+                    </h3>
+                </div>
+                <div class="col-md-10 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="banner_image" class="form-control">
+                </div>
+                <div class="col-md-2 mb-4 mt-3">
+                    <img src="/uploads/<%=edit_home_banner.banner_image%>" class="w-75">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Title</label>
+                    <input type="text" name="banner_title" value="<%=edit_home_banner.banner_title%>" class="form-control">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Sub Title</label>
+                    <input type="text" name="banner_sub_title" value="<%=edit_home_banner.banner_sub_title%>" class="form-control">
+                </div>
+                <div class="col-md-12 mt-4 text-center">
+                    <button class="font-weight-bold btn btn-primary">Update Banner</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<%- include('footer.ejs') %>

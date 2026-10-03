@@ -1,0 +1,52 @@
+<%- include('navbar.ejs') %>
+
+    <form action="/admin/update_course" method="post" enctype="multipart/form-data">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="course_id" value="<%=course_info.course_id%>">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add New Course</h3>
+                </div>
+                <div class="col-md-4 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="course_image" value="" class="form-control">
+                </div>
+                <div class="col-md-2 mb-2 mt-2">
+                    <img src="/uploads/<%=course_info.course_image%>" class="w-100">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Course Title</label>
+                    <input type="text" name="course_title" value="<%=course_info.course_title%>" class="form-control">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Course Sub-Title</label>
+                    <input type="text" name="course_sub_title" value="<%=course_info.course_sub_title%>"
+                        class="form-control">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Course Duration</label>
+                    <input type="text" name="course_duration" value="<%=course_info.course_duration%>"
+                        class="form-control">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Course Price(Rs)</label>
+                    <input type="number" name="course_price" value="<%=course_info.course_price%>" class="form-control">
+                </div>
+                <div class="col-md-6 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Button (Link)</label>
+                    <input type="text" name="course_button_link" value="<%=course_info.course_button_link%>"  class="form-control">
+                </div>
+                <div class="col-md-12 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Enter Course Details</label>
+                    <textarea name="course_details" id="editor" class="form-control" id=""><%-course_info.course_details%></textarea>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button class="font-weight-bold btn btn-primary">Update Course</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <%- include('footer.ejs') %>

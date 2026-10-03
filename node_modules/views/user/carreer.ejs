@@ -1,0 +1,255 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Digital Marketing & IT Services Company in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="digital marketing company Ahmednagar, software company near me, logo designer Ahmednagar, best logo designer Ahmednagar, graphic design company Ahmednagar, graphic designer Ahmednagar, machine learning course Ahmednagar, data science course Ahmednagar, Java full stack course Ahmednagar, cloud computing course Ahmednagar, digital marketing course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s leading IT company offering complete digital marketing, branding, web & app development, cloud solutions, and job-ready tech courses.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%- include('header.ejs') %>
+
+    <!-- ================= BANNER (UNCHANGED) ================= -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation"><img src="/user_assets/images/aliment-01.svg" width="30"></div>
+            <div class="bg-aliment-2 animate-this"><img src="/user_assets/images/aliment-02.svg" width="26"></div>
+            <div class="bg-aliment-3 zoom-fade-animation"><img src="/user_assets/images/aliment-03.svg" width="44">
+            </div>
+        </div>
+        <div class="container">
+            <div class="banner-content text-center">
+                <span class="banner-tag fw-bold">🚀 Careers at Kanak Digifex</span>
+                <h1 class="h1-title">Build Your Career With Us</h1>
+
+                <div class="banner-breadcrum">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i></li>
+                        <li>Careers</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ================= BANNER END ================= -->
+
+    <!-- ================= CAREER SECTION ================= -->
+    <div class="container mb-5">
+        <div class="row">
+
+            <!-- LEFT : JOB OPENINGS -->
+            <div class="col-lg-7 mt-5">
+                <h5 class="career-heading">
+                    🚀 We Are Hiring – Join Kanak Digifex
+                </h5>
+                <p class="career-subtext">
+                    Build your career with a fast-growing IT company and work on real-world projects.
+                </p>
+
+                <div class="job-grid">
+                    <div class="job-box">
+                        <h5>Full Stack Web Developer</h5>
+                        <p>Develop modern, scalable web applications.</p>
+                        <span>JavaScript • React • Node.js • MySQL</span>
+                        <small>📍 Ahilyanagar | Fresher / Experienced</small>
+                    </div>
+
+                    <div class="job-box">
+                        <h5>Mobile Application Developer</h5>
+                        <p>Create Android & iOS applications.</p>
+                        <span>Android • iOS • React Native</span>
+                        <small>📍 Ahilyanagar | 0–3 Years</small>
+                    </div>
+
+                    <div class="job-box">
+                        <h5>Digital Marketing Executive</h5>
+                        <p>Plan and execute SEO & paid marketing strategies.</p>
+                        <span>SEO • Social Media • Google Ads</span>
+                        <small>📍 Ahilyanagar</small>
+                    </div>
+
+                    <div class="job-box">
+                        <h5>Graphic Designer</h5>
+                        <p>Create branding and marketing creatives.</p>
+                        <span>Photoshop • Illustrator • Figma</span>
+                        <small>📍 Ahilyanagar</small>
+                    </div>
+
+                    <div class="job-box">
+                        <h5>Office Administrator</h5>
+                        <p>Handle office coordination and documentation.</p>
+                        <span>MS Office • Communication</span>
+                        <small>📍 Ahilyanagar</small>
+                    </div>
+
+                    <div class="job-box">
+                        <h5>Telecaller (Female)</h5>
+                        <p>Client communication and follow-ups.</p>
+                        <span>Communication Skills</span>
+                        <small>📍 Ahilyanagar | Fresher Welcome</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT : APPLICATION FORM -->
+
+            <div class="col-lg-5 mt-5 pt-5">
+                <div class="apply-card">
+                    <h3>Job Application Form</h3>
+                    <p class="text-muted mb-3">Submit your details and our HR team will contact you.</p>
+
+                    <form action="/save_job_applications" method="post" enctype="multipart/form-data"
+                        class="needs-validation" novalidate>
+
+                        <input type="text" class="form-control" name="name" placeholder="Full Name *" required>
+
+                        <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number *"
+                            pattern="[0-9]{10}" required>
+
+                        <input type="email" class="form-control" name="email" placeholder="Email Address *" required>
+
+                        <select class="form-control" name="job_roles" required>
+                            <option value="" disabled selected>Select Job Role *</option>
+                            <option>Full Stack Web Developer</option>
+                            <option>Mobile Application Developer</option>
+                            <option>Digital Marketing Executive</option>
+                            <option>Graphic Designer</option>
+                            <option>Office Administrator</option>
+                            <option>Telecaller</option>
+                        </select>
+
+                        <input type="number" class="form-control" name="experience" placeholder="Experience (Years) *"
+                            required>
+
+                        <input type="file" class="form-control" name="resume" required>
+
+                        <button type="submit" class="btn btn-apply">
+                            Submit Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= STYLES ================= -->
+    <style>
+        .career-heading {
+            color: rgb(120, 8, 50);
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        .career-subtext {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .job-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 5px;
+            border: 1px solid rgb(187, 82, 253);
+            transition: 0.3s;
+        }
+
+        .job-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-box h5 {
+            color: rgb(120, 8, 50);
+            font-weight: 700;
+        }
+
+        .job-box span {
+            display: block;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .job-box small {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .apply-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 18px;
+            margin-top: 37px;
+            border: 1px solid rgb(187, 82, 253);
+        }
+
+        .apply-card h3 {
+            font-weight: 700;
+            color: rgb(120, 8, 50);
+        }
+
+        .apply-card .form-control {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 9.5px;
+        }
+
+        .btn-apply {
+            width: 100%;
+            background: rgb(175, 11, 78);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 12px;
+            border: none;
+        }
+
+        .btn-apply:hover {
+            background: rgb(150, 10, 65);
+            color: white;
+        }
+    </style>
+
+    <!-- ================= VALIDATION ================= -->
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.forEach.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            });
+        })();
+    </script>
+
+    <%- include('footer.ejs') %>

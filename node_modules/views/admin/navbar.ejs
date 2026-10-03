@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>KDNI-Admin-Panel</title>
+   <!-- site icon -->
+   <link rel="icon" href="/user_assets/images/favicon.png" type="image/png" />
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="/admin_assets/css/bootstrap.min.css" />
+   <!-- site css -->
+   <link rel="stylesheet" href="/admin_assets/style.css" />
+   <!-- responsive css -->
+   <link rel="stylesheet" href="/admin_assets/css/responsive.css" />
+   <!-- color css -->
+   <link rel="stylesheet" href="/admin_assets/css/colors.css" />
+   <!-- select bootstrap -->
+   <link rel="stylesheet" href="/admin_assets/css/bootstrap-select.css" />
+   <!-- scrollbar css -->
+   <link rel="stylesheet" href="/admin_assets/css/perfect-scrollbar.css" />
+   <!-- custom css -->
+   <link rel="stylesheet" href="/admin_assets/css/custom.css" />
+   <!-- CK editor codepen -->
+   <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+
+   <style>
+      @media(max-width:667px) {
+         h3 {
+            font-size: 14px;
+            position: relative;
+         }
+
+         td {
+            font-size: 12px;
+         }
+      }
+   </style>
+
+</head>
+
+<body class="dashboard dashboard_1">
+   <div class="full_container">
+      <div class="inner_container">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+            <div class="sidebar_blog_1">
+               <div class="sidebar-header">
+                  <div class="logo_section">
+                     <a href="/admin">
+                        <img class="logo_icon img-responsive" src="/admin_assets/images/logo/logo_icon.png" alt="#" />
+                     </a>
+                  </div>
+               </div>
+               <!-- <div class="sidebar_user_info">
+                  <div class="icon_setting"></div>
+                  <div class="user_profle_side">
+                     <div class="user_img"><img class="img-responsive"
+                           src="/admin_assets/images/layout_img/user_img.jpg" alt="#" />
+                     </div>
+                     <div class="user_info">
+                        <h6 class="mb-2">Mr.Tejas Sir</h6>
+                        <p><span class="online_animation"></span> Online</p>
+                     </div>
+                  </div>
+               </div> -->
+            </div>
+
+            <div class="sidebar_blog_2">
+               <h4 style="font-size: 14px;">Kanak Digifex Nextgen Institute</h4>
+               <ul class="list-unstyled components">
+                  <li><a href="/admin"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
+                  <li><a href="/admin/program_registrations"><i class="fa fa-video-camera green_color"></i>
+                        <span>Program Registrations</span></a></li>
+                  <li><a href="/admin/advance-internship-program"><i class="fa fa-text-height text-danger"></i> <span>
+                           Internship Registrations</span></a>
+                  </li>
+                  <li><a href="/admin/adsul-itr-registrations"><i class="fa fa-random text-success"></i> <span>
+                           Adsul ITR - 2026</span></a>
+
+                  <li><a href="/admin/adsul_internship_registrations"><i class="fa fa-registered text-primary"></i>
+                        <span>
+                           Adsul Internship Reg</span></a>
+                  </li>
+
+                  <li><a href="/admin/scsmcoe_internship_reg"><i class="fa fa-save text-success"></i> <span>
+                           SCSMCOE Internship Reg</span></a>
+                  </li>
+
+                  <li><a href="/admin/internship-registration-2026"><i class="fa fa-hacker-news text-danger"></i> <span>
+                           Internship - 2026</span></a>
+                  </li>
+
+                  <li><a href="/admin/karjat-dp-cloud-registrations"><i class="fa fa-registered text-yellow"></i> <span>
+                           DP College Karjat CC Reg</span></a>
+                  </li>
+
+                  <li><a href="/admin/adsul_interview_drive_reg"><i class="fa fa-inbox text-warning"></i> <span
+                           style="text-transform: capitalize;"> adsul interview drive reg</span></a>
+                  </li>
+
+                  <li><a href="/admin/resume-session-registrations"> <i class="fa fa-save text-primary"></i>
+                        <span>Resume Session Reg.</span></a>
+
+                  </li>
+                  <li><a href="/admin/feedbacks-list"><i
+                           class="fa fa-american-sign-language-interpreting text-warning"></i> <span> Feedbacks
+                           List</span></a>
+                  </li>
+
+                  <li><a href="/admin/basic_info"><i class="fa fa-clock-o blue_color"></i> <span>Basic
+                           Information</span></a></li>
+
+                  <li><a href="/admin/about"><i class="fa fa-clock-o green_color"></i> <span>About Us</span></a></li>
+
+                  <li><a href="/admin/our_team"><i class="fa fa-text-height text-danger"></i> <span>Our Team</span></a>
+                  </li>
+
+                  <li><a href="/admin/products"><i class="fa fa-amazon text-success"></i> <span>Our Products</span></a>
+                  </li>
+
+                  <li><a href="/admin/customer_reviews"><i class="fa fa-android text-danger"></i> <span>Customer
+                           Reviews</span></a></li>
+
+                  <li><a href="/admin/our_gallery"><i
+                           class="fa fa-american-sign-language-interpreting text-warning"></i> <span>Our
+                           Gallery</span></a></li>
+
+                  <li><a href="/admin/our_associates"><i class="fa fa-angellist text-info"></i> <span>Our
+                           Associates</span></a></li>
+
+                  <li><a href="/admin/industrial_visit_list"><i class="fa fa-angellist text-info"></i> <span>Guest
+                           Lecture Registrations</span></a></li>
+                  <li><a href="/admin/industrial_training_list"><i class="fa fa-angellist text-info"></i>
+                        <span>Industrial Training List</span></a></li>
+
+                  <li><a href="/admin/job_search_candidate_list"><i class="fa fa-chain text-info"></i> <span>Job
+                           Search Candidates</span></a></li>
+
+                  <li class="active">
+                     <a href="#registrations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                           class="fa fa-registered text-success"></i> <span>Our Registrations &nbsp; </span></a>
+                     <ul class="collapse list-unstyled" id="registrations">
+                        <li>
+                           <a href="/admin/registrations_for_course"> > <span>Registrations For Courses</span></a>
+                           <a href="/admin/registrations_for_internships"> > <span>Registrations For
+                                 Internships</span></a>
+                           <a href="/admin/registrations_for_college_internships"> > <span>
+                                 College Intern Registrations</span></a>
+                           <a href="/admin/job_applications"> > <span>Job Applications</span></a>
+                           <a href="/admin/adsul_guest_lecture_reg_list"> > <span>Adsul's Guest Lecture Reg</span></a>
+                           <a href="/admin/samarth_guest_lecture_reg_list"> > <span>Samarth Guest Lecture Reg</span></a>
+                           <a href="/admin/vishwabharati_guest_lecture_reg_list"> > <span>Vishwabharati Lecture
+                                 Reg</span></a>
+                           <a href="/admin/adsul_ind_visit_list"> > <span>Adsul Ind Visit List</span></a>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <li class="active">
+                     <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                           class="fa fa-table purple_color2"></i> <span>Home Page &nbsp; </span></a>
+                     <ul class="collapse list-unstyled" id="dashboard">
+                        <li>
+                           <a href="/admin/banner_images">> <span>Add Banner Images</span></a>
+                           <a href="/admin/add_card_section">> <span>Add Card Section</span></a>
+                           <a href="/admin/about_kanak_digifex">> <span>About Kanak Digifex</span></a>
+                           <a href="/admin/offered_courses">> <span>Offered Courses</span></a>
+                           <a href="/admin/all_courses">> <span>Add New Course</span></a>
+                           <a href="/admin/course_list">> <span>Courses List</span></a>
+                           <a href="/admin/business_solutions">> <span>Business Solutions</span></a>
+                           <a href="/admin/business_list">> <span>Business Solutions List</span></a>
+                           <a href="/admin/why_kanak_digifex">> <span>Why Kanak Digifex</span></a>
+                           <a href="/admin/company_policy">> <span>Company Policy</span></a>
+                           <a href="/admin/user_footer">> <span>User Footer Section</span></a>
+                           <a href="/admin/disclaimer">> <span>Disclaimer Info</span></a>
+                           <a href="/admin/all_services">> <span>Add New Service</span></a>
+                           <a href="/admin/service_list">> <span>Services List</span></a>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <li class="active">
+                     <a href="#workshop" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                           class="fa fa-text-width text-success"></i> <span>Workshops &nbsp; </span></a>
+                     <ul class="collapse list-unstyled" id="workshop">
+                        <li>
+                           <a href="/admin/all_workshop"> > <span> Add Workshops</span></a>
+                           <a href="/admin/workshop_list"> > <span> Workshops List</span></a>
+                           <a href="/admin/customer_workshop"> > <span>Workshops Registrations</span></a>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <li class="active">
+                     <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                           class="fa fa-shekel text-danger"></i> <span>Contact US &nbsp; </span></a>
+                     <ul class="collapse list-unstyled" id="contact">
+                        <li>
+                           <a href="/admin/user_contact">> <span>User Contact Details</span></a>
+                           <a href="/admin/company_office_address">> <span>Company Office Address</span></a>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <li class="active">
+                     <a href="#certification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                           class="fa fa-navicon text-warning"></i> <span>Certification &nbsp; </span></a>
+                     <ul class="collapse list-unstyled" id="certification">
+                        <li>
+                           <a href="/admin/certification">> <span>Add Certificate</span></a>
+                           <a href="/admin/certificate_list">> <span>Certificates List</span></a>
+                           <a href="/admin/certification_images">> <span>Certification Images</span></a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <!-- end sidebar -->
+         <!-- right content -->
+         <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
+               <nav class="navbar navbar-expand-lg navbar-light ">
+                  <div class="full">
+                     <button type="button" id="sidebarCollapse" class="sidebar_toggle"
+                        style="background-color: orangered"><i class="fa fa-bars"></i></button>
+                     <!-- Logout Button -->
+                     <div class="right_topbar">
+                        <a href="/admin/logout" onclick="return confirm('Are you sure you want to log out?')" style="
+                  background-color: orangered;
+                  color: #fff;
+                  padding: 8px 16px;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  margin-right:20px;
+                  margin-top: 10px;
+                  font-weight:bold;
+               ">
+                           <span>Log Out</span>
+                           <i class="fa fa-sign-out"></i>
+                        </a>
+                     </div>
+                  </div>
+               </nav>
+            </div>

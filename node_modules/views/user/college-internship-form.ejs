@@ -1,0 +1,495 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Mobile App Development & IT Solutions Company in Ahilyanagar / Ahmednagar
+    </title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="mobile app development company Ahmednagar, IT company in Ahmednagar, software company Ahmednagar, web development Ahmednagar, digital marketing Ahmednagar, cloud computing course Ahmednagar, Java full stack course Ahmednagar, data science course Ahmednagar, graphic design course Ahmednagar, AI graphic design Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s first corporate IT company providing expert mobile app development, web development, digital marketing, cloud solutions, and AI-powered graphic design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%- include('header.ejs') %>
+
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Start Your Professional Journey</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/internship-registration" title="Course">Internships</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <div class="container mt-5 mb-5">
+        <div class="row ">
+            <div class="col-12 col-md-10 col-lg-7">
+                <div class="card border-0 shadow-lg overflow-hidden">
+                    <!-- Form Header with Gradient Background -->
+                    <div class="card-header py-4"
+                        style="background: linear-gradient(135deg, #af0b4e 0%, #6a0d83 100%);">
+                        <h3 class="font-weight-bold text-white text-center mb-0">Internship Application</h3>
+                        <p class="text-white text-center mb-0 mt-2">Launch your career with hands-on experience</p>
+                    </div>
+
+                    <!-- Form Body -->
+                    <div class="card-body px-4 py-4">
+                        <form action="/save_college_internships_registration" method="post" id="internshipForm"
+                            class="needs-validation" novalidate>
+                            <!-- Personal Information Section -->
+                            <div class="mb-4">
+                                <h5 class=" mb-3 border-bottom pb-2"><i class="fas fa-user-circle mr-2"></i> Personal
+                                    Information</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fullName" class="form-label">Full Name <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" class="form-control" name="student_name" id="fullName"
+                                                placeholder="Enter your full name" required>
+                                            <div class="invalid-feedback">Please enter your full name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="mobile" class="form-label">Mobile <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            <input type="tel" class="form-control" name="student_mobile" id="mobile"
+                                                placeholder="Enter your mobile number" required pattern="[0-9]{10}">
+                                            <div class="invalid-feedback">Please enter a valid 10-digit mobile number.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" class="form-control" name="student_email" id="email"
+                                            placeholder="Enter your email" required>
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Academic Information Section -->
+                            <div class="mb-4">
+                                <h5 class=" mb-3 border-bottom pb-2"><i class="fas fa-graduation-cap mr-2"></i> Academic
+                                    Information</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="college" class="form-label">College Name <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-university"></i></span>
+                                            <input type="text" class="form-control" name="student_college_name"
+                                                id="college" placeholder="Enter your college name" required>
+                                            <div class="invalid-feedback">Please enter your college name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="degree" class="form-label">Current Stream <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-book"></i></span>
+                                            <input type="text" class="form-control" name="student_degree" id="degree"
+                                                placeholder="Diploma/Graduation/Post-Graduation" required>
+                                            <div class="invalid-feedback">Please enter at least one.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="academicYear" class="form-label">Current Academic Year <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                        <select class="form-select" name="student_academic_year" id="academicYear"
+                                            required>
+                                            <option value="" disabled selected>Select your academic year</option>
+                                            <option value="1">1st Year</option>
+                                            <option value="2">2nd Year</option>
+                                            <option value="3">3rd Year</option>
+                                            <option value="4">4th Year</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your academic year.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Internship Selection Section -->
+                            <div class="mb-4">
+                                <h5 class=" mb-3 border-bottom pb-2"><i class="fas fa-briefcase mr-2"></i> Internship
+                                    Preferences</h5>
+                                <div class="mb-3">
+                                    <label for="internshipOptions" class="form-label">Select Internship(s) <small
+                                            class="text-muted">(Hold Ctrl/Cmd to select multiple)</small> <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select" name="student_selected_internships"
+                                        id="internshipOptions" multiple size="5" required>
+                                        <optgroup label="Development">
+                                            <option value="Web Development">Web Development</option>
+                                            <option value="Mobile App Development">Mobile App Development</option>
+                                            <option value="Python">Python</option>
+                                            <option value="PHP">PHP</option>
+                                            <option value="Node.js">Node.js</option>
+                                            <option value="React.js">React.js</option>
+                                            <option value="Angular">Angular</option>
+                                        </optgroup>
+                                        <optgroup label="Data & AI">
+                                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                            <option value="Data Science">Data Science</option>
+                                            <option value="Machine Learning">Machine Learning</option>
+                                            <option value="Power BI">Power BI</option>
+                                        </optgroup>
+                                        <optgroup label="Other Fields">
+                                            <option value="Cloud Computing">Cloud Computing</option>
+                                            <option value="Digital Marketing">Digital Marketing</option>
+                                            <option value="Corporate Graphic Design">Corporate Graphic Design</option>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Please select at least one internship option.</div>
+                                    <small class="text-muted">We'll match you with the best opportunities based on your
+                                        selection</small>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 py-2"
+                                    style="background: linear-gradient(135deg, #af0b4e 0%, #6a0d83 100%); border: none;">
+                                    <i class="fas fa-paper-plane mr-2"></i> Submit Application
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="internship-card shadow-lg p-4 rounded-4 bg-white">
+                    <h5 class="fw-bold mb-3">Scan & Pay</h5>
+                    <div class="qr-container mb-3">
+                        <img src="/user_assets/images/qr-code.jpg" alt="QR Code" class="img-fluid rounded-3">
+
+                    </div>
+                    <div class="internship-details">
+                        <h5 class="fw-semibold mb-3">Internship Details</h5>
+                        <ul class="list-group list-group-flush text-start mb-3">
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-calendar-check me-2 text-primary"></i>
+                                Duration: 1 Month / 3 Months / 6 Months
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-indian-rupee-sign me-2 text-primary"></i>
+                                Fees: ₹3000/- ₹5000/- ₹7000/- Resp.
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-laptop-house me-2 text-primary"></i>
+                                Mode: Online / Offline
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-certificate me-2 text-primary"></i>
+                                Certification : Joining Letter & Completion Letter
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="learning-outcomes mb-4">
+                        <h5 class="fw-semibold mb-3">What You'll Learn</h5>
+                        <div class="accordion" id="internshipAccordion">
+
+                            <!-- Technical Skills -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Technical Skills
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#internshipAccordion">
+                                    <div class="accordion-body">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-code me-2 text-success"></i>Work on client live
+                                                projects
+                                            </li>
+                                            <li><i class="fas fa-database me-2 text-success"></i> Attend workshops on
+                                                emerging technologies</li>
+                                            <li><i class="fas fa-mobile-alt me-2 text-success"></i> Hands-on coding
+                                                practice sessions</li>
+                                            <li><i class="fas fa-cloud me-2 text-success"></i> Exposure to technologies
+                                                you want to make career</li>
+                                            <li><i class="fas fa-asterisk me-2 text-success"></i> Mini-projects &
+                                                assignments for practice</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Professional Development -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Professional Development
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#internshipAccordion">
+                                    <div class="accordion-body">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-users me-2 text-info"></i> Resume Building & Portfolio
+                                                Development</li>
+                                            <li><i class="fas fa-tasks me-2 text-info"></i> Team Collaboration (Working
+                                                in groups, leadership skills)</li>
+                                            <li><i class="fas fa-comments me-2 text-info"></i> Project Management Basics
+                                            </li>
+                                            <li><i class="fas fa-intercom me-2 text-info"></i> Mock Interviews & Group
+                                                Discussions
+                                            </li>
+                                            <li><i class="fas fa-save me-2 text-info"></i> Soft Skills (Confidence,
+                                                Public Speaking, Adaptability)
+                                            </li>
+                                            <li><i class="fas fa-camera-retro me-2 text-info"></i> Career Guidance &
+                                                Placement Preparation
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <style>
+                .internship-card {
+                    transition: transform 0.3s ease;
+                }
+
+                .internship-card:hover {
+                    transform: translateY(-5px);
+                }
+
+                .qr-container {
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .qr-container img {
+                    height: 486px;
+                    width: 400px;
+
+                }
+
+
+                .qr-container:hover .qr-overlay {
+                    opacity: 1;
+                }
+
+                .internship-cta-btn {
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .internship-cta-btn:hover {
+                    transform: scale(1.05);
+                }
+
+                .internship-cta-btn:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                    transition: all 0.5s ease;
+                }
+
+                .internship-cta-btn:hover:before {
+                    left: 100%;
+                }
+
+                .accordion-button:not(.collapsed) {
+                    background-color: rgba(52, 152, 219, 0.1);
+                    color: #2c3e50;
+                    font-weight: 600;
+                }
+            </style>
+
+            <!-- Required Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Font Awesome for icons -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+            <script>
+                document.querySelectorAll('#internshipAccordion .accordion-button').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const target = document.querySelector(this.getAttribute('data-bs-target'));
+
+                        // जर आधीच open असेल तर manual close करा
+                        if (target.classList.contains('show')) {
+                            const collapse = bootstrap.Collapse.getInstance(target);
+                            collapse.hide();
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS for form styling -->
+    <style>
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #af0b4e;
+            box-shadow: 0 0 0 0.25rem rgba(175, 11, 78, 0.25);
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-radius: 8px 0 0 8px;
+        }
+
+        select[multiple] {
+            min-height: 150px;
+        }
+
+        optgroup {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        optgroup option {
+            font-weight: normal;
+            padding-left: 20px;
+        }
+
+        h5 {
+            color: rgb(76, 10, 120);
+            font-weight: bold;
+            font-size: 22px;
+        }
+    </style>
+
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        document.getElementById('internshipForm').addEventListener('submit', function (event) {
+            const internshipOptions = document.getElementById('internshipOptions');
+            if (Array.from(internshipOptions.selectedOptions).length === 0) {
+                event.preventDefault();
+                event.stopPropagation();
+                internshipOptions.classList.add('is-invalid');
+            } else {
+                internshipOptions.classList.remove('is-invalid');
+            }
+        });
+    </script>
+
+    <%- include('footer.ejs') %>

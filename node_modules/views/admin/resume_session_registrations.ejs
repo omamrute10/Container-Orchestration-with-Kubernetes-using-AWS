@@ -1,0 +1,210 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        .page-title {
+            font-weight: 700;
+            color: rgb(109, 13, 129);
+        }
+
+        .stats-card {
+            border-radius: 15px;
+            color: #fff !;
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+
+        .stats-card h5 {
+            color: white;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-total {
+            background: linear-gradient(135deg, #6a0d83, #af0b4e);
+        }
+
+        .card-online {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .card-offline {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+
+        .custom-table thead {
+            background: linear-gradient(135deg, #af0b4e, #6a0d83);
+            color: #fff;
+        }
+
+        .custom-table tbody tr:hover {
+            background: rgba(175, 11, 78, 0.05);
+            transition: 0.3s;
+        }
+
+        .badge-success-custom {
+            background: #28a745;
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        .badge-primary-custom {
+            background: darkblue;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .badge-info-custom {
+            background: deeppink;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .badge-danger-custom {
+            background: #dc3545;
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        .search-box {
+            border-radius: 30px;
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+
+    <div class="container-fluid mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="page-title">Resume & LinkedIn Session Registrations</h3>
+            <input type="text" id="searchInput" class="search-box" placeholder="Search...">
+        </div>
+
+        <!-- Stats Section -->
+        <div class="row mb-4">
+            <div class="col-md-4 mt-2">
+                <div class="stats-card card-total text-center">
+                    <h5>Total Registrations - <%= registrations.length %>
+                    </h5>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2">
+                <div class="stats-card card-online text-center">
+                    <h5>Online Mode - <%= registrations.filter(r=> r.mode_of_attendance === "Online").length %></h5>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2">
+                <div class="stats-card card-offline text-center">
+                    <h5>Offline Mode - <%= registrations.filter(r=> r.mode_of_attendance === "Offline").length %></h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="card shadow-lg border-0">
+            <div class="card-body table-responsive">
+
+                <table class="table custom-table table-striped " id="registrationTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>College</th>
+                            <th>Course</th>
+                            <th>Status</th>
+                            <th>Resume</th>
+                            <th>LinkedIn</th>
+                            <th>Mode</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% if (registrations.length> 0) { %>
+                            <% registrations.forEach((row, index)=> { %>
+                                <tr>
+                                    <td class="text-center">
+                                        <%= index + 1 %>
+                                    </td>
+                                    <td><strong>
+                                            <%= row.full_name %>
+                                        </strong></td>
+                                    <td>
+                                        <%= row.mobile_number %>
+                                    </td>
+                                    <td>
+                                        <%= row.college_name %>
+                                    </td>
+                                    <td>
+                                        <%= row.course_degree %>
+                                    </td>
+                                    <td>
+                                        <%= row.current_status %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <% if(row.have_resume==="Yes" ){ %>
+                                            <span class="badge-success-custom text-white">Yes</span>
+                                            <% } else { %>
+                                                <span class="badge-danger-custom text-white">No</span>
+                                                <% } %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <% if(row.have_linkedin==="Yes" ){ %>
+                                            <span class="badge-success-custom text-white">Yes</span>
+                                            <% } else { %>
+                                                <span class="badge-danger-custom text-white">No</span>
+                                                <% } %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <% if(row.mode_of_attendance==="Offline" ){ %>
+                                            <span class="badge-primary-custom">Offline</span>
+                                            <% } else { %>
+                                                <span class="badge-info-custom">Online</span>
+                                                <% } %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <%= new Date(row.created_at).toLocaleDateString() %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="10" class="text-center">No Registrations Found</td>
+                                        </tr>
+                                        <% } %>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Simple Search Filter
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+            let value = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#registrationTable tbody tr");
+
+            rows.forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(value) ? "" : "none";
+            });
+        });
+    </script>
+
+    <%- include('footer.ejs') %>

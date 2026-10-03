@@ -1,0 +1,1361 @@
+<%- include('header.ejs') %>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .workshop-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #ff006e, transparent);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #8338ec, transparent);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -7s;
+        }
+
+        .shape-3 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #3a86ff, transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-50px, 50px) scale(0.9);
+            }
+        }
+
+        .workshop-container {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+        }
+
+        .workshop-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            padding: 40px;
+            padding-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff006e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.7;
+            }
+        }
+
+        .title-animated {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .workshop-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 50px 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .info-card:hover .card-glow {
+            opacity: 1;
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .info-details {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 17px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .description-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            padding-bottom: 22px;
+        }
+
+        .description-box h3 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .description-box p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            padding-bottom: 28px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h3 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        .input-wrapper {
+            margin-bottom: 25px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            z-index: 2;
+            pointer-events: none;
+            transition: all 0.3s;
+            color: rgb(108, 107, 208);
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 18px 20px 18px 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            pointer-events: none;
+            transition: all 0.3s;
+            background: transparent;
+            padding: 0 5px;
+        }
+
+        .input-group textarea+label {
+            top: 25px;
+            transform: none;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label,
+        .input-group select:focus+label,
+        .input-group select:not([value=""])+label,
+        .input-group textarea:focus+label,
+        .input-group textarea:not(:placeholder-shown)+label {
+            top: -10px;
+            left: 50px;
+            font-size: 12px;
+            color: #667eea;
+            background: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.05) 50%);
+            font-weight: 600;
+        }
+
+        .input-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.4s;
+        }
+
+        .input-group input:focus~.input-line,
+        .input-group select:focus~.input-line,
+        .input-group textarea:focus~.input-line {
+            width: 100%;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            margin-top: 10px;
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-arrow {
+            font-size: 22px;
+            transition: transform 0.3s;
+        }
+
+        .btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .submit-btn:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        .submit-btn:hover .btn-glow {
+            width: 400px;
+            height: 400px;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .success-message.show {
+            display: flex;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .success-text strong {
+            display: block;
+            color: white;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .success-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .trust-icon {
+            font-size: 18px;
+        }
+
+        @media (max-width: 1200px) {
+            .workshop-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .workshop-header {
+                padding: 40px 25px;
+            }
+
+            .title-animated {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .header-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .workshop-content {
+                padding: 30px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-wrapper {
+                padding: 30px 20px;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .badge {
+                top: 20px;
+                right: 20px;
+                font-size: 11px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Master WordPress In Just 10 Days!</h1>
+
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/workshop" title="Workshops">Workshops</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced Workshop Registration</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <section class="workshop-section">
+            <div class="bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+
+            <div class="workshop-container">
+                <div class="workshop-header">
+                    <div class="particles" id="particles"></div>
+                    <h2 class="title-animated">PVP COLLEGE OF ART'S, SCIENCE & COMMERCE, LONI</h2>
+                    <div class="subtitle">In Association With </div>
+                    <h2 class="title-animated">KANAK DIGIFEX NEXTGEN PVT. LTD </h2>
+                    <div class="subtitle">First Ever Corporate IT Company Of Ahilyanagar (Reg.Office-Mumbai) </div>
+
+                </div>
+
+                <div class="workshop-content">
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-card" data-aos="fade-up" data-delay="0">
+                                <div class="info-icon gradient-bg">📅</div>
+                                <div class="info-details">
+                                    <div class="info-label">Start Date</div>
+                                    <div class="info-value">24 October 2025</div>
+                                </div>
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="info-card" data-aos="fade-up" data-delay="100">
+                                <div class="info-icon gradient-bg">⏰</div>
+                                <div class="info-details">
+                                    <div class="info-label">Schedule</div>
+                                    <div class="info-value">11:00 AM - 1:00 PM</div>
+                                </div>
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="info-card" data-aos="fade-up" data-delay="200">
+                                <div class="info-icon gradient-bg">🔄</div>
+                                <div class="info-details">
+                                    <div class="info-label">Duration</div>
+                                    <div class="info-value">10 Days Intensive</div>
+                                </div>
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="info-card" data-aos="fade-up" data-delay="300">
+                                <div class="info-icon gradient-bg">💻</div>
+                                <div class="info-details">
+                                    <div class="info-label">Platform</div>
+                                    <div class="info-value">WordPress Focus</div>
+                                </div>
+                                <div class="card-glow"></div>
+                            </div>
+                        </div>
+
+                        <div class="description-box">
+                            <h3>Why This Workshop?</h3>
+                            <p>Join our <strong>10-day intensive workshop</strong> designed to transform complete
+                                beginners into confident WordPress developers. This isn't just theory—it's hands-on,
+                                project-based learning with real-world applications.</p>
+                            <div class="features-list">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Work with Premium Themes & Page Builders</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Master WordPress customization & plugins</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Learn SEO, security, and performance optimization</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Deploy Websites on Hosting & Custom Domains</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="form-wrapper">
+                            <div class="form-header">
+                                <h3>Secure Your Spot Today</h3>
+                                <p>Join the next generation of web developers</p>
+                            </div>
+
+                            <form action="/save_workshop_details" method="post" id="registrationForm">
+                                <div class="input-wrapper">
+                                    <div class="input-group">
+                                        <div class="input-icon"><i class="fa fa-user"></i></div>
+                                        <input type="text" id="name" name="customer_name" required placeholder=" ">
+                                        <label for="name">Full Name</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <div class="input-group">
+                                        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                                        <input type="email" id="email" name="customer_email" required placeholder=" ">
+                                        <label for="email">Email Address</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="input-row">
+                                    <div class="input-wrapper">
+                                        <div class="input-group">
+                                            <div class="input-icon"><i class="fa fa-mobile"></i></div>
+                                            <input type="tel" id="phone" name="customer_mobile" required
+                                                placeholder=" ">
+                                            <label for="phone">Phone Number</label>
+                                            <div class="input-line"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-wrapper">
+                                        <div class="input-group">
+                                            <div class="input-icon"><i class="fa fa-mobile"></i></div>
+                                            <input type="tel" id="workshop" value="WP 10-Day Workshop" readonly
+                                                name="customer_workshop" required placeholder=" ">
+                                            <div class="input-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p
+                                    style="text-transform: capitalize;color: white;font-size: 14.5px;padding-bottom: 5px;">
+                                    Before clicking on register now make sure you have followed us on instagram</p>
+                                <button type="submit" class="submit-btn">
+                                    <span class="btn-content">
+                                        <span class="btn-text">Register Now</span>
+                                        <span class="btn-arrow">→</span>
+                                    </span>
+                                    <div class="btn-glow"></div>
+                                </button>
+
+                            </form>
+
+                            <div class="trust-badges">
+                                <div class="trust-badge">
+                                    <span class="trust-icon">🛡️</span>
+                                    <span>Hands-On Projects</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <span class="trust-icon">✅</span>
+                                    <span>Skill Growth </span>
+                                </div>
+                                <div class="trust-badge">
+                                    <span class="trust-icon">🎓</span>
+                                    <span>Completion Certificate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </section>
+
+        <!-- Instagram Section -->
+
+        <section class="instagram-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h1 class="main-title">
+                        <span class="title-text">Follow Us on Instagram</span>
+                        <span class="title-highlight">Get a Chance to Attend Our Next Workshop</span>
+                        <span class="title-free">Free of Cost!</span>
+                    </h1>
+                </div>
+
+                <div class="instagram-grid">
+                    <!-- Reel 1 -->
+                    <div class="instagram-reel">
+                        <div class="reel-container">
+                            <iframe src="https://www.instagram.com/reel/DNzsYes5ke1/embed" width="340" height="450"
+                                frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Reel 2 -->
+                    <div class="instagram-reel">
+                        <div class="reel-container">
+                            <iframe src="https://www.instagram.com/reel/DKSDLHASCks/embed" width="340" height="450"
+                                frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Reel 3 -->
+                    <div class="instagram-reel">
+                        <div class="reel-container">
+                            <iframe src="https://www.instagram.com/reel/DPv1C-UAlNx/embed" width="340" height="450"
+                                frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <a href="https://www.instagram.com/kanakdigifex_nagar/" target="_blank" class="cta-button">
+                            <i class="fab fa-instagram"></i>
+                            Follow Us Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .instagram-section {
+                padding: 40px 20px;
+                background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .instagram-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.03"><path fill="%23764ba2" d="M30,30 Q50,10 70,30 T90,50 Q70,70 50,90 T30,70 Q10,50 30,30 Z"/></svg>');
+                background-size: 150px;
+                z-index: 0;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            .section-header {
+                margin-bottom: 60px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                line-height: 1.2;
+            }
+
+            .title-text {
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .title-highlight {
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                font-weight: 800;
+                margin-bottom: 10px;
+            }
+
+            .title-free {
+                color: #ff4d94;
+                font-weight: 800;
+                position: relative;
+                display: inline-block;
+            }
+
+            .title-free::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, #ff4d94, transparent);
+            }
+
+            .section-subtitle {
+                font-size: 1.2rem;
+                color: #666;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .instagram-grid {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                flex-wrap: wrap;
+                margin-bottom: 60px;
+                width: 100%;
+            }
+
+            .instagram-reel {
+                position: relative;
+                transition: transform 0.3s ease;
+            }
+
+            .instagram-reel:hover {
+                transform: translateY(-10px);
+            }
+
+            .reel-container {
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .instagram-reel:hover .reel-container {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .instagram-reel iframe {
+                border-radius: 20px;
+                display: block;
+                transition: all 0.3s ease;
+            }
+
+            .instagram-reel:hover iframe {
+                filter: brightness(0.9);
+            }
+
+            .reel-actions {
+                display: flex;
+                gap: 15px;
+            }
+
+            .action-btn {
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50px;
+                padding: 10px 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #333;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .action-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .like-btn:hover {
+                color: #e91e63;
+            }
+
+            .comment-btn:hover {
+                color: #2196f3;
+            }
+
+            .share-btn:hover {
+                color: #4caf50;
+            }
+
+            .reel-caption {
+                margin-top: 15px;
+                text-align: center;
+                font-weight: 500;
+                color: #555;
+            }
+
+            .cta-section {
+                border-radius: 20px;
+                color: white;
+                text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .cta-content h3 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+                font-weight: 700;
+            }
+
+            .steps-list {
+                list-style: none;
+                counter-reset: step-counter;
+                margin-bottom: 30px;
+                text-align: left;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .steps-list li {
+                counter-increment: step-counter;
+                margin-bottom: 15px;
+                padding-left: 40px;
+                position: relative;
+                font-size: 1.1rem;
+            }
+
+            .steps-list li::before {
+                content: counter(step-counter);
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: rgba(255, 255, 255, 0.2);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            }
+
+            .cta-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: #764ba2;
+                color: white;
+                padding: 15px 30px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .cta-button:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            @media (max-width: 1100px) {
+                .instagram-grid {
+                    gap: 25px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .instagram-section {
+                    padding: 60px 15px;
+                }
+
+                .main-title {
+                    font-size: 2rem;
+                }
+
+                .section-subtitle {
+                    font-size: 1rem;
+                }
+
+                .instagram-grid {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 40px;
+                }
+
+                .cta-section {
+                    padding: 30px 20px;
+                }
+
+                .cta-content h3 {
+                    font-size: 1.5rem;
+                }
+
+                .steps-list li {
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .main-title {
+                    font-size: 1.7rem;
+                }
+
+                .instagram-reel iframe {
+                    width: 100%;
+                    max-width: 350px;
+                    height: 450px;
+                }
+
+                .cta-button {
+                    padding: 12px 25px;
+                    font-size: 1rem;
+                }
+            }
+        </style>
+
+        <script>
+            // Add hover effect for action buttons
+            document.addEventListener('DOMContentLoaded', function () {
+                const actionButtons = document.querySelectorAll('.action-btn');
+
+                actionButtons.forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // Create a ripple effect
+                        const ripple = document.createElement('span');
+                        const rect = this.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height);
+                        const x = e.clientX - rect.left - size / 2;
+                        const y = e.clientY - rect.top - size / 2;
+
+                        ripple.style.width = ripple.style.height = size + 'px';
+                        ripple.style.left = x + 'px';
+                        ripple.style.top = y + 'px';
+                        ripple.classList.add('ripple');
+
+                        this.appendChild(ripple);
+
+                        // Remove ripple after animation
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+            });
+        </script>
+
+
+        <br><br>
+
+        <script>
+            // Create animated particles
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 4 + 2}px;
+                height: ${Math.random() * 4 + 2}px;
+                background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.3});
+                border-radius: 50%;
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: particle-float ${Math.random() * 10 + 15}s infinite ease-in-out;
+                animation-delay: ${Math.random() * 5}s;
+            `;
+                particlesContainer.appendChild(particle);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+            @keyframes particle-float {
+                0%, 100% { transform: translate(0, 0); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); opacity: 0; }
+            }
+        `;
+            document.head.appendChild(style);
+
+            // Form submission
+            const form = document.getElementById('registrationForm');
+            const successMessage = document.getElementById('successMessage');
+
+
+            // Animate info cards on load
+            const infoCards = document.querySelectorAll('.info-card');
+            infoCards.forEach((card, i) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                }, i * 100);
+            });
+
+            const fadeInStyle = document.createElement('style');
+            fadeInStyle.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+            document.head.appendChild(fadeInStyle);
+        </script>
+
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // stop normal form submit
+
+                const form = e.target;
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json()) // if your server returns JSON
+                    .then(data => {
+                        // If submission successful, redirect
+                        window.location.href = '/success'; // <-- success page URL
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("There was an error submitting the form.");
+                    });
+            });
+        </script>
+
+    </body>
+
+    </html>
+
+    <%- include('footer.ejs') %>

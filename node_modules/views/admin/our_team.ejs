@@ -1,0 +1,73 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/save_employee" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add Team Member</h3>
+            </div>
+            <div class="col-md-4 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Upload Image</label>
+                <input type="file" accept="image/*" name="employee_image" value="" class="form-control">
+            </div>
+            <div class="col-md-4 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Name</label>
+                <input type="text" name="employee_name"  class="form-control">
+            </div>
+            <div class="col-md-4 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Position</label>
+                <input type="text" name="employee_position"  class="form-control">
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="font-weight-bold btn btn-primary">Add Employee</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold text-center alert alert-primary p-3">Our Employees List</h3>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Action</th>
+                        <th>Sr.No</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody class="p-0">
+                    <% for(var i = 0; i < employee.length; i++) { %>
+                        <tr class="text-dark">
+                            <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                <a style="text-decoration: none;" href="/admin/delete_employee/<%= employee[i].employee_id %>" onclick="return confirm('Are You Sure')">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a style="text-decoration: none;" href="/admin/edit_employee/<%= employee[i].employee_id %>">
+                                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                </a>
+                            </td>
+                            <td><%= i + 1 %></td>
+                            <td>
+                                <img src="/uploads/<%= employee[i].employee_image %>" alt="Card Image"  style="max-width: 120px;height: 40px;">
+                            </td>
+                            <td><%= employee[i].employee_name %></td>
+                            <td><%= employee[i].employee_position %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,31 @@
+<%- include('navbar.ejs') %>
+
+
+    <form action="/admin/save_course_details" method="post" enctype="multipart/form-data">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Offered Courses Title</h3>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Heading</label>
+                    <input type="text" name="course_heading" value="<%= offered_courses.course_heading %>" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Sub-Heading</label>
+                    <input type="text" name="course_sub_heading" value="<%= offered_courses.course_sub_heading %>" class="form-control">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="font-weight-bold" for="">Enter Description</label>
+                    <textarea name="course_description"  value="" class="form-control"><%- offered_courses.course_description %></textarea>
+                </div>
+                <div class="col-md-12 text-center mt-3">
+                    <button class="font-weight-bold btn btn-primary">Save Details</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+<%- include('footer.ejs') %>

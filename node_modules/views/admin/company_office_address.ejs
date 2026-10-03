@@ -1,0 +1,87 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container p-5 mt-5 border shadow bg-white font-weight-bold" style="color: black;width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add Office Address</h3>
+            </div>
+            <div class="col-12 mt-4">
+                <form action="/admin/save_office_address" method="post" enctype="multipart/form-data">
+                    <label for="">Enter Office Location</label>
+                    <input type="text" name="office_location" class="form-control" required>
+                    <br>
+                    <label for=""> Enter Office Address</label>
+                    <input type="text" name="office_detail_address" class="form-control" required>
+                    <br>
+                    <label for=""> Enter Mobile</label>
+                    <input type="text" name="office_mobile" class="form-control" required>
+                    <br>
+                    <label for=""> Enter Email</label>
+                    <input type="email" name="office_email" class="form-control" required>
+                    <br>
+                    <label for=""> Upload Map (Link)</label>
+                    <input type="text" name="office_map_link" class="form-control" required>
+                    <br>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary font-weight-bold">Save Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border shadow mt-5 p-4 bg-white">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Office Addresses</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Action</th>
+                            <th>Sr.No</th>
+                            <th>Location</th>
+                            <th>Address</th>
+                            <th>Mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody class="p-0">
+                        <% for(var i=0; i < office.length; i++) { %>
+                            <tr class="text-dark">
+                                <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                    <a style="text-decoration: none;"
+                                        href="/admin/delete_office/<%= office[i].office_id %>"
+                                        onclick="return confirm('Are You Sure')">
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                    <a style="text-decoration: none;"
+                                        href="/admin/edit_office/<%= office[i].office_id %>">
+                                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <%= office[i].office_location %>
+                                </td>
+                                <td style="width: 30%;">
+                                    <%= office[i].office_detail_address %>
+                                </td>
+                                <td style="white-space: nowrap; width: 10%;">
+                                    <%= office[i].office_mobile %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('footer.ejs') %>

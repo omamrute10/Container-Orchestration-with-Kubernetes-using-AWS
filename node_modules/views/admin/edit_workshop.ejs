@@ -1,0 +1,50 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/update_workshop" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" name="workshop_id" value="<%=workshop_info.workshop_id%>">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add New Workshop</h3>
+            </div>
+            <div class="col-md-4 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Upload Image</label>
+                <input type="file" accept="image/*" name="workshop_image" value="" class="form-control">
+            </div>
+            <div class="col-md-2 mb-2 mt-2">
+                <img src="/uploads/<%=workshop_info.workshop_image%>" class="w-100">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Workshop Title</label>
+                <input type="text" name="workshop_title" value="<%=workshop_info.workshop_title%>"  class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Workshop Sub-Title</label>
+                <input type="text" name="workshop_sub_title" value="<%=workshop_info.workshop_sub_title%>"  class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Workshop Duration</label>
+                <input type="text" name="workshop_duration" value="<%=workshop_info.workshop_duration%>"  class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Workshop Date</label>
+                <input type="date" name="workshop_date" value="<%=workshop_info.workshop_date%>" class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Workshop Price</label>
+                <input type="text" name="workshop_price" value="<%=workshop_info.workshop_price%>"  class="form-control">
+            </div>
+            <div class="col-md-12 mb-3">
+                <label class="font-weight-bold" for="">Enter Workshop Details</label>
+                <textarea name="workshop_details" class="form-control"><%-workshop_info.workshop_details%></textarea>
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="font-weight-bold btn btn-primary">Update Workshop</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<%- include('footer.ejs') %>

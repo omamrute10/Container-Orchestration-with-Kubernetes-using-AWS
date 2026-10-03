@@ -1,0 +1,302 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Job Applications</h3>
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive mt-2">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Job Role</th>
+                                <th>Experience</th>
+                                <th>Resume</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i <applications.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_job_applications/<%= applications[i].applications_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= applications[i].name %>
+                                    </td>
+                                    <td>
+                                        <%= applications[i].mobile %>
+                                    </td>
+                                    <td>
+                                        <%= applications[i].email %>
+                                    </td>
+                                    <td>
+                                        <%= applications[i].job_roles %>
+                                    </td>
+                                    <td>
+                                        <%= applications[i].experience %>
+                                    </td>
+                                    <td>
+                                        <a href="/uploads/<%= applications[i].resume %>" download
+                                            class="btn btn-sm btn-primary" style="margin-top: 10px;">
+                                            <i class="fa fa-download"></i> Download Resume
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <!-- Registrations List For All Internships -->
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-danger p-3 mb-4">Registrations For Internships
+                </h3>
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>College Name</th>
+                                <th>Degree</th>
+                                <th style="width: 8%;">AC-Year</th>
+                                <th>Selected Internships</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i <internships.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_internship_registration/<%= internships[i].internships_registrations_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_name %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_mobile %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_email %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_college_name %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_degree %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_academic_year %>
+                                    </td>
+                                    <td>
+                                        <%= internships[i].student_selected_internships %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+
+            <!-- Latest Course Registration List -->
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-dark p-3 mb-4">Latest Course Registrations</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped mt-2 w-100">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Student Selected Course</th>
+                                <th style="width: 12%;">Learning Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i <registrations.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_registration/<%= registrations[i].registration_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_name %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_email %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_mobile %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].selected_course %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].course_mode %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-success p-3 mb-4">Upcoming Workshop Enquiries</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Workshop</th>
+                                <!-- <th>Message</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i <customer_workshop.length ; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_customer_workshop/<%= customer_workshop[i].customer_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= customer_workshop[i].customer_name %>
+                                    </td>
+                                    <td>
+                                        <%= customer_workshop[i].customer_email %>
+                                    </td>
+                                    <td>
+                                        <%= customer_workshop[i].customer_mobile %>
+                                    </td>
+                                    <td>
+                                        <%= customer_workshop[i].customer_workshop %>
+                                    </td>
+                                    <!-- <td>
+                                        <%= customer_workshop[i].customer_message %>
+                                    </td> -->
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-warning p-3 mb-4">User Contact Details</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i <user_contact.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_user_contact/<%= user_contact[i].user_contact_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td style="white-space: nowrap; width: 10%;">
+                                        <%= user_contact[i].user_name %>
+                                    </td>
+                                    <td>
+                                        <%= user_contact[i].user_mobile %>
+                                    </td>
+                                    <td>
+                                        <%= user_contact[i].user_email %>
+                                    </td>
+                                    <td>
+                                        <%= user_contact[i].user_message %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>

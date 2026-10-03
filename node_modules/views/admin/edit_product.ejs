@@ -1,0 +1,26 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/update_product" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" name="product_id" value="<%=product.product_id%>">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add New Course</h3>
+            </div>
+            <div class="col-md-8 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Upload Image</label>
+                <input type="file" accept="image/*" name="product_image" value="" class="form-control">
+            </div>
+            <div class="col-md-3 mb-2 mt-2">
+                <img src="/uploads/<%=product.product_image%>" class="w-100">
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="font-weight-bold btn btn-primary">Update Product</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<%- include('footer.ejs') %>

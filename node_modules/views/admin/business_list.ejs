@@ -1,0 +1,48 @@
+<%- include('navbar.ejs') %>
+
+
+<div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Businessses List</h3>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive ">
+            <table class="table table-bordered table-striped mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Action</th>
+                        <th>Sr.No</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <!-- <th>Course Button Link</th> -->
+                    </tr>
+                </thead>
+                <tbody class="p-0">
+                    <% for(var i = 0; i < business_solution.length; i++) { %>
+                        <tr class="text-dark">
+                            <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                <a style="text-decoration: none;" href="/admin/delete_business/<%= business_solution[i].business_id %>" onclick="return confirm('Are You Sure')">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a style="text-decoration: none;" href="/admin/edit_business/<%= business_solution[i].business_id %>">
+                                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                </a>
+                            </td>
+                            <td><%= i + 1 %></td>
+                            <td>
+                                <img src="/uploads/<%= business_solution[i].business_image %>" alt="Card Image"  style="max-width: 120px;height: 40px;">
+                            </td>
+                            <td><%= business_solution[i].business_title %></td>
+                            <!-- <td><%= business_solution[i].course_button_link %></td> -->
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('footer.ejs') %>

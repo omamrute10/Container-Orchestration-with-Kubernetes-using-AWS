@@ -1,0 +1,76 @@
+<%- include('navbar.ejs') %>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Certificate List</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Certificate</th>
+                                <th>Type</th>
+                                <th>C-Name</th>
+                                <th>Certificate Number</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < certificates.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_certificate/<%= certificates[i].id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                        <a style="text-decoration: none;"
+                                            href="/admin/edit_certificate/<%= certificates[i].id %>">
+                                            <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= certificates[i].student_name %>
+                                    </td>
+                                    <td>
+                                        <%= certificates[i].student_mobile %>
+                                    </td>
+                                    <td>
+                                        <img src="/uploads/<%= certificates[i].student_certificate %>" alt="Card Image"
+                                            style="max-width: 120px;height: 40px;">
+                                    </td>
+                                    <td>
+                                        <%= certificates[i].certificate_type %>
+                                    </td>
+                                    <td>
+                                        <% if (certificates[i].certificate_type==='course' ) { %>
+                                            <%= certificates[i].course_name %>
+                                                <% } else if (certificates[i].certificate_type==='workshop' ) { %>
+                                                    <%= certificates[i].workshop_name %>
+                                                        <% } else if (certificates[i].certificate_type==='internship' )
+                                                            { %>
+                                                            <%= certificates[i].internship_name %>
+                                                                <% } %>
+                                    </td>
+                                    <td><b class="font-weight-bold">UCN-KD-<%= certificates[i].student_certificate_number %></b>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('footer.ejs') %>

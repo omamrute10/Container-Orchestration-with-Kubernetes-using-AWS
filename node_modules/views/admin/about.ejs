@@ -1,0 +1,59 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/save_about" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-2">About US</h3>
+            </div>
+            <div class="col-md-10 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Upload Image</label>
+                <input type="file" accept="image/*" name="about_image" value=""value="" class="form-control">
+            </div>
+            <div class="col-md-2 mb-2 mt-2">
+                <img src="/uploads/<%= about.about_image %>" class="w-75">
+            </div>
+            <div class="col-md-6 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Title</label>
+                <input type="text" name="about_title" value="<%= about.about_title %>" class="form-control">
+            </div>
+            <div class="col-md-6 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Sub-Title</label>
+                <input type="text" name="about_sub_title" value="<%= about.about_sub_title %>" class="form-control">
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-1</label>
+                <textarea name="about_description_1" class="form-control"><%- about.about_description_1 %></textarea>
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-2</label>
+                <textarea name="about_description_2" class="form-control"><%- about.about_description_2 %></textarea>
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-3</label>
+                <textarea name="about_description_3" class="form-control"><%- about.about_description_3 %></textarea>
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-4</label>
+                <textarea name="about_description_4" class="form-control"><%- about.about_description_4 %></textarea>
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-5</label>
+                <textarea name="about_description_5" class="form-control"><%- about.about_description_5 %></textarea>
+            </div>
+            <div class="col-md-12 mb-2 mt-3">
+                <label class="font-weight-bold" for="">Enter Description-6</label>
+                <textarea name="about_description_6" class="form-control"><%- about.about_description_6 %></textarea>
+            </div>
+            <div class="col-md-12 text-center mt-4">
+                <button class="font-weight-bold btn btn-primary">Save Details</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<%- include('footer.ejs') %>

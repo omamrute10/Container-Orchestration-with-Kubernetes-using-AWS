@@ -1,0 +1,62 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container p-4 mt-5 border shadow bg-white font-weight-bold" style="color: black;width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3">Add Certification Images</h3>
+            </div>
+            <div class="col-12 mt-2">
+                <form action="/admin/save_certification_images" method="post" enctype="multipart/form-data">
+                    <label for="">Enter Details</label>
+                    <input type="file" name="certification_image" class="form-control">
+                    <br>
+                    <div class="text-center">
+                        <button class="btn btn-primary font-weight-bold">Save Images</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Certification Images</h3>
+            </div>
+            <div class="col-12">
+                <table class="table table-bordered table-striped mt-2">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Action</th>
+                            <th>Sr.No</th>
+                            <th>Images</th>
+                        </tr>
+                    </thead>
+                    <tbody class="p-0">
+                        <% for(var i=0; i < certification_images.length; i++) { %>
+                            <tr class="text-dark">
+                                <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                    <a style="text-decoration: none;"
+                                        href="/admin/delete_certification_images/<%= certification_images[i].certification_id %>"
+                                        onclick="return confirm('Are You Sure')">
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <img src="/uploads/<%= certification_images[i].certification_image %>" alt="Card Image"
+                                        style="max-width: 120px;height: 60px;">
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>

@@ -1,0 +1,690 @@
+<%- include('header.ejs') %>
+
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Your Career, Your Journey</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/registrations" title="Course">Registrations</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <style>
+        .career-portal-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgb(58, 12, 55) 0%, rgb(116, 81, 171) 100%);
+        }
+
+        /* Animated Background Elements */
+        .career-portal-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: backgroundShift 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50px, -50px) rotate(360deg);
+            }
+        }
+
+        /* Floating Shapes */
+        .career-floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: floatShape 15s ease-in-out infinite;
+        }
+
+        .career-floating-shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .career-floating-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .career-floating-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatShape {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        /* Main Content Container */
+        .career-content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        /* Main Heading */
+        .career-portal-title {
+            font-size: clamp(1rem, 8vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Subtitle */
+        .career-portal-subtitle {
+            font-size: clamp(1.2rem, 3vw, 0.8rem);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Stats Container */
+        .career-stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .career-stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .career-stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .career-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .career-stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Cards Grid */
+        .career-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Feature Cards */
+        .career-feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .career-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .career-feature-card:hover::before {
+            left: 100%;
+        }
+
+        .career-feature-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Card Icon */
+        .career-feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem auto;
+            background: linear-gradient(135deg, rgba(116, 81, 171, 0.3) 0%, rgba(58, 12, 55, 0.3) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .career-feature-card:hover .career-feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(116, 81, 171, 0.5) 0%, rgba(58, 12, 55, 0.5) 100%);
+        }
+
+        .career-feature-icon svg {
+            width: 50px;
+            height: 50px;
+            stroke: #fff;
+        }
+
+        /* Card Content */
+        .career-feature-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .career-feature-desc {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            width: 100%;
+            margin: 0px;
+        }
+
+        .career-feature-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .career-feature-benefits li {
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .career-feature-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .career-feature-benefits li::before {
+            content: '✓';
+            color: #fff;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        /* Alternative vertical layout with better spacing */
+        .career-feature-benefits.vertical-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .career-feature-benefits.vertical-list li {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .career-feature-benefits.vertical-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* For grid layout within cards */
+        .career-feature-benefits.grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .career-feature-benefits.grid-layout li {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.4rem;
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Simple vertical stack */
+        .career-feature-benefits.simple-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .career-feature-benefits.simple-vertical li {
+            display: flex;
+            align-items: center;
+            padding: 0.4rem 0;
+        }
+
+        /* CTA Button */
+        .career-cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 3rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-cta-button:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .career-portal-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .career-portal-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .career-features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .career-stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .career-feature-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .career-floating-shape {
+                display: none;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+
+            .career-portal-section::before,
+            .career-floating-shape,
+            .career-feature-card::before {
+                animation: none;
+            }
+        }
+
+        .job-search-btn {
+            position: relative;
+            padding: 0.6rem 3rem;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #52277d 100%);
+            color: white;
+            border: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .job-search-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .job-search-btn:hover::before {
+            left: 100%;
+        }
+
+        .job-search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 15px 35px rgba(102, 126, 234, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #768aea 0%, #865bb2 100%);
+        }
+
+        .job-search-btn:active {
+            transform: translateY(-1px);
+            box-shadow:
+                0 5px 20px rgba(102, 126, 234, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+    <section class="career-portal-section">
+        <!-- Floating Background Shapes -->
+        <div class="career-floating-shape"></div>
+        <div class="career-floating-shape"></div>
+        <div class="career-floating-shape"></div>
+
+        <div class="career-content-wrapper">
+            <h1 class="career-portal-title">Launch Your Dream Career</h1>
+            <p class="career-portal-subtitle">
+                Join thousands of successful professionals who started their journey with us.
+                Get matched with perfect opportunities that align with your skills and ambitions.
+            </p>
+
+            <!-- Statistics -->
+            <div class="career-stats-container">
+                <div class="career-stat-item">
+                    <span class="career-stat-number">10K+</span>
+                    <span class="career-stat-label">Active Opportunities</span>
+                </div>
+                <div class="career-stat-item">
+                    <span class="career-stat-number">95%</span>
+                    <span class="career-stat-label">Success Rate</span>
+                </div>
+                <div class="career-stat-item">
+                    <span class="career-stat-number">500+</span>
+                    <span class="career-stat-label">Partner Companies</span>
+                </div>
+                <div class="career-stat-item">
+                    <span class="career-stat-number">24/7</span>
+                    <span class="career-stat-label">Career Support</span>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="career-features-grid">
+                <!-- Internship Card -->
+                <a href="/internship_application" class="career-feature-card">
+                    <div class="career-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c0 1.104-.896 2-2 2s-2-.896-2-2 .896-2 2-2 2 .896 2 2zm0 0v3m0 4a9 9 0 110-18 9 9 0 010 18z" />
+                        </svg>
+                    </div>
+                    <h3 class="career-feature-title">Internship Program</h3>
+                    <p class="career-feature-desc">
+                        Gain real-world experience with top companies. Build your portfolio with industry
+                        professionals.
+                    </p>
+                    <ul class="career-feature-benefits grid-layout">
+                        <li>Paid & unpaid opportunities</li>
+                        <li>Mentorship programs</li>
+                        <li>Flexible durations</li>
+                        <li>Remote & on-site options</li>
+                    </ul>
+
+                    <div class="text-center">
+                        <button class="job-search-btn">Apply For Internship</button>
+
+                    </div>
+                </a>
+
+                <!-- Courses Card -->
+                <a href="/courses" class="career-feature-card">
+                    <div class="career-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 20l9-5-9-5-9 5 9 5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 12l9-5-9-5-9 5 9 5z" />
+                        </svg>
+                    </div>
+                    <h3 class="career-feature-title">Professional Courses</h3>
+                    <p class="career-feature-desc">
+                        Master in-demand skills with industry-recognized certifications and hands-on learning
+                        experiences.
+                    </p>
+                    <ul class="career-feature-benefits grid-layout">
+                        <li>Affordable Learning: Paid & Free Courses</li>
+                        <li>Expert Guidance: Mentorship Included</li>
+                        <li>Learn at Your Pace: Flexible Schedules</li>
+                        <li>Online & On-site Courses</li>
+                    </ul>
+                    <div class="text-center">
+                        <button class="job-search-btn">Apply For Courses</button>
+
+                    </div>
+                </a>
+
+                <!-- Job Search Card -->
+                <a href="/search_jobs" class="career-feature-card">
+                    <div class="career-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="career-feature-title">Career Opportunities</h3>
+                    <p class="career-feature-desc">
+                        Discover your perfect role with personalized job matching and direct company connections.
+                    </p>
+                    <ul class="career-feature-benefits grid-layout">
+                        <li>Career Guidance: Mentorship & Support</li>
+                        <li>Adaptable Timelines: Full & Part-time</li>
+                        <li>Work From Anywhere: Remote & On-site</li>
+                        <li>Work on Your Terms: Flexible Timings</li>
+                    </ul>
+
+                    <div class="text-center">
+                        <button class="job-search-btn">Find Your Dream Job</button>
+
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- CTA Section -->
+            <div style="text-align: center;">
+                <a href="/" class="career-cta-button">
+                    Start Your Journey Today
+                </a>
+            </div>
+
+            <p class="career-portal-footer">
+                Trusted by students and professionals from top universities and companies worldwide
+            </p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Animate stats counting
+            const statElements = document.querySelectorAll('.career-stat-number');
+            const stats = [10000, 95, 500, 24];
+
+            statElements.forEach((element, index) => {
+                const target = stats[index];
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        element.textContent = index === 1 ? target + '%' :
+                            index === 3 ? target + '/7' :
+                                target.toLocaleString() + '+';
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = index === 1 ? Math.floor(current) + '%' :
+                            index === 3 ? Math.floor(current) + '/7' :
+                                Math.floor(current).toLocaleString() + '+';
+                    }
+                }, 16);
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.career-feature-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    cards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.style.opacity = '0.7';
+                            otherCard.style.transform = 'scale(0.95)';
+                        }
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    cards.forEach(otherCard => {
+                        otherCard.style.opacity = '1';
+                        otherCard.style.transform = 'scale(1)';
+                    });
+                });
+            });
+        });
+    </script>
+
+    <br><br>
+
+    <%- include('footer.ejs') %>

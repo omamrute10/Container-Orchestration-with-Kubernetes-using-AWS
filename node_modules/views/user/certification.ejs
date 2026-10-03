@@ -1,0 +1,514 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Graphic Design & Digital Marketing Company in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="graphic designer near me, creative logo design agency Ahmednagar, AI-based graphic design Ahmednagar, digital marketing agency Ahmednagar, advanced AI graphic design, digital marketing with AI course Ahmednagar, graphic design course Ahmednagar, machine learning course Ahmednagar, data science course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s trusted IT partner offering custom websites, mobile apps, SEO, social media marketing, and innovative AI-powered graphic design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<%- include("header.ejs") %>
+    <style>
+        /* Certificate Gallery Styles */
+        .certificate-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            background: white;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .certificate-img-container {
+            position: relative;
+            padding-top: 140%;
+            /* 5:7 aspect ratio for certificates */
+            overflow: hidden;
+        }
+
+        .certificate-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover .certificate-image {
+            transform: scale(1.03);
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(195, 86, 252, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+
+        .btn-view {
+            background: white;
+            color: rgb(195, 86, 252);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+        }
+
+        /* Modal Styles */
+        #certificateModal .modal-content {
+            background: transparent;
+            border: none;
+        }
+
+        #modalCertificateImage {
+            max-height: 85vh;
+            max-width: 100%;
+            object-fit: contain;
+            border: 10px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .certificate-verify-container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .verify-card {
+            background: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .verify-title {
+            color: rgb(150, 21, 219);
+            font-weight: bold;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .title-divider {
+            width: 80px;
+            height: 4px;
+            background: rgb(131, 7, 197);
+            border-radius: 2px;
+        }
+
+        .form-section {
+            background: white;
+        }
+
+        .input-group-text {
+            background: rgb(195, 86, 252);
+            color: white;
+            border: none;
+        }
+
+        .result-section {
+            background: linear-gradient(135deg, rgb(195, 86, 252) 0%, #9c0b4a 100%);
+            color: white;
+        }
+
+        .result-header {
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .certificate-frame {
+            border: 2px dashed rgba(175, 11, 78, 0.3);
+            max-width: 100%;
+        }
+
+        .download-btn {
+            border-width: 2px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .illustration-section {
+            background: linear-gradient(135deg, rgba(175, 11, 78, 0.05) 0%, rgba(175, 11, 78, 0.02) 100%);
+        }
+
+        @media (max-width: 992px) {
+            .verify-card {
+                border-radius: 12px;
+            }
+
+            .form-section,
+            .result-section,
+            .illustration-section {
+                padding: 2rem !important;
+            }
+
+            .result-section {
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+            }
+        }
+
+        .verify-btn {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            background: linear-gradient(135deg, rgb(195, 86, 252) 0%, rgb(149, 6, 225) 100%);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(175, 11, 78, 0.3);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(175, 11, 78, 0.4);
+            background: linear-gradient(135deg, rgb(48, 7, 70) 0%, rgb(92, 4, 139) 100%);
+        }
+
+        .verify-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(175, 11, 78, 0.3);
+        }
+    </style>
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title mb-2">Our Commitment to Certified Quality</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/certification" title="Course">Our Certifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <div class="container-fluid certificate-verify-container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="verify-card shadow-lg rounded-4 overflow-hidden">
+                    <div class="row g-0">
+                        <!-- Verification Form Section -->
+                        <div class="col-lg-6 form-section p-4 p-md-5" data-aos="fade-right">
+                            <div class="text-center mb-4">
+                                <h2 class="verify-title mb-3">Verify Your Certificate</h2>
+                                <div class="title-divider mx-auto"></div>
+                            </div>
+
+                            <form class="row g-3 needs-validation" novalidate id="certificateForm">
+                                <div class="col-12">
+                                    <label for="name" class="form-label fw-semibold">Student Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control" id="name" name="name"
+                                            placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="invalid-feedback">Please provide a valid name.</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="certificateNumber" class="form-label fw-semibold">Certificate
+                                        Number</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text text-white fw-semibold">UCN-KD-</span>
+                                        <input type="text" class="form-control form-control" id="certificateNumber"
+                                            name="certificateNumber" placeholder="Enter certificate number"
+                                            pattern="[A-Za-z0-9]{6,12}" required>
+                                    </div>
+                                    <div class="invalid-feedback">Must be alphanumeric (6-12 characters)</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="mobileNumber" class="form-label fw-semibold">Mobile Number</label>
+                                    <div class="input-group">
+                                        <input type="tel" class="form-control form-control" id="mobileNumber"
+                                            name="mobileNumber" placeholder="Enter mobile number" pattern="[0-9]{10}"
+                                            required>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid 10-digit number.</div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="verify-btn">
+                                        <span class="btn-content">
+                                            <span class="btn-icon">
+                                                <i class="bi bi-search"></i>
+                                            </span>
+                                            <span class="btn-text">Verify Certificate</span>
+                                        </span>
+                                        <span class="btn-shine"></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Certificate Display Section -->
+                        <div class="col-lg-6 result-section p-0 d-none" id="certificateContainer">
+                            <div class="h-100 d-flex flex-column">
+                                <div class="result-header p-4 text-center">
+                                    <h3 class="text-white mb-0">Certificate Found!</h3>
+                                </div>
+                                <div
+                                    class="result-body p-4 d-flex flex-column justify-content-center align-items-center flex-grow-1">
+                                    <div class="certificate-frame p-3 bg-white rounded-3 shadow-sm">
+                                        <img id="certificateImage" src="" class="img-fluid rounded-2"
+                                            alt="Verified Certificate">
+                                    </div>
+                                    <button class="btn btn-outline-light mt-4 download-btn" id="downloadBtn">
+                                        <i class="bi bi-download me-2"></i> Download Certificate
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Initial State - Illustration -->
+                        <div class="col-lg-6 illustration-section p-4 p-md-5 d-flex flex-column justify-content-center align-items-center"
+                            id="certificatePlaceholder">
+                            <div class="text-center">
+                                <img src="/user_assets/images/certificate.jpeg" class="img-fluid mb-4"
+                                    style="max-height: 200px;" alt="Certificate Illustration">
+                                <h4>Verify Your Certificate</h4>
+                                <p class="text-muted">Fill in your details to view your certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-md-12 mt-4 text-center" data-aos="fade-down">
+                <h3 class="font-weight-bold display-5 mb-4" style="font-weight: bold;">Our Certificate Gallery</h3>
+                <div class="divider mx-auto" style="background-color: rgb(175,11,78);"></div>
+            </div>
+
+            <% for(var i=0;i<certification_images.length;i++) { %>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5" data-aos="zoom-in" data-aos-delay="<%=i*50%>">
+                    <div class="certificate-card">
+                        <div class="certificate-img-container">
+                            <img src="/uploads/<%=certification_images[i].certification_image%>"
+                                alt="Certificate <%=i+1%>" class="certificate-image" loading="lazy">
+                            <div class="certificate-overlay">
+                                <button class="btn btn-view"
+                                    onclick="openCertificateModal('/uploads/<%=certification_images[i].certification_image%>')">
+                                    <i class="bi bi-zoom-in"></i> View Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img id="modalCertificateImage" src="" class="img-fluid rounded-3 shadow-lg" alt="Certificate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCertificateModal(imageSrc) {
+            document.getElementById('modalCertificateImage').src = imageSrc;
+            var modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+            modal.show();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const certificateForm = document.getElementById("certificateForm");
+            const certificateContainer = document.getElementById("certificateContainer");
+            const certificatePlaceholder = document.getElementById("certificatePlaceholder");
+            const certificateImage = document.getElementById("certificateImage");
+            const downloadBtn = document.getElementById("downloadBtn");
+
+            certificateForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Verifying...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData(this);
+                const name = formData.get("name");
+                const certificateNumber = formData.get("certificateNumber");
+                const mobileNumber = formData.get("mobileNumber");
+
+                try {
+                    const response = await fetch("/verify-certificate", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name,
+                            certificateNumber,
+                            mobileNumber
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success && data.image) {
+                        // Show certificate and hide placeholder
+                        certificateImage.src = "/uploads/" + data.image;
+                        certificatePlaceholder.classList.add("d-none");
+                        certificateContainer.classList.remove("d-none");
+
+                        // Set up download button
+                        downloadBtn.onclick = function () {
+                            const link = document.createElement('a');
+                            link.href = "/uploads/" + data.image;
+                            link.download = `certificate_${certificateNumber}.jpg`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        };
+                    } else {
+                        alert(data.message || "No certificate found. Please check the details and try again.");
+                    }
+                } catch (error) {
+                    console.error("Error verifying certificate:", error);
+                    alert("An error occurred. Please try again.");
+                } finally {
+                    submitBtn.innerHTML = '<i class="bi bi-search me-2"></i> Verify Certificate';
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+
+    <script>
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+        const image = document.getElementById("certificateImage");
+
+        // Get the current image source
+        const imageUrl = image.src;
+
+        if (!imageUrl) {
+            alert("No certificate to download.");
+            return;
+        }
+
+        // Create a temporary anchor tag for download
+        const a = document.createElement("a");
+        a.href = imageUrl;
+        a.download = "Certificate.jpg"; // तुमच्या file चं नाव
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+</script>
+
+
+    <%- include("footer.ejs") %>

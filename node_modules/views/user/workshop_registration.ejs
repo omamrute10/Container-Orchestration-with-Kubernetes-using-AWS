@@ -1,0 +1,187 @@
+
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | First Corporate IT Company in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="software company near me, logo designer Ahmednagar, best logo designer Ahmednagar, graphic design company Ahmednagar, graphic designer Ahmednagar, best machine learning course Ahmednagar, best data science course Ahmednagar, best Java full stack course Ahmednagar, best cloud computing course Ahmednagar, best digital marketing course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Simplifying digital solutions with full-service websites, mobile apps, cloud platforms, and digital marketing services in Ahmednagar.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<%- include("navbar.ejs") %>
+<style>
+    @media(max-width:667px){
+       .workshop_images img{
+           height: 260px;
+       }
+       .workshop_images{
+        position: relative;
+        top: -20px;
+        bottom: 0px;
+       }
+   }
+</style>
+    <img class="w-100 h-auto"
+        src="https://kanakdigifex.net/wp-content/uploads/2022/11/About-us-slider-website-design-kanak-digifex-kalixen-ahmednagar-mira-road.jpg"
+        alt="kanak digifex" />
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-5" data-aos="zoom-in">
+                <img class="w-100 border p-3" src="/uploads/<%=workshop[0].workshop_image%>" alt="Digital Marketing Course"
+                    style="max-height: 500px; object-fit: cover;" />
+            </div>
+            <div class="col-md-6 bg-light p-3 mt-5 rounded border" data-aos="zoom-in">
+                <h4 class="font-weight-bold mb-3 text-dark ">
+                    <%=workshop[0].workshop_title%>
+                </h4>
+                <h6 class="text-success border-bottom pb-3 mb-3">
+                    <%=workshop[0].workshop_sub_title%>
+                </h6>
+                <p class="text-dark"><i class="fa fa-calendar"></i> Date :
+                    <b><%=workshop[0].workshop_date%></b>
+                    <span class="ml-4"> <i class="fa fa-clock-o"></i> Duration : <b><%=workshop[0].workshop_duration%></b> </span>
+                </p>
+                
+                <h4 class="font-weight-bold text-dark mb-2">&#8377; <%=workshop[0].workshop_price%> /-</h4>
+                <h5 class="text-dark pt-3 border-top">Online | Offline</h5>
+                <a href="#captchaForm" class="btn text-white mt-2 pr-4 pl-4 font-weight-bold">Apply Now</a>
+            </div>
+        </div>
+        <div class="row mt-5 ">
+            <div class="col-12 p-4 bg-light rounded border" data-aos="zoom-in">
+                <h4 class="font-weight-bold" style="color: rgb(175,11,78);">Workshop Objectives : </h4>
+                <p class="text-dark mt-3 text-justify" style="line-height: 2;">
+                    <%- workshop[0].workshop_details%>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: rgb(237,237,237);">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-12 col-lg-6 bg-white font-weight-bold shadow border p-0 mt-5 mb-5"  data-aos="zoom-in">
+                    <div class="">
+                        <div class="p-2 text-white text-center" style="background-color: rgb(175, 11, 79);">
+                            <h4>Complete Registration For Workshop</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/save_workshop_details" method="post" id="captchaForm" novalidate>
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" name="customer_name" class="form-control" id="fullName"
+                                        placeholder="Enter your full name" required>
+                                    <div class="invalid-feedback">Please enter your name.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="customer_email" class="form-control" id="email"
+                                        placeholder="Enter your email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input type="tel" name="customer_mobile" id="customer_mobile" class="form-control"
+                                        placeholder="Enter your contact number" pattern="[0-9]{10}" required>
+                                    <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="workshop">Select Workshop</label>
+                                    <select class="form-control" name="customer_workshop" id="workshop" required>
+                                        <% for(var i=0;i<workshop.length;i++) { %> 
+                                         <option value="<%=workshop[i].workshop_title%>"><%=workshop[i].workshop_title%></option>
+                                        <% } %>
+                                    </select>
+                                    <div class="invalid-feedback">Please select atleast one workshop.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Your Message</label>
+                                    <textarea class="form-control" name="customer_message" id="message" rows="2"
+                                        placeholder="Write your message or query here"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Enter Captcha Correctly..!</label>
+                                    <div class="d-flex align-items-center">
+                                        <div id="captchaCode" class="form-control text-center me-2"></div>
+                                        <button type="button" class="btn text-white ml-3" id="refreshCaptcha" title="Refresh Captcha">&#8634;</button>
+                                    </div>
+                                    <input type="text" id="captchaInput" name="captchaInput" class="form-control mt-4"
+                                        placeholder="Enter Captcha" required>
+                                    <div id="captchaError" class="error text-danger"></div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit"
+                                        class="btn text-white font-weight-bold mt-3 pr-4 pl-4">Submit
+                                        Enquiry</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-12 col-lg-6 mt-5 p-0 mb-5 workshop_images"  data-aos="zoom-in">
+                    <img src="https://sntevents.uni.lu/wp-content/uploads/sites/301/2022/04/workshop.jpg" alt="" class="w-100   p-4 bg-white border" height="380px">
+                    <img src="https://thumbs.dreamstime.com/b/registration-hand-pressing-button-interface-blue-background-49410297.jpg" alt="" class="w-100 border p-4 bg-white" height="380px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initialize AOS
+        AOS.init();
+
+        // Form validation
+        const form = document.getElementById("captchaForm");
+        form.addEventListener("submit", function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+        });
+    </script>
+
+    <script>
+        const captchaCodeElement = document.getElementById('captchaCode');
+        const captchaInput = document.getElementById('captchaInput');
+        const captchaError = document.getElementById('captchaError');
+        const refreshCaptchaButton = document.getElementById('refreshCaptcha');
+        const captchaForm = document.getElementById('captchaForm');
+
+        let captchaCode = '';
+
+        // Function to generate captcha
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            captchaCode = '';
+            for (let i = 0; i < 6; i++) {
+                captchaCode += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            captchaCodeElement.textContent = captchaCode;
+        }
+
+        // Refresh captcha when button is clicked
+        refreshCaptchaButton.addEventListener('click', generateCaptcha);
+
+        // Form submission
+        captchaForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // फॉर्मचा डिफॉल्ट सबमिशन थांबवते
+            if (captchaInput.value === captchaCode) {
+                captchaError.textContent = '';
+                alert('You have successfully registered for the workshop! We look forward to seeing you there..!');
+
+                // फॉर्म सबमिट करण्यासाठी form.submit() वापरा
+                captchaForm.submit();
+            } else {
+                captchaError.textContent = 'Captcha does not match. Please try again.';
+                // captchaForm.reset();
+            }
+        });
+
+        // Generate initial captcha
+        generateCaptcha();
+    </script>
+
+    <%- include("footer.ejs") %>

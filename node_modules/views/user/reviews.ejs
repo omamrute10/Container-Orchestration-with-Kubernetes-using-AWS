@@ -1,0 +1,103 @@
+
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Digital Marketing Course in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="digital marketing course Ahmednagar, IT training institute Ahmednagar, best digital marketing course Ahmednagar, website designer Ahmednagar, web design training Ahmednagar, IT courses with placement Ahmednagar, graphic design course near me, machine learning course near me, data science course near me">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s trusted IT training institute offering comprehensive digital marketing courses alongside website development, cloud solutions, and design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%- include("navbar.ejs") %>
+
+<style>
+    .reviews_banner{
+        background-image: url('https://kanakdigifex.net/wp-content/uploads/2022/11/teaching_clasess_kalixen_webdesign_graphic_design_digital_marketing_ahmednagar_.jpg');
+        /* background-image: url('/images/review.jpg'); */
+        height: 500px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    @media(max-width:667px){
+        .reviews_banner{
+            height: 300px;
+            width: 100%;
+        }
+        .reviews_banner h4{
+            position: relative;
+            top: -90px;
+            left: -40px;
+        }
+        .reviews_banner p{
+            position: relative;
+            top: -90px;
+            left: -40px;
+        }
+        .reviews_banner button{
+            position: relative;
+            top: -90px;
+            left: -40px;
+        }
+        .reviews h2{
+            font-size: 22px;
+        }
+        .form-header h2{
+            font-size: 26px;
+        }
+        .feedback h3{
+            font-size: 20px;
+        }
+        
+    }
+</style>
+
+    <div class="container-fluid reviews_banner">
+        <div class="row">
+            <div class="col-12">
+                <br><br><br>
+                <h4 class="text-white font-weight-bold mt-5 ml-5">What Our Clients Say..</h4>
+                <p class="text-white ml-5">We kept us updated at every stage of the project and delivered a seamless  <br>application that our customers love. Excellent work! We ensure a smooth <br> onboarding process, where every team member feels heard .</p>
+               <a href="#reviews"> <button type="submit" class="btn text-white font-weight-bold mt-3 pr-4 pl-4 ml-5">Read More</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add a Call-to-Action -->
+    <div class="text-center border-bottom pb-3 mt-5 reviews" data-aos="zoom-in">
+        <h2 class="font-weight-bold text-capitalize" style="color: rgb(175,11,78);">Want to share your experience?</h2>
+        <p>We'd love to hear from you! Share your feedback with us.</p>
+    </div>
+
+    <!--  -->
+
+    <div class="container-fluid" style="background-color: rgb(237,237,237);" id="reviews">
+        <div class="col-12 mb-5 text-center feedback" data-aos="zoom-in">
+            <h3 class="font-weight-bold text-capitalize pt-4" style="color: rgb(175,11,78);">Real feedback from our satisfied clients</h3>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <!-- Review 1 -->
+                <% for(var i=0;i<reviews.length;i++) { %>
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-4 mb-5" data-aos="zoom-in">
+                        <div class=" review-card">
+                            <div class="card-body border bg-white text-center">
+                                <h5 class="card-title" style="color: rgb(175,11,78);">
+                                    <%= reviews[i].customer_name %>
+                                </h5>
+                                <p class="text-muted font-weight-bold">
+                                    <%= reviews[i].customer_position %>
+                                </p>
+                                <p class="card-text">"<%= reviews[i].customer_review %>"</p>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include("footer.ejs") %>

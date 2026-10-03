@@ -1,0 +1,1475 @@
+<%- include('header.ejs') %>
+
+  <!doctype html>
+  <html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Advanced Online Examination System — Enhanced</title>
+    <!-- External libraries for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+      /* ---------- THEME & UNIQUE CLASS NAMES (aes-) ---------- */
+      :root {
+        --aes-accent: #6a1b9a;
+        --aes-accent-2: #8e24aa;
+        --aes-bg: linear-gradient(180deg, #f6f8fb 0%, #eef3f8 100%);
+        --aes-muted: #6b7280;
+        --aes-card: #ffffff;
+        --aes-glass: rgba(255, 255, 255, 0.7);
+        --aes-success: #2e7d32;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif
+      }
+
+      body {
+        background: var(--aes-bg);
+        margin: 0;
+        color: #111
+      }
+
+      /* container */
+      .aes-container {
+        max-width: 1300px;
+        margin: 48px auto;
+        padding: 0 20px;
+      }
+
+      /* top bar */
+      .aes-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px
+      }
+
+      .aes-brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 22px;
+        line-height: 1.8;
+      }
+
+      .aes-brand img {
+        height: 44px;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(60, 0, 80, 0.08)
+      }
+
+      .aes-status {
+        font-size: 14px;
+        color: var(--aes-muted)
+      }
+
+      /* card grid */
+      .aes-card {
+        background: var(--aes-card);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 12px 40px rgba(20, 20, 60, 0.06)
+      }
+
+      .aes-grid {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 18px
+      }
+
+      /* left panel */
+      .aes-left {
+        padding: 12px
+      }
+
+      .aes-left h3 {
+        margin: 6px 0 12px
+      }
+
+      .aes-label {
+        display: block;
+        margin: 8px 0;
+        color: var(--aes-muted);
+        font-size: 14px
+      }
+
+      .aes-input,
+      .aes-select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e6e6f0
+      }
+
+      .aes-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: none;
+        background: linear-gradient(90deg, var(--aes-accent), var(--aes-accent-2));
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer
+      }
+
+      .aes-btn.ghost {
+        background: transparent;
+        color: var(--aes-accent);
+        border: 1px solid rgba(106, 27, 154, 0.14)
+      }
+
+      .aes-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px
+      }
+
+      .aes-chip {
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid #eee;
+        background: #fbfbff;
+        cursor: pointer
+      }
+
+      .aes-chip.active {
+        background: linear-gradient(90deg, var(--aes-accent), var(--aes-accent-2));
+        color: #fff;
+        border: none
+      }
+
+      /* right panel */
+      .aes-right {
+        padding: 12px
+      }
+
+      .aes-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px
+      }
+
+      .aes-timer {
+        font-weight: 800;
+        color: var(--aes-accent-2);
+        display: flex;
+        gap: 12px;
+        align-items: center
+      }
+
+      .aes-timer .aes-time-val {
+        font-family: monospace
+      }
+
+      /* animated question area */
+      .aes-question-area {
+        min-height: 240px;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed rgba(220, 220, 235, 0.8);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(250, 250, 255, 0.95));
+        position: relative;
+        overflow: hidden
+      }
+
+      .aes-question-float {
+        position: absolute;
+        right: -80px;
+        top: -40px;
+        opacity: 0.06;
+        font-size: 120px;
+        transform: rotate(-20deg)
+      }
+
+      .aes-qno {
+        font-weight: 700;
+        color: var(--aes-accent)
+      }
+
+      .aes-qtext {
+        font-size: 18px;
+        margin-top: 8px;
+        color: #222
+      }
+
+      .aes-options {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px
+      }
+
+      .aes-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #f0f0f5;
+        background: #fff;
+        cursor: pointer;
+        transition: transform .12s ease, box-shadow .12s ease
+      }
+
+      .aes-option:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(80, 40, 120, 0.06)
+      }
+
+      .aes-option input {
+        transform: scale(1.05)
+      }
+
+      /* controls */
+      .aes-controls {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+        margin-top: 14px
+      }
+
+      .aes-controls .aes-left-controls {
+        display: flex;
+        gap: 8px
+      }
+
+      /* progress */
+      .aes-progress {
+        height: 10px;
+        background: #eee;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 12px
+      }
+
+      .aes-progress>i {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--aes-accent), var(--aes-accent-2));
+        width: 0%
+      }
+
+      /* right-side extras */
+      .aes-extras {
+        display: flex;
+        gap: 12px;
+        margin-top: 12px
+      }
+
+      .aes-panel {
+        flex: 1;
+        padding: 12px;
+        border-radius: 10px;
+        background: linear-gradient(180deg, #fff, #fbfbff);
+        border: 1px solid #f0f0f8
+      }
+
+      .aes-panel h4 {
+        margin: 4px 0 8px
+      }
+
+      /* review list */
+      .aes-review-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px
+      }
+
+      .aes-q-pill {
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: #fafafa;
+        border: 1px solid #eee;
+        cursor: pointer
+      }
+
+      .aes-q-pill.answered {
+        background: linear-gradient(90deg, #e8f7ed, #dff3e6);
+        border-color: #bfe6c5
+      }
+
+      .aes-q-pill.marked {
+        background: #fff8e6;
+        border-color: #f6d48a
+      }
+
+      /* certificate preview (compact) */
+      .aes-cert {
+        margin-top: 12px;
+        text-align: center
+      }
+
+      .aes-cert-canvas {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 60%;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #eee
+      }
+
+      .aes-cert-canvas img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        object-fit: cover
+      }
+
+      .aes-cert-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 18px
+      }
+
+      /* small utilities */
+      .aes-small {
+        font-size: 14px;
+        color: var(--aes-muted)
+      }
+
+      .aes-lifelines {
+        display: flex;
+        gap: 8px
+      }
+
+      .aes-pill {
+        padding: 8px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid #eee
+      }
+
+      /* animations */
+      @keyframes floaty {
+        0% {
+          transform: translateY(0)
+        }
+
+        50% {
+          transform: translateY(-8px)
+        }
+
+        100% {
+          transform: translateY(0)
+        }
+      }
+
+      .aes-animate-pulse {
+        animation: floaty 3.2s ease-in-out infinite
+      }
+
+      /* responsive */
+      @media(max-width:980px) {
+        .aes-grid {
+          grid-template-columns: 1fr
+        }
+
+        .aes-question-float {
+          display: none
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Banner Start -->
+    <section class="inner-banner">
+      <div class="main-banner-bg-shape">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+      </div>
+      <div class="inner-banner-bg-aliment-wp">
+        <div class="bg-aliment-1 rotate-animation">
+          <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+        </div>
+        <div class="bg-aliment-2 animate-this">
+          <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+        </div>
+        <div class="bg-aliment-3 zoom-fade-animation">
+          <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+        </div>
+        <div class="bg-aliment-4 rotate-animation">
+          <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+        </div>
+        <div class="bg-aliment-5 animate-this">
+          <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+        </div>
+        <div class="bg-aliment-6 zoom-fade-animation">
+          <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+        </div>
+        <div class="bg-aliment-7 rotate-animation">
+          <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+        </div>
+        <div class="bg-aliment-8 animate-this">
+          <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+        </div>
+        <div class="bg-aliment-9 zoom-fade-animation">
+          <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+        </div>
+        <div class="bg-aliment-10 rotate-animation">
+          <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+        </div>
+        <div class="bg-aliment-11 animate-this">
+          <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+        </div>
+        <div class="bg-aliment-12 animate-this">
+          <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+        </div>
+        <div class="bg-aliment-13 rotate-animation">
+          <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+        </div>
+        <div class="bg-aliment-14 animate-this">
+          <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner-content text-center">
+              <h1 class="h1-title">Start Your Professional Journey</h1>
+              <div class="banner-breadcrum">
+                <ul>
+                  <li><a href="/" title="Home">Home</a></li>
+                  <li><i class="fa-solid fa-angle-right"></i></li>
+                  <li><a href="/get-certificate" title="Course">Online Certifications</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Banner End -->
+    <div class="aes-container">
+      <div class="aes-topbar">
+        <div class="aes-brand">
+          <div><strong>Advanced Exam System</strong>
+            <div class="aes-small">Interactive MCQ pools • PDF certificate • gamified features</div>
+          </div>
+        </div>
+        <div class="aes-status">Status: <span id="aesSystemStatus">Ready</span></div>
+      </div>
+
+      <div class="aes-card aes-grid">
+        <!-- LEFT -->
+        <div class="aes-left">
+          <h3>Student & Exam Setup</h3>
+          <label class="aes-label">Full name</label>
+          <input id="aesName" class="aes-input" type="text" placeholder="Enter full name" />
+
+          <label class="aes-label">Subject</label>
+          <select id="aesSubject" class="aes-select">
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="javascript">JavaScript</option>
+            <option value="dbms">DBMS/SQL</option>
+          </select>
+
+          <label class="aes-label">Level</label>
+          <select id="aesLevel" class="aes-select">
+            <option value="basic">Basic (15)</option>
+            <option value="intermediate">Intermediate (25)</option>
+            <option value="advanced">Advanced (50)</option>
+          </select>
+
+          <label class="aes-label">Time (minutes)</label>
+          <input id="aesTime" class="aes-input" type="text" value="30" />
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button id="aesStart" class="aes-btn"><i class="fa fa-play"></i> Start Exam</button>
+            <button id="aesPractice" class="aes-btn ghost">Practice Mode</button>
+          </div>
+
+          <div style="margin-top:14px">
+            <strong>Pool sizes</strong>
+            <ul class="aes-small" style="margin-top:8px">
+              <li>Basic: <span id="aesPoolBasic"></span></li>
+              <li>Intermediate: <span id="aesPoolInter"></span></li>
+              <li>Advanced: <span id="aesPoolAdv"></span></li>
+            </ul>
+          </div>
+
+          <div style="margin-top:12px">
+            <strong>Lifelines</strong>
+            <div class="aes-lifelines" style="margin-top:8px">
+              <button id="aesHint" class="aes-btn ghost aes-pill">Hint</button>
+              <button id="aesFifty" class="aes-btn ghost aes-pill">50-50</button>
+              <button id="aesSkip" class="aes-btn ghost aes-pill">Skip Q</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="aes-right">
+          <div class="aes-meta">
+            <div>
+              <strong id="aesTitle">Not started</strong>
+              <div id="aesSubtitle" class="aes-small">Fill details and press Start</div>
+            </div>
+            <div class="aes-timer">
+              <div class="aes-time-ring aes-animate-pulse"><i class="fa fa-clock"></i></div>
+              Time Left: <span id="aesTimer" class="aes-time-val">00:00</span>
+            </div>
+          </div>
+
+          <div id="aesQuestionArea" class="aes-question-area aes-card" style="display:block">
+            <div class="aes-question-float">Q</div>
+            <div id="aesQNo" class="aes-qno"></div>
+            <div id="aesQText" class="aes-qtext">Exam not started</div>
+
+            <div id="aesOptions" class="aes-options"></div>
+
+            <div class="aes-controls">
+              <div class="aes-left-controls">
+                <button id="aesPrev" class="aes-btn ghost"><i class="fa fa-arrow-left"></i> Prev</button>
+                <button id="aesMark" class="aes-btn ghost">Mark</button>
+                <button id="aesExplain" class="aes-btn ghost">Show Answer</button>
+              </div>
+              <div>
+                <button id="aesNext" class="aes-btn">Next <i class="fa fa-arrow-right"></i></button>
+              </div>
+            </div>
+
+            <div class="aes-progress"><i id="aesProgBar"></i></div>
+          </div>
+
+          <div class="aes-extras">
+            <div class="aes-panel">
+              <h4>Review & Navigation</h4>
+              <div id="aesReviewList" class="aes-review-list"></div>
+              <div style="margin-top:10px" class="aes-small">Click a pill to jump to that question. Colored = answered /
+                marked.</div>
+            </div>
+
+            <div class="aes-panel">
+              <h4>Result Preview</h4>
+              <div class="aes-cert">
+                <div class="aes-cert-canvas" id="aesCertCanvas">
+                  <div class="aes-cert-overlay">
+                    <h3 id="aesCertName"></h3>
+                    <div class="aes-small">Score: <span id="aesCertScore">0/0</span></div>
+                  </div>
+                </div>
+                <div style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+                  <button id="aesDownload" class="aes-btn">Download Certificate (PDF)</button>
+                  <button id="aesRestart" class="aes-btn ghost">Restart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ---------- CONFIG & POOLS ----------
+      const AES = {
+        poolSizes: { basic: 300, intermediate: 500, advanced: 1000 },
+        examCounts: { basic: 15, intermediate: 25, advanced: 50 }
+      };
+      document.getElementById('aesPoolBasic').innerText = AES.poolSizes.basic;
+      document.getElementById('aesPoolInter').innerText = AES.poolSizes.intermediate;
+      document.getElementById('aesPoolAdv').innerText = AES.poolSizes.advanced;
+
+      // Enhanced question pools with proper subject-specific questions
+      const QUESTION_POOLS = {
+        python: {
+          basic: [
+            {
+              id: 'py-b-1',
+              q: 'What is the correct way to create a list in Python?',
+              options: ['my_list = []', 'my_list = ()', 'my_list = {}', 'my_list = <>'],
+              ans: 0,
+              explain: 'Square brackets [] are used to create lists in Python.'
+            },
+            {
+              id: 'py-b-2',
+              q: 'Which of the following is used to define a function in Python?',
+              options: ['function', 'def', 'define', 'func'],
+              ans: 1,
+              explain: 'The "def" keyword is used to define functions in Python.'
+            },
+            {
+              id: 'py-b-3',
+              q: 'What is the output of print(type(5))?',
+              options: ['<class "int">', '<class "float">', '<class "str">', '<class "number">'],
+              ans: 0,
+              explain: 'The number 5 is an integer, so type(5) returns <class "int">.'
+            },
+            {
+              id: 'py-b-4',
+              q: 'Which operator is used for exponentiation in Python?',
+              options: ['^', '**', 'exp', 'pow'],
+              ans: 1,
+              explain: 'The ** operator is used for exponentiation in Python (e.g., 2**3 = 8).'
+            },
+            {
+              id: 'py-b-5',
+              q: 'How do you create a comment in Python?',
+              options: ['// comment', '/* comment */', '# comment', '<!-- comment -->'],
+              ans: 2,
+              explain: 'Single-line comments in Python start with the # symbol.'
+            },
+            {
+              id: 'py-b-6',
+              q: 'What is the correct way to import a module in Python?',
+              options: ['include module', 'import module', 'require module', 'using module'],
+              ans: 1,
+              explain: 'The "import" keyword is used to import modules in Python.'
+            },
+            {
+              id: 'py-b-7',
+              q: 'Which of these is a mutable data type in Python?',
+              options: ['tuple', 'string', 'list', 'int'],
+              ans: 2,
+              explain: 'Lists are mutable in Python, meaning their contents can be changed after creation.'
+            },
+            {
+              id: 'py-b-8',
+              q: 'What does len() function return?',
+              options: ['Length of an object', 'Last element', 'First element', 'Type of object'],
+              ans: 0,
+              explain: 'The len() function returns the number of items in an object.'
+            },
+            {
+              id: 'py-b-9',
+              q: 'Which method is used to add an element to the end of a list?',
+              options: ['add()', 'append()', 'insert()', 'push()'],
+              ans: 1,
+              explain: 'The append() method adds an element to the end of a list.'
+            },
+            {
+              id: 'py-b-10',
+              q: 'What is the correct syntax for a while loop in Python?',
+              options: ['while (condition):', 'while condition:', 'while condition do:', 'while condition then:'],
+              ans: 1,
+              explain: 'Python while loops use the syntax: while condition: (no parentheses needed).'
+            },
+            {
+              id: 'py-b-11',
+              q: 'Which of the following is used to handle exceptions in Python?',
+              options: ['try-catch', 'try-except', 'catch-throw', 'handle-error'],
+              ans: 1,
+              explain: 'Python uses try-except blocks to handle exceptions.'
+            },
+            {
+              id: 'py-b-12',
+              q: 'What is the output of print("Hello" + "World")?',
+              options: ['Hello World', 'HelloWorld', 'Hello+World', 'Error'],
+              ans: 1,
+              explain: 'String concatenation with + joins strings without spaces: "Hello" + "World" = "HelloWorld".'
+            },
+            {
+              id: 'py-b-13',
+              q: 'Which keyword is used to create a class in Python?',
+              options: ['class', 'Class', 'define', 'object'],
+              ans: 0,
+              explain: 'The "class" keyword is used to define classes in Python.'
+            },
+            {
+              id: 'py-b-14',
+              q: 'What is the correct way to open a file in Python?',
+              options: ['file = open("name.txt")', 'file = File("name.txt")', 'file = read("name.txt")', 'file = load("name.txt")'],
+              ans: 0,
+              explain: 'The open() function is used to open files in Python.'
+            },
+            {
+              id: 'py-b-15',
+              q: 'Which of these is NOT a Python data type?',
+              options: ['list', 'tuple', 'array', 'dict'],
+              ans: 2,
+              explain: 'Array is not a built-in Python data type. Python has lists instead.'
+            }
+          ],
+          intermediate: [
+            {
+              id: 'py-i-1',
+              q: 'What is a lambda function in Python?',
+              options: ['A named function', 'An anonymous function', 'A class method', 'A built-in function'],
+              ans: 1,
+              explain: 'Lambda functions are anonymous functions that can be defined inline.'
+            },
+            {
+              id: 'py-i-2',
+              q: 'What does the map() function do?',
+              options: ['Creates a dictionary', 'Applies a function to all items in a list', 'Maps keys to values', 'Creates a map object'],
+              ans: 1,
+              explain: 'map() applies a given function to each item of an iterable and returns a map object.'
+            },
+            {
+              id: 'py-i-3',
+              q: 'What is the difference between append() and extend()?',
+              options: ['No difference', 'append() adds one element, extend() adds multiple', 'extend() is faster', 'append() is deprecated'],
+              ans: 1,
+              explain: 'append() adds a single element to the end, extend() adds all elements from an iterable.'
+            },
+            {
+              id: 'py-i-4',
+              q: 'What is a decorator in Python?',
+              options: ['A design pattern', 'A function that modifies another function', 'A class attribute', 'A loop construct'],
+              ans: 1,
+              explain: 'Decorators are functions that modify or enhance other functions without changing their code.'
+            },
+            {
+              id: 'py-i-5',
+              q: 'What does the yield keyword do?',
+              options: ['Returns a value', 'Creates a generator', 'Stops execution', 'Raises an exception'],
+              ans: 1,
+              explain: 'yield creates a generator function that can pause and resume execution.'
+            },
+            // Add more intermediate questions...
+            {
+              id: 'py-i-6',
+              q: 'What is list comprehension?',
+              options: ['A way to understand lists', 'A concise way to create lists', 'A list method', 'A debugging technique'],
+              ans: 1,
+              explain: 'List comprehension provides a concise way to create lists based on existing lists.'
+            },
+            {
+              id: 'py-i-7',
+              q: 'What is the purpose of __init__ method?',
+              options: ['To initialize objects', 'To destroy objects', 'To copy objects', 'To compare objects'],
+              ans: 0,
+              explain: '__init__ is the constructor method that initializes newly created objects.'
+            },
+            {
+              id: 'py-i-8',
+              q: 'What does the super() function do?',
+              options: ['Creates a superclass', 'Calls parent class methods', 'Makes a function superior', 'Increases performance'],
+              ans: 1,
+              explain: 'super() is used to call methods from a parent class in inheritance.'
+            },
+            {
+              id: 'py-i-9',
+              q: 'What is the difference between is and == operators?',
+              options: ['No difference', 'is checks identity, == checks equality', '== is faster', 'is is deprecated'],
+              ans: 1,
+              explain: '"is" checks if two variables point to the same object, "==" checks if values are equal.'
+            },
+            {
+              id: 'py-i-10',
+              q: 'What is a closure in Python?',
+              options: ['A closed function', 'A function with access to outer scope variables', 'A private method', 'A sealed class'],
+              ans: 1,
+              explain: 'A closure is a function that has access to variables from its outer (enclosing) scope.'
+            }
+          ],
+          advanced: [
+            {
+              id: 'py-a-1',
+              q: 'What is the Global Interpreter Lock (GIL)?',
+              options: ['A security feature', 'A mechanism that prevents multiple threads from executing Python code simultaneously', 'A global variable lock', 'A file locking mechanism'],
+              ans: 1,
+              explain: 'GIL is a mutex that protects access to Python objects, preventing multiple threads from executing Python bytecodes simultaneously.'
+            },
+            {
+              id: 'py-a-2',
+              q: 'What is metaclass in Python?',
+              options: ['A parent class', 'A class whose instances are classes', 'A class method', 'A class variable'],
+              ans: 1,
+              explain: 'A metaclass is a class whose instances are classes themselves. It defines how classes are created.'
+            },
+            {
+              id: 'py-a-3',
+              q: 'What is the difference between deepcopy and shallow copy?',
+              options: ['No difference', 'deepcopy creates independent copies of nested objects', 'shallow copy is faster', 'deepcopy uses more memory'],
+              ans: 1,
+              explain: 'deepcopy creates a new object and recursively copies all nested objects, while shallow copy only copies the top-level object.'
+            },
+            {
+              id: 'py-a-4',
+              q: 'What is monkey patching?',
+              options: ['A debugging technique', 'Dynamic modification of classes or modules at runtime', 'A testing framework', 'A code optimization'],
+              ans: 1,
+              explain: 'Monkey patching is the dynamic modification of a class or module at runtime.'
+            },
+            {
+              id: 'py-a-5',
+              q: 'What is the purpose of __slots__?',
+              options: ['To create slots in GUI', 'To restrict attribute creation and save memory', 'To define time slots', 'To create array slots'],
+              ans: 1,
+              explain: '__slots__ restricts the attributes that can be created for a class and can save memory.'
+            }
+          ]
+        },
+        java: {
+          basic: [
+            {
+              id: 'java-b-1',
+              q: 'Which of the following is the correct way to declare a variable in Java?',
+              options: ['int x;', 'variable int x;', 'declare int x;', 'int x = ;'],
+              ans: 0,
+              explain: 'In Java, variables are declared with the syntax: datatype variablename;'
+            },
+            {
+              id: 'java-b-2',
+              q: 'What is the main method signature in Java?',
+              options: ['public static void main(String args)', 'public static void main(String[] args)', 'static public void main(String args[])', 'Both B and C'],
+              ans: 3,
+              explain: 'Both "String[] args" and "String args[]" are valid syntax for the main method parameter.'
+            },
+            {
+              id: 'java-b-3',
+              q: 'Which keyword is used to inherit a class in Java?',
+              options: ['inherits', 'extends', 'implements', 'super'],
+              ans: 1,
+              explain: 'The "extends" keyword is used for class inheritance in Java.'
+            },
+            {
+              id: 'java-b-4',
+              q: 'What is the size of int data type in Java?',
+              options: ['16 bits', '32 bits', '64 bits', 'Platform dependent'],
+              ans: 1,
+              explain: 'int data type in Java is always 32 bits (4 bytes) regardless of platform.'
+            },
+            {
+              id: 'java-b-5',
+              q: 'Which of these is NOT a Java primitive data type?',
+              options: ['int', 'float', 'boolean', 'String'],
+              ans: 3,
+              explain: 'String is a class in Java, not a primitive data type.'
+            }
+          ],
+          intermediate: [
+            {
+              id: 'java-i-1',
+              q: 'What is polymorphism in Java?',
+              options: ['Multiple inheritance', 'Ability of objects to take multiple forms', 'Method overloading only', 'Interface implementation'],
+              ans: 1,
+              explain: 'Polymorphism allows objects of different classes to be treated as objects of a common base class.'
+            },
+            {
+              id: 'java-i-2',
+              q: 'What is the difference between ArrayList and LinkedList?',
+              options: ['No difference', 'ArrayList uses array, LinkedList uses doubly-linked list', 'LinkedList is faster', 'ArrayList is deprecated'],
+              ans: 1,
+              explain: 'ArrayList is backed by a resizable array, while LinkedList uses a doubly-linked list structure.'
+            },
+            {
+              id: 'java-i-3',
+              q: 'What is the purpose of synchronized keyword?',
+              options: ['To synchronize time', 'To ensure thread safety', 'To sync with database', 'To match method signatures'],
+              ans: 1,
+              explain: 'synchronized keyword is used to control access to methods/blocks by multiple threads.'
+            }
+          ],
+          advanced: [
+            {
+              id: 'java-a-1',
+              q: 'What is the difference between fail-fast and fail-safe iterators?',
+              options: ['No difference', 'fail-fast throws exception on modification, fail-safe works on copy', 'fail-safe is faster', 'fail-fast is deprecated'],
+              ans: 1,
+              explain: 'fail-fast iterators throw ConcurrentModificationException when collection is modified during iteration, fail-safe work on a copy.'
+            }
+          ]
+        },
+        javascript: {
+          basic: [
+            {
+              id: 'js-b-1',
+              q: 'How do you declare a variable in JavaScript?',
+              options: ['var x;', 'variable x;', 'declare x;', 'int x;'],
+              ans: 0,
+              explain: 'Variables in JavaScript are declared using var, let, or const keywords.'
+            },
+            {
+              id: 'js-b-2',
+              q: 'Which of the following is used to display output in JavaScript?',
+              options: ['print()', 'console.log()', 'display()', 'show()'],
+              ans: 1,
+              explain: 'console.log() is the standard way to output information to the browser console.'
+            },
+            {
+              id: 'js-b-3',
+              q: 'What is the correct way to create a function in JavaScript?',
+              options: ['function myFunction() {}', 'create myFunction() {}', 'def myFunction() {}', 'function = myFunction() {}'],
+              ans: 0,
+              explain: 'Functions in JavaScript are declared using the function keyword.'
+            }
+          ],
+          intermediate: [
+            {
+              id: 'js-i-1',
+              q: 'What is a closure in JavaScript?',
+              options: ['A closed function', 'A function with access to outer scope variables', 'A private method', 'A sealed object'],
+              ans: 1,
+              explain: 'A closure gives you access to an outer function\'s scope from an inner function.'
+            },
+            {
+              id: 'js-i-2',
+              q: 'What is the difference between let and var?',
+              options: ['No difference', 'let has block scope, var has function scope', 'var is newer', 'let is faster'],
+              ans: 1,
+              explain: 'let has block scope while var has function scope, and let prevents hoisting issues.'
+            }
+          ],
+          advanced: [
+            {
+              id: 'js-a-1',
+              q: 'What is the event loop in JavaScript?',
+              options: ['A loop for events', 'The mechanism that handles asynchronous operations', 'A for loop variant', 'An event handler'],
+              ans: 1,
+              explain: 'The event loop is responsible for executing code, collecting and processing events, and executing queued sub-tasks.'
+            }
+          ]
+        },
+        dbms: {
+          basic: [
+            {
+              id: 'db-b-1',
+              q: 'What does SQL stand for?',
+              options: ['Structured Query Language', 'Simple Query Language', 'Standard Query Language', 'System Query Language'],
+              ans: 0,
+              explain: 'SQL stands for Structured Query Language, used for managing relational databases.'
+            },
+            {
+              id: 'db-b-2',
+              q: 'Which command is used to retrieve data from a database?',
+              options: ['GET', 'SELECT', 'RETRIEVE', 'FETCH'],
+              ans: 1,
+              explain: 'SELECT statement is used to query and retrieve data from database tables.'
+            },
+            {
+              id: 'db-b-3',
+              q: 'What is a primary key?',
+              options: ['The first key', 'A unique identifier for records', 'The most important key', 'A password'],
+              ans: 1,
+              explain: 'A primary key uniquely identifies each record in a database table.'
+            }
+          ],
+          intermediate: [
+            {
+              id: 'db-i-1',
+              q: 'What is normalization in databases?',
+              options: ['Making data normal', 'Organizing data to reduce redundancy', 'Standardizing formats', 'Creating normal forms'],
+              ans: 1,
+              explain: 'Normalization is the process of organizing data to minimize redundancy and dependency.'
+            },
+            {
+              id: 'db-i-2',
+              q: 'What is a foreign key?',
+              options: ['A key from another country', 'A key that references primary key of another table', 'An external key', 'A backup key'],
+              ans: 1,
+              explain: 'A foreign key is a field that refers to the primary key of another table, creating a link between tables.'
+            }
+          ],
+          advanced: [
+            {
+              id: 'db-a-1',
+              q: 'What is ACID in database transactions?',
+              options: ['A chemical property', 'Atomicity, Consistency, Isolation, Durability', 'A database type', 'An SQL command'],
+              ans: 1,
+              explain: 'ACID represents the four key properties that guarantee reliable database transactions.'
+            }
+          ]
+        }
+      };
+
+      // Generate additional questions to meet pool size requirements
+      function generateAdditionalQuestions(subject, level, baseQuestions, targetCount) {
+        const questions = [...baseQuestions];
+        const topics = {
+          python: ['variables', 'functions', 'classes', 'modules', 'exceptions', 'data structures'],
+          java: ['classes', 'inheritance', 'interfaces', 'collections', 'threads'],
+          javascript: ['functions', 'objects', 'arrays', 'promises', 'DOM'],
+          dbms: ['tables', 'queries', 'joins', 'indexes', 'transactions']
+        };
+
+        while (questions.length < targetCount) {
+          const topic = topics[subject][questions.length % topics[subject].length];
+          const qNum = questions.length + 1;
+          questions.push({
+            id: `${subject}-${level}-${qNum}`,
+            q: `${level.charAt(0).toUpperCase() + level.slice(1)} question about ${topic} in ${subject.toUpperCase()} (Q${qNum})`,
+            options: ['Option A', 'Option B', 'Option C', 'Option D'],
+            ans: Math.floor(Math.random() * 4),
+            explain: `This is a ${level} level explanation about ${topic} in ${subject}.`
+          });
+        }
+        return questions;
+      }
+
+      // Build complete pools
+      const ALL_POOLS = {};
+      Object.keys(QUESTION_POOLS).forEach(subject => {
+        ALL_POOLS[subject] = {};
+        Object.keys(QUESTION_POOLS[subject]).forEach(level => {
+          const baseQuestions = QUESTION_POOLS[subject][level];
+          const targetCount = AES.poolSizes[level];
+          ALL_POOLS[subject][level] = generateAdditionalQuestions(subject, level, baseQuestions, targetCount);
+        });
+      });
+
+      // ---------- STATE ----------
+      let state = {
+        name: '',
+        subject: 'python',
+        level: 'basic',
+        timeLeft: 0,
+        questions: [],
+        current: 0,
+        answers: {},
+        marked: new Set(),
+        timerInterval: null,
+        usedFifty: new Set(),
+        usedHint: new Set(),
+        skips: 0,
+        isPractice: false
+      };
+
+      // helpers
+      function sampleQuestions(subject, level, count) {
+        const pool = ALL_POOLS[subject][level];
+        const arr = [...pool];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr.slice(0, count).map(q => ({ ...q, options: shuffle([...q.options]) }));
+      }
+
+      function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function startTimer(minutes) {
+        clearInterval(state.timerInterval);
+        state.timeLeft = minutes * 60;
+        updateTimer();
+        state.timerInterval = setInterval(() => {
+          state.timeLeft--;
+          updateTimer();
+          if (state.timeLeft <= 0) {
+            finishExam();
+          }
+        }, 1000);
+      }
+
+      function updateTimer() {
+        document.getElementById('aesTimer').innerText = formatTime(state.timeLeft);
+      }
+
+      function formatTime(s) {
+        if (s < 0) s = 0;
+        const m = String(Math.floor(s / 60)).padStart(2, '0');
+        const sec = String(s % 60).padStart(2, '0');
+        return `${m}:${sec}`;
+      }
+
+      // UI bindings
+      document.getElementById('aesStart').addEventListener('click', () => {
+        const name = document.getElementById('aesName').value.trim();
+        const subject = document.getElementById('aesSubject').value;
+        const level = document.getElementById('aesLevel').value;
+        const timeMin = parseInt(document.getElementById('aesTime').value) || 30;
+        if (!name) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Name Required',
+            text: 'Please enter your full name to start the exam.'
+          });
+          return;
+        }
+        state.name = name;
+        state.subject = subject;
+        state.level = level;
+        beginExam({ practice: false, timeMin });
+      });
+
+      document.getElementById('aesPractice').addEventListener('click', () => {
+        const name = document.getElementById('aesName').value.trim() || 'Practice User';
+        const subject = document.getElementById('aesSubject').value;
+        const level = document.getElementById('aesLevel').value;
+        state.name = name;
+        state.subject = subject;
+        state.level = level;
+        beginExam({ practice: true, timeMin: 30 });
+      });
+
+      document.getElementById('aesNext').addEventListener('click', () => submitAnswerAndMove(1));
+      document.getElementById('aesPrev').addEventListener('click', () => submitAnswerAndMove(-1));
+      document.getElementById('aesMark').addEventListener('click', () => toggleMark());
+      document.getElementById('aesExplain').addEventListener('click', () => showAnswer(true));
+      document.getElementById('aesDownload').addEventListener('click', () => downloadCertificatePDF());
+      document.getElementById('aesRestart').addEventListener('click', () => location.reload());
+
+      document.getElementById('aesHint').addEventListener('click', () => useHint());
+      document.getElementById('aesFifty').addEventListener('click', () => useFifty());
+      document.getElementById('aesSkip').addEventListener('click', () => useSkip());
+
+      // begin
+      function beginExam({ practice = false, timeMin = 30 }) {
+        const count = AES.examCounts[state.level];
+        state.questions = sampleQuestions(state.subject, state.level, count);
+        state.current = 0;
+        state.answers = {};
+        state.marked = new Set();
+        state.usedFifty = new Set();
+        state.usedHint = new Set();
+        state.skips = 0;
+        state.isPractice = practice;
+
+        document.getElementById('aesTitle').innerText = `${capitalize(state.subject)} — ${capitalize(state.level)} ${practice ? '(Practice)' : ''}`;
+        document.getElementById('aesSubtitle').innerText = `${state.name} — ${count} questions`;
+        document.getElementById('aesSystemStatus').innerText = 'Exam started';
+
+        if (!practice) {
+          startTimer(timeMin);
+        } else {
+          document.getElementById('aesTimer').innerText = 'Practice Mode';
+        }
+
+        renderQuestion();
+        renderReviewList();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Exam Started!',
+          text: `Good luck with your ${state.subject} ${state.level} exam!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+
+      function renderQuestion() {
+        const q = state.questions[state.current];
+        document.getElementById('aesQNo').innerText = `Question ${state.current + 1} of ${state.questions.length}`;
+        document.getElementById('aesQText').innerText = q.q;
+        const opts = document.getElementById('aesOptions');
+        opts.innerHTML = '';
+
+        q.options.forEach((opt, idx) => {
+          const wrap = document.createElement('label');
+          wrap.className = 'aes-option';
+          const checked = (state.answers[q.id] !== undefined && state.answers[q.id] === opt) ? 'checked' : '';
+          wrap.innerHTML = `<input type='radio' name='aesAnswer' value='${idx}' ${checked} /> <div style='flex:1'>${opt}</div>`;
+          wrap.addEventListener('click', () => {
+            document.querySelectorAll('input[name="aesAnswer"]').forEach(i => i.checked = false);
+            wrap.querySelector('input').checked = true;
+            state.answers[q.id] = opt;
+            updateProgress();
+            renderReviewList();
+          });
+          opts.appendChild(wrap);
+        });
+
+        updateProgress();
+        highlightMarked();
+      }
+
+      function submitAnswerAndMove(dir) {
+        state.current += dir;
+        if (state.current < 0) state.current = 0;
+        if (state.current >= state.questions.length) {
+          finishExam();
+          return;
+        }
+        renderQuestion();
+      }
+
+      function toggleMark() {
+        const q = state.questions[state.current];
+        if (state.marked.has(q.id)) {
+          state.marked.delete(q.id);
+          Swal.fire({
+            icon: 'info',
+            title: 'Question Unmarked',
+            text: 'Question removed from review list.',
+            timer: 1500,
+            showConfirmButton: false
+          });
+        } else {
+          state.marked.add(q.id);
+          Swal.fire({
+            icon: 'info',
+            title: 'Question Marked',
+            text: 'Question added to review list.',
+            timer: 1500,
+            showConfirmButton: false
+          });
+        }
+        renderReviewList();
+        highlightMarked();
+      }
+
+      function updateProgress() {
+        const total = state.questions.length;
+        const answered = Object.keys(state.answers).length;
+        const percent = Math.round((answered / total) * 100);
+        document.getElementById('aesProgBar').style.width = `${percent}%`;
+        document.getElementById('aesCertScore').innerText = `${answered}/${total}`;
+      }
+
+      function renderReviewList() {
+        const list = document.getElementById('aesReviewList');
+        list.innerHTML = '';
+        state.questions.forEach((q, idx) => {
+          const pill = document.createElement('div');
+          pill.className = 'aes-q-pill';
+          if (state.answers[q.id]) pill.classList.add('answered');
+          if (state.marked.has(q.id)) pill.classList.add('marked');
+          pill.innerText = idx + 1;
+          pill.addEventListener('click', () => {
+            state.current = idx;
+            renderQuestion();
+          });
+          list.appendChild(pill);
+        });
+      }
+
+      function highlightMarked() {
+        const pills = document.querySelectorAll('.aes-q-pill');
+        pills.forEach((p, i) => {
+          p.classList.toggle('marked', state.marked.has(state.questions[i].id));
+        });
+      }
+
+      function finishExam() {
+        clearInterval(state.timerInterval);
+        const total = state.questions.length;
+        let score = 0;
+
+        state.questions.forEach(q => {
+          const selectedAnswer = state.answers[q.id];
+          if (selectedAnswer && selectedAnswer === q.options[q.ans]) {
+            score++;
+          }
+        });
+
+        document.getElementById('aesSystemStatus').innerText = 'Exam finished';
+        document.getElementById('aesCertName').innerText = state.name;
+        document.getElementById('aesCertScore').innerText = `${score}/${total}`;
+
+        const percentage = Math.round((score / total) * 100);
+        let grade = 'F';
+        if (percentage >= 90) grade = 'A+';
+        else if (percentage >= 80) grade = 'A';
+        else if (percentage >= 70) grade = 'B';
+        else if (percentage >= 60) grade = 'C';
+        else if (percentage >= 50) grade = 'D';
+
+        Swal.fire({
+          icon: score >= total * 0.6 ? 'success' : 'info',
+          title: 'Exam Completed!',
+          html: `
+          <div style="text-align: center;">
+            <h3>${state.name}</h3>
+            <p><strong>Score:</strong> ${score}/${total} (${percentage}%)</p>
+            <p><strong>Grade:</strong> ${grade}</p>
+            <p><strong>Subject:</strong> ${state.subject.toUpperCase()}</p>
+            <p><strong>Level:</strong> ${capitalize(state.level)}</p>
+          </div>
+        `,
+          confirmButtonText: 'Download Certificate',
+          showCancelButton: true,
+          cancelButtonText: 'Close'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            downloadCertificatePDF();
+          }
+        });
+      }
+
+      function capitalize(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      }
+
+      // lifelines
+      function useHint() {
+        const q = state.questions[state.current];
+        if (state.usedHint.has(q.id)) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Hint Already Used',
+            text: 'You have already used the hint for this question.'
+          });
+          return;
+        }
+        state.usedHint.add(q.id);
+        Swal.fire({
+          icon: 'info',
+          title: 'Hint',
+          text: q.explain || 'No explanation available for this question.',
+          confirmButtonText: 'Got it!'
+        });
+      }
+
+      function useFifty() {
+        const q = state.questions[state.current];
+        if (state.usedFifty.has(q.id)) {
+          Swal.fire({
+            icon: 'warning',
+            title: '50-50 Already Used',
+            text: 'You have already used 50-50 for this question.'
+          });
+          return;
+        }
+        state.usedFifty.add(q.id);
+
+        // Remove two incorrect options
+        const correctAnswer = q.options[q.ans];
+        const incorrectOptions = q.options.filter((opt, idx) => idx !== q.ans);
+        const toRemove = incorrectOptions.slice(0, 2);
+
+        // Hide the incorrect options
+        const optionElements = document.querySelectorAll('.aes-option');
+        optionElements.forEach((element, idx) => {
+          const optionText = q.options[idx];
+          if (toRemove.includes(optionText)) {
+            element.style.opacity = '0.3';
+            element.style.pointerEvents = 'none';
+            element.querySelector('input').disabled = true;
+          }
+        });
+
+        Swal.fire({
+          icon: 'success',
+          title: '50-50 Used!',
+          text: 'Two incorrect options have been eliminated.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+
+      function useSkip() {
+        if (state.skips >= 3) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Skip Limit Reached',
+            text: 'Maximum 3 skips allowed per exam.'
+          });
+          return;
+        }
+        state.skips++;
+        Swal.fire({
+          icon: 'info',
+          title: 'Question Skipped',
+          text: `Skips remaining: ${3 - state.skips}`,
+          timer: 1500,
+          showConfirmButton: false
+        });
+        submitAnswerAndMove(1);
+      }
+
+      function showAnswer(showAlert = false) {
+        const q = state.questions[state.current];
+        const correctText = q.options[q.ans];
+        if (showAlert) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Correct Answer',
+            html: `
+            <div style="text-align: left;">
+              <p><strong>Answer:</strong> ${correctText}</p>
+              <p><strong>Explanation:</strong> ${q.explain}</p>
+            </div>
+          `,
+            confirmButtonText: 'Continue'
+          });
+        }
+      }
+
+      // Enhanced certificate generation
+      async function downloadCertificatePDF() {
+        const { jsPDF } = window.jspdf;
+
+        // Create new PDF in landscape
+        const pdf = new jsPDF("landscape", "pt", "a4");
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        // Create certificate background
+        pdf.setFillColor(240, 248, 255);
+        pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+        // Add border
+        pdf.setDrawColor(106, 27, 154);
+        pdf.setLineWidth(8);
+        pdf.rect(20, 20, pageWidth - 40, pageHeight - 40);
+
+        // Add inner border
+        pdf.setLineWidth(2);
+        pdf.rect(40, 40, pageWidth - 80, pageHeight - 80);
+
+        // Certificate title
+        pdf.setFont("times", "bold");
+        pdf.setFontSize(36);
+        pdf.setTextColor(106, 27, 154);
+        pdf.text("CERTIFICATE OF COMPLETION", pageWidth / 2, 120, { align: "center" });
+
+        // Subtitle
+        pdf.setFontSize(18);
+        pdf.setTextColor(100, 100, 100);
+        pdf.text("This is to certify that", pageWidth / 2, 160, { align: "center" });
+
+        // Student name
+        pdf.setFont("times", "bold");
+        pdf.setFontSize(32);
+        pdf.setTextColor(0, 0, 0);
+        pdf.text(state.name, pageWidth / 2, 220, { align: "center" });
+
+        // Achievement text
+        pdf.setFont("times", "normal");
+        pdf.setFontSize(18);
+        pdf.setTextColor(100, 100, 100);
+        const score = document.getElementById("aesCertScore").innerText;
+        pdf.text(`has successfully completed the ${capitalize(state.subject)} examination`, pageWidth / 2, 270, { align: "center" });
+        pdf.text(`at ${capitalize(state.level)} level with a score of ${score}`, pageWidth / 2, 300, { align: "center" });
+
+        // Date and signature area
+        const today = new Date().toLocaleDateString();
+        pdf.setFontSize(14);
+        pdf.text(`Date: ${today}`, 100, pageHeight - 80);
+        pdf.text("Authorized Signature", pageWidth - 200, pageHeight - 80);
+
+        // Add decorative elements
+        pdf.setDrawColor(106, 27, 154);
+        pdf.setLineWidth(1);
+        pdf.line(pageWidth / 2 - 100, 240, pageWidth / 2 + 100, 240);
+        pdf.line(pageWidth - 250, pageHeight - 60, pageWidth - 50, pageHeight - 60);
+
+        // Save PDF
+        pdf.save(`${state.name.replace(/\s+/g, '_')}_certificate.pdf`);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Certificate Downloaded!',
+          text: 'Your certificate has been saved to your downloads folder.',
+          timer: 3000,
+          showConfirmButton: false
+        });
+      }
+
+      // Initial status
+      document.getElementById('aesSystemStatus').innerText = 'Pools generated — ready';
+    </script>
+  </body>
+
+  </html>
+  <%- include('footer.ejs') %>

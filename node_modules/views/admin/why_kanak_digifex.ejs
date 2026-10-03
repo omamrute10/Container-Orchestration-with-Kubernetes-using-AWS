@@ -1,0 +1,32 @@
+<%- include('navbar.ejs') %>
+
+
+    <form action="/admin/save_digifex_info" method="post" enctype="multipart/form-data">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Why Kanak Digifex</h3>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Title</label>
+                    <input type="text" name="digifex_title" value="<%= digifex.digifex_title %>" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Sub-Title</label>
+                    <input type="text" name="digifex_sub_title" value="<%= digifex.digifex_sub_title %>" class="form-control">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="font-weight-bold" for="">Enter Description</label>
+                    <textarea name="digifex_description"  class="form-control"><%- digifex.digifex_description %></textarea>
+                </div>
+                
+                <div class="col-md-12 text-center mt-3">
+                    <button class="font-weight-bold btn btn-primary">Save Details</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,662 @@
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="web development company Ahmednagar, website development company Ahmednagar, top IT companies Ahmednagar, professional web developers Ahmednagar, IT company near Savedi, Java full stack course near me, cloud computing course near me, digital marketing course near me, graphic design course Ahmednagar, machine learning course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar's trusted IT company specializing in website design, digital marketing, software development, and graphic design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- FavIcon Link -->
+    <link rel="shortcut icon" type="image/x-icon" href="/user_assets/images/favicon.png">
+
+</head>
+<%- include("header.ejs") %>
+    <style>
+        .explore-btn {
+            background: rgb(183, 79, 252);
+            border: none;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .explore-btn:hover {
+            background: linear-gradient(135deg, rgb(146, 64, 190) 0%, #c9417c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 65, 108, 0.4);
+        }
+
+        .explore-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .h4-title {
+            color: rgb(146, 64, 190);
+        }
+
+        .explore-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .benefits-card {
+            background-color: #f8f9faa0;
+            border: 1px solid #e2e6ea;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            top: -6px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits-list li {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 1.2em;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .benefits-list li::before {
+            content: '✔️';
+            position: absolute;
+            left: -8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .terms-header {
+            background: linear-gradient(135deg, #0073ff, rgb(175, 11, 78));
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .terms-container {
+            max-width: 100%;
+            margin: 10px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e8f0fe;
+            border-left: 5px solid rgb(175, 11, 78);
+            border-radius: 8px;
+        }
+
+        .terms-section h2 {
+            font-size: 16px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .terms-section p,
+        .terms-section ul {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .terms-section ul {
+            padding-left: 20px;
+        }
+
+        .institute-info {
+            margin-top: 30px;
+            padding: 60px;
+            background: rgb(175, 11, 78);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .course-detail-image {
+            width: 100%;
+            max-width: 830px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .form-control:valid {
+            border-color: #28a745;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Learn from experts with real-world projects!</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/courses" title="Course">Courses</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li>Course Detail</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <!-- Course Detail Info Start -->
+    <section class="course-detail-sec pt-5 pb-5 mt-4">
+        <div class="container">
+            <div class="row">
+                <% if (courses[0].course_id==28) { %>
+                    <!-- फक्त course_id = 28 साठी -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="course-detail-box">
+                            <div class="course-detail-image wow fadeup-animation" data-wow-duration="0.8s"
+                                data-wow-delay="0.2s">
+                                <img src="/uploads/<%=courses[0].course_image%>" alt="Course Image">
+                            </div>
+
+                            <div class="course-detail-content wow fadeup-animation" data-wow-duration="0.8s"
+                                data-wow-delay="0.3s">
+                                <div class="post-tag">
+                                    <span>
+                                        <%=courses[0].course_title%>
+                                    </span>
+                                </div>
+                                <div class="course-detail-title">
+                                    <h3 class="h3-title" style="font-size: 24px;line-height: 1.6;">
+                                        <%=courses[0].course_sub_title%>
+                                    </h3>
+                                </div>
+                                <hr>
+                                <div class="course-detail-feature-box common-list-style mt-4 pb-0 mb-0">
+                                    <h4 class="h4-title">Special Course Details</h4>
+                                    <p><%- courses[0].course_details %></p>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                            <div class="course-detail-sidebar">
+                                <div class="course-fees-info-box wow fadeup-animation pb-1" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <div class="course-video-box-wp">
+                                        <div class="course-video-box">
+                                            <img src="/user_assets/images/course-video-thumbnail-1.jpg" width="356"
+                                                height="220" alt="Course Video Thumbnail Image">
+                                            <a href="#" data-fancybox="video" title="Course Video">
+                                                <div class="play-btn">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="course-video-description">
+                                            <div class="course-fees">
+                                                <p style="font-weight: bold;"> Course Fee : </p>
+                                                <h4 class="h4-title">&#8377; <%=courses[0].course_price%> /-</h4>
+                                            </div>
+                                            <div class="course-join-btn">
+                                                <a href="#" class="sec-btn open-register-modal"
+                                                    data-course-id="<%=courses[0].course_id%>"
+                                                    title="Join Now"><span>Join
+                                                        Now</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-includes-wp">
+                                        <h4 class="h4-title">Course Includes:</h4>
+                                        <ul>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/clock-icon.svg" width="20" height="20"
+                                                        alt="Clock Icon">
+                                                </span>
+                                                <p>
+                                                    <%=courses[0].course_duration%>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/expert-skill-icon.svg" width="25"
+                                                        height="25" alt="Expert Skill Icon">
+                                                </span>
+                                                <p>Expert Skill</p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/student-icon.svg" width="20"
+                                                        height="25" alt="Students Icon">
+                                                </span>
+                                                <p>2k Students</p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/certification-icon.svg" width="16"
+                                                        height="20" alt="Certification Icon">
+                                                </span>
+                                                <p>Certification</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <!-- 👉 बाकी सर्व courses साठी जुना (common) design जसाच्या तसा -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="course-detail-box">
+                                <div class="course-detail-image wow fadeup-animation" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <img src="/uploads/<%=courses[0].course_image%>" alt="Course Image">
+                                </div>
+
+                                <div class="course-detail-content wow fadeup-animation" data-wow-duration="0.8s"
+                                    data-wow-delay="0.3s">
+                                    <div class="post-tag">
+                                        <span>
+                                            <%=courses[0].course_title%>
+                                        </span>
+                                    </div>
+                                    <div class="course-detail-title">
+                                        <h3 class="h3-title" style="font-size: 24px;line-height: 1.6;">
+                                            <%=courses[0].course_sub_title%>
+                                        </h3>
+                                    </div>
+                                    <hr>
+                                    <div class="course-detail-feature-box common-list-style mt-4 pb-0 mb-0">
+                                        <h4 class="h4-title">What You’ll Learn It ?</h4>
+                                        <ul>
+                                            <li>100% Better Results</li>
+                                            <li>Budget Friendly Education Theme</li>
+                                            <li>Unlocking Potential Through Educations</li>
+                                            <li>Building A Bright Future Togather</li>
+                                            <li>Empowering Children Through Education</li>
+                                            <li>Growing Genius Elementary School</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="course-requirement-detail mt-3 mb-4">
+                                        <h4 class="h4-title">Why Choose This Course</h4>
+                                        <div class="course-requirement-box-row">
+                                            <div class="course-requirement-box">
+                                                <div class="course-requirement-icon">
+                                                    <img src="/user_assets/images/course-requirement-icon-1.svg"
+                                                        width="30" height="24" alt="Expert Instructors">
+                                                </div>
+                                                <div class="course-requirement-text">
+                                                    <p>Learn from Experts</p>
+                                                </div>
+                                            </div>
+                                            <div class="course-requirement-box">
+                                                <div class="course-requirement-icon">
+                                                    <img src="/user_assets/images/course-requirement-icon-2.svg"
+                                                        width="30" height="24" alt="Hands-on Projects">
+                                                </div>
+                                                <div class="course-requirement-text">
+                                                    <p>Hands-on Projects</p>
+                                                </div>
+                                            </div>
+                                            <div class="course-requirement-box">
+                                                <div class="course-requirement-icon">
+                                                    <img src="/user_assets/images/course-requirement-icon-3.svg"
+                                                        width="24" height="24" alt="Career Support">
+                                                </div>
+                                                <div class="course-requirement-text">
+                                                    <p>Career Support</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="course-detail-sidebar">
+                                <div class="course-fees-info-box wow fadeup-animation pb-1" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <div class="course-video-box-wp">
+                                        <div class="course-video-box">
+                                            <img src="/user_assets/images/course-video-thumbnail-1.jpg" width="356"
+                                                height="220" alt="Course Video Thumbnail Image">
+                                            <a href="#" data-fancybox="video" title="Course Video">
+                                                <div class="play-btn">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="course-video-description">
+                                            <div class="course-fees">
+                                                <p style="font-weight: bold;"> Course Fee : </p>
+                                                <h4 class="h4-title">&#8377; <%=courses[0].course_price%> /-</h4>
+                                            </div>
+                                            <div class="course-join-btn">
+                                                <a href="#" class="sec-btn open-register-modal"
+                                                    data-course-id="<%=courses[0].course_id%>"
+                                                    title="Join Now"><span>Join
+                                                        Now</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-includes-wp">
+                                        <h4 class="h4-title">Course Includes:</h4>
+                                        <ul>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/clock-icon.svg" width="20" height="20"
+                                                        alt="Clock Icon">
+                                                </span>
+                                                <p>
+                                                    <%=courses[0].course_duration%>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/expert-skill-icon.svg" width="25"
+                                                        height="25" alt="Expert Skill Icon">
+                                                </span>
+                                                <p>Expert Skill</p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/student-icon.svg" width="20"
+                                                        height="25" alt="Students Icon">
+                                                </span>
+                                                <p>2k Students</p>
+                                            </li>
+                                            <li>
+                                                <span class="icon">
+                                                    <img src="/user_assets/images/certification-icon.svg" width="16"
+                                                        height="20" alt="Certification Icon">
+                                                </span>
+                                                <p>Certification</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                            <div class="related-courses-wp pt-5">
+                                <div class="sec-title">
+                                    <span class="sub-title">Related Courses</span>
+                                    <h2 class="h2-title">Courses You May Like</h2>
+                                </div>
+                                <div class="row">
+                                    <% for(let i=0; i < 3; i++) { %>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-4 mb-3 grid-item pb-0 mb-0"
+                                            data-type="computer-science" data-aos="zoom-in">
+                                            <div class="common-post-card border shadow  p-4 pb-0 mb-0">
+
+                                                <!-- Course Image + Tag -->
+                                                <div class="post-image-box-wp mb-0 pb-3">
+                                                    <div class="post-image" style="height: 170px;">
+                                                        <img src="/uploads/<%= course_info[i].course_image %>"
+                                                            alt="Course Image">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Course Content -->
+                                                <div class="common-post-content">
+                                                    <!-- Lessons & Duration -->
+                                                    <div class="post-lessons-info">
+                                                        <ul>
+                                                            <li>
+                                                                <span class="post-info-icon">
+                                                                    <img src="/user_assets/images/book-icon.svg"
+                                                                        width="26" height="18" alt="Book Icon">
+                                                                </span>
+                                                                <span class="post-info-text">
+                                                                    Career-Ready Skills
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="post-info-icon">
+                                                                    <img src="/user_assets/images/clock-icon.svg"
+                                                                        width="20" height="20" alt="Clock Icon">
+                                                                </span>
+                                                                <span class="post-info-text">
+                                                                    <%= course_info[i].course_duration %>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <!-- Title -->
+                                                    <div class="post-content-title">
+                                                        <a href="/course_details/<%= course_info[i].course_id %>"
+                                                            title="<%= course_info[i].course_title %>">
+                                                            <h4 class="h4-title">
+                                                                <%= course_info[i].course_title %>
+                                                            </h4>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Author + Reviews -->
+                                                    <div class="post-author-review-info px-3 py-3 mt-3 benefits-card">
+                                                        <ul class="benefits-list mb-0">
+                                                            <li>Flexible EMI Options</li>
+                                                            <li>Globally Recognized Certification</li>
+                                                            <li>Work on Real Client Projects</li>
+                                                            <li>6-Month Full-Time Internship</li>
+                                                            <li>Mock Interviews & GD Practice</li>
+                                                            <li>Soft Skills & Stress Management</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <!-- Price -->
+                                                    <div
+                                                        class="course-price mt-3 d-flex justify-content-between align-items-center">
+                                                        <h4 class="h4-title mb-0">
+                                                            <%= course_info[i].course_price ? '₹' +
+                                                                course_info[i].course_price : 'Free' %>
+                                                                /-
+                                                        </h4>
+                                                        <a href="/course_details/<%= course_info[i].course_id %>">
+                                                            <button class="explore-btn">
+                                                                <span>Explore More</span>
+                                                                <i class="fa fa-arrow-right ms-2"></i>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                </div>
+                            </div>
+            </div>
+        </div>
+    </section>
+    <!-- Course Detail Info End -->
+
+    <!-- Registration Modal -->
+    <div id="courseRegisterModal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0 animate__animated animate__zoomIn">
+                <div class="modal-header text-white" style="background-color: rgb(183, 79, 252);">
+                    <h5 class="modal-title text-white fw-bold">Join Course - Registration</h5>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form id="courseRegForm" action="/save_registration_for_course" method="POST" novalidate>
+                    <input type="hidden" name="course_id" id="modal_course_id">
+
+                    <div class="modal-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="student_name" class="form-control" required>
+                                <div class="invalid-feedback">Please enter your full name.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="student_email" class="form-control" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Mobile</label>
+                                <input type="tel" name="student_mobile" pattern="^[6-9]\d{9}$" maxlength="10"
+                                    class="form-control" required>
+                                <div class="invalid-feedback">Enter a valid 10-digit mobile number starting with 6-9.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Course</label>
+                                <input type="text" name="selected_course" value="<%=courses[0].course_title%>" readonly
+                                    class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12 mb-2">
+                                <label for="course_mode" class="form-label font-weight-bold">Mode of Learning</label>
+                                <select class="form-select form-control" id="course_mode" name="course_mode" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="Online">Online</option>
+                                    <option value="Offline">Offline</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a mode of learning.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer bg-light px-4">
+                        <button type="button" class="btn btn-danger btn-lg fw-bold"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="sec-btn btn btn-success fw-bold">Submit Registration</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = new bootstrap.Modal(document.getElementById('courseRegisterModal'));
+            const joinBtns = document.querySelectorAll('.open-register-modal');
+
+            joinBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const courseId = this.getAttribute('data-course-id');
+                    document.getElementById('modal_course_id').value = courseId;
+                    modal.show();
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('courseRegForm');
+
+            form.addEventListener('submit', function (event) {
+                // Validate all HTML5 validations
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+            });
+        });
+    </script>
+
+    <%- include("footer.ejs") %>

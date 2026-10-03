@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Application Form</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f8f9fa;
+            min-height: 130vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .form-container h3 {
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #4285f4;
+            box-shadow: 0 0 10px rgba(66, 133, 244, 0.5);
+        }
+
+        .btn-primary {
+            background: #4285f4;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #3367d6;
+            box-shadow: 0 4px 10px rgba(51, 103, 214, 0.3);
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                background: #f8f9fa;
+                min-height: 110vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .form-container h3 {
+                font-size: 23px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+
+            .btn-primary {
+                font-size: 0.9rem;
+            }
+        }
+        .btn {
+            background-color: rgb(175, 11, 78);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: rgb(150, 10, 65);
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            background-color: rgb(120, 8, 50);
+            transform: scale(1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container border pb-4 pt-3">
+        <h3 class="font-weight-bold border-bottom pb-2"style="color: rgb(175,11,78);">Internship Application Form</h3>
+        <form action="/save_internships" method="post" id="internshipForm" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="fullName" class="mt-3">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="student_name" id="fullName"
+                    placeholder="Enter your full name" required>
+                <div class="invalid-feedback">Please enter your full name.</div>
+            </div>
+            <div class="form-group">
+    <label for="mobile">Mobile <span class="text-danger">*</span></label>
+    <div class="input-group">
+        <input type="tel" class="form-control" name="student_mobile" id="student_mobile" placeholder="Enter your mobile number" required pattern="[0-9]{10}">
+        <div class="input-group-append">
+            <button type="button" id="btn-send-otp" class="btn btn-dark" style="background-color: rgb(175, 11, 78); border: none;">Get OTP</button>
+        </div>
+    </div>
+    <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+</div>
+
+<div class="form-group" id="otp-container" style="display: none;">
+    <label for="otp_input">Enter OTP <span class="text-danger">*</span></label>
+    <div class="input-group">
+        <input type="text" class="form-control" id="otp_input" placeholder="Enter 6-digit OTP" maxlength="6">
+        <div class="input-group-append">
+            <button type="button" id="btn-verify-otp" class="btn btn-primary" style="background-color: #4285f4; border: none;">Verify OTP</button>
+        </div>
+    </div>
+    <small id="otp-message" class="form-text font-weight-bold mt-2 d-none"></small>
+</div>
+            <div class="form-group">
+                <label for="email">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" name="student_email" id="email" placeholder="Enter your email"
+                    required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="form-group">
+                <label for="college">College Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="student_college_name" id="college"
+                    placeholder="Enter your college name" required>
+                <div class="invalid-feedback">Please enter your college name.</div>
+            </div>
+            <div class="form-group">
+                <label for="degree">Your Current Stream <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="student_degree" id="degree"
+                    placeholder="Enter Your Diploma/Graduation/Post-Graduation" required>
+                <div class="invalid-feedback">Please enter atleast one.</div>
+            </div>
+            <div class="form-group">
+                <label for="academicYear">Current Academic Year <span class="text-danger">*</span></label>
+                <select class="form-control" name="student_academic_year" id="academicYear" required>
+                    <option value="" disabled selected>Select your academic year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+                <div class="invalid-feedback">Please select your academic year.</div>
+            </div>
+            <div class="form-group">
+                <label for="internshipOptions">Select Internship(s) Domains<span class="text-danger">*</span></label>
+                <select class="form-control" name="student_selected_internships" id="internshipOptions" multiple
+                    required>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Mobile App Development">Mobile App Development</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Cloud Computing">Cloud Computing</option>
+                    <option value="Machine Learning">Machine Learning</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="Corporate Graphic Design">Corporate Graphic Design</option>
+                    <option value="Power BI">Power BI</option>
+                    <option value="Python">Python</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Node.js">Node.js</option>
+                    <option value="React.js">React.js</option>
+                    <option value="Angular">Angular</option>
+                </select>
+                <div class="invalid-feedback">Please select at least one internship option.</div>
+            </div>
+            <div class="text-center ">
+            <button type="submit" id="btn-submit-form" class="btn text-white mt-2" disabled>Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap 4 JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script>
+        document.getElementById('internshipForm').addEventListener('submit', function (event) {
+            const internshipOptions = document.getElementById('internshipOptions');
+            if (Array.from(internshipOptions.selectedOptions).length === 0) {
+                event.preventDefault();
+                event.stopPropagation();
+                internshipOptions.classList.add('is-invalid');
+            } else {
+                internshipOptions.classList.remove('is-invalid');
+            }
+        });
+
+    </script>
+
+    <script>
+document.getElementById('btn-send-otp').addEventListener('click', async function() {
+    // 🌟 FIXED: Changed 'mobile' to 'student_mobile' to match your form input ID
+    const mobile = document.getElementById('student_mobile').value; 
+    
+    if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+    }
+
+    this.disabled = true;
+    this.innerText = "Sending...";
+
+    try {
+        const response = await fetch('/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mobile: mobile })
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('otp-container').style.display = 'block';
+            this.innerText = "Resend OTP";
+            alert("OTP has been sent successfully!");
+        } else {
+            alert("Failed to send OTP. Please try again.");
+            this.innerText = "Get OTP";
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        this.innerText = "Get OTP";
+    } finally {
+        this.disabled = false;
+    }
+});
+
+document.getElementById('btn-verify-otp').addEventListener('click', async function() {
+    // 🌟 FIXED: Changed 'mobile' to 'student_mobile' here as well
+    const mobile = document.getElementById('student_mobile').value; 
+    const otp = document.getElementById('otp_input').value;
+    const msgElem = document.getElementById('otp-message');
+
+    if (!otp) {
+        alert("Please enter the OTP.");
+        return;
+    }
+
+    try {
+        const response = await fetch('/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mobile: mobile, otp: otp })
+        });
+        const data = await response.json();
+
+        msgElem.classList.remove('d-none', 'text-danger', 'text-success');
+
+        if (data.success) {
+            msgElem.innerText = "✓ Verified Number";
+            msgElem.classList.add('text-success');
+            
+            // Lock fields
+            document.getElementById('student_mobile').readOnly = true;
+            document.getElementById('otp_input').readOnly = true;
+            document.getElementById('btn-send-otp').disabled = true;
+            document.getElementById('btn-verify-otp').disabled = true;
+            
+            // Enable submit
+            document.getElementById('btn-submit-form').disabled = false;
+        } else {
+            msgElem.innerText = "✗ Invalid OTP code. Please try again.";
+            msgElem.classList.add('text-danger');
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
+</script>
+
+</body>
+
+</html>
