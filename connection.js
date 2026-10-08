@@ -1,13 +1,27 @@
-var mysql = require("mysql2");
-var util = require("util");
+require("dotenv").config();
 
-var conn = mysql.createConnection({
-    "host":"localhost",
-    "user":"kanakdigifexcom_db_user",
-    "password":"Kdigifex@7333",
-    "database":"kanakdigifexcom_db",
-    "port": 3306
+const mysql = require("mysql2");
+
+const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
-var exe = util.promisify(conn.query).bind(conn);
+
+connection.connect((err) => {
+    if (err) {
+        console.error("Database connection failed:", err);
+        return;
+    }
+
+    console.log("Database connected successfully");
+});
+
+// Make exe("SELECT ...") work with async/await
+const exe = (sql, values = []) => {
+    return connection.promise().query(sql, values)
+        .then(([rows]) => rows);
+};
 
 module.exports = exe;
