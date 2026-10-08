@@ -1,0 +1,158 @@
+<%- include("navbar.ejs") %>
+
+    <div class="container-fluid py-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <h2 class="fw-bold mb-1">
+                    Program Registrations
+                </h2>
+
+                <p class="text-muted mb-0 mt-3">
+                    View all student registration details
+                </p>
+            </div>
+
+            <span class="badge bg-primary text-white p-2" style="font-size: 12px;">
+                <%= registrations.length %> Registrations
+            </span>
+
+        </div>
+
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>#</th>
+                                <th>Student</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Internship / OJT</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <% if (registrations.length> 0) { %>
+
+                                <% registrations.forEach(function(item, index) { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= index + 1 %>
+                                        </td>
+
+
+                                        <td>
+                                            <strong>
+                                                <%= item.full_name %>
+                                            </strong>
+                                        </td>
+
+
+                                        <td>
+                                            <%= item.email %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= item.mobile %>
+                                        </td>
+
+
+                                        <td>
+
+                                            <% if (item.internship_ojt==="Yes" ) { %>
+
+                                                <span class="badge bg-success text-white">
+                                                    Yes
+                                                </span>
+
+                                                <% } else { %>
+
+                                                    <span class="badge bg-secondary text-white">
+                                                        No
+                                                    </span>
+
+                                                    <% } %>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <% if (item.message) { %>
+
+                                                <span>
+                                                    <%= item.message %>
+                                                </span>
+
+                                                <% } else { %>
+
+                                                    <span class="text-muted">
+                                                        No message
+                                                    </span>
+
+                                                    <% } %>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <%= new Date(item.created_at).toLocaleDateString('en-IN') %>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <% }); %>
+
+
+                                        <% } else { %>
+
+                                            <tr>
+
+                                                <td colspan="7" class="text-center py-5">
+
+                                                    <h5 class="text-muted">
+                                                        No registrations found
+                                                    </h5>
+
+                                                    <p class="text-muted mb-0">
+                                                        Registration details will appear here.
+                                                    </p>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <% } %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <%- include("footer.ejs") %>

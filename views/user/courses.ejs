@@ -1,0 +1,338 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Leading IT & Software Company in Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="IT company Ahmednagar, IT companies Ahmednagar, software company Ahmednagar, software development Ahmednagar, data science course Ahmednagar, Java full stack course Ahmednagar, cloud computing course Ahmednagar, digital marketing course Ahmednagar, graphic design course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Digital success starts here. Leading Ahmednagar’s IT and software company offering website development, app creation, marketing, cloud automation, and graphic design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<%- include("header.ejs") %>
+    <style>
+        .explore-btn {
+            background: rgb(183, 79, 252);
+            border: none;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .explore-btn:hover {
+            background: linear-gradient(135deg, rgb(146, 64, 190) 0%, #c9417c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 65, 108, 0.4);
+        }
+
+        .explore-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .h4-title {
+            color: rgb(146, 64, 190);
+        }
+
+        .explore-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .benefits-card {
+            background-color: #f8f9faa0;
+            border: 1px solid #e2e6ea;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            top: -6px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits-list li {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 1.2em;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .benefits-list li::before {
+            content: '✔️';
+            position: absolute;
+            left: -8px;
+        }
+    </style>
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Corporate Training</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li><a href="/courses" title="Course">Corporate Training</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+    <!-- Top Course Start -->
+    <section class="top-course-sec sec-space-top pb-5 pt-5" id="courses">
+        <div class="container">
+            <div class="top-course-title">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="sec-title">
+                            <center> <span class="sub-title">Top Courses</span></center>
+                            <center>
+                                <h2 class="h2-title">Industry-Ready Career-Oriented Courses</h2>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">
+
+                <!-- First show course_id = 28 -->
+                <% for(let i=0; i < course_info.length; i++) { %>
+                    <% if(course_info[i].course_id==28) { %>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-4 mb-3 grid-item pb-0 mb-0"
+                            data-type="computer-science" data-aos="zoom-in">
+                            <div class="common-post-card border shadow  p-4 pb-0 mb-0">
+
+                                <!-- Course Image + Tag -->
+                                <div class="post-image-box-wp mb-0 pb-3">
+                                    <div class="post-image" style="height: 170px;">
+                                        <a href="/course_details/<%= course_info[i].slug %>"
+                                            title="<%= course_info[i].course_title %>">
+                                            <img src="/uploads/<%= course_info[i].course_image %>" alt="Course Image">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Course Content -->
+                                <div class="common-post-content">
+                                    <!-- Lessons & Duration -->
+                                    <div class="post-lessons-info">
+                                        <ul>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/book-icon.svg" width="26" height="18"
+                                                        alt="Book Icon">
+                                                </span>
+                                                <span class="post-info-text">
+                                                    करिअर कौशल्ये
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/clock-icon.svg" width="20" height="20"
+                                                        alt="Clock Icon">
+                                                </span>
+                                                <span class="post-info-text">
+                                                    <%= course_info[i].course_duration %>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Title -->
+                                    <div class="post-content-title">
+                                        <a href="/course_details/<%= course_info[i].slug %>"
+                                            title="<%= course_info[i].course_title %>">
+                                            <h4 class="h4-title" style="font-size: 20px;">
+                                                <%= course_info[i].course_title %>
+                                            </h4>
+                                        </a>
+                                    </div>
+
+                                    <!-- Author + Reviews -->
+                                    <div class="post-author-review-info px-3 py-3 mt-3 benefits-card">
+                                        <ul class="benefits-list mb-0">
+                                            <li>IT क्षेत्राची ओळख करून देण्यासाठी</li>
+                                            <li>करिअरला योग्य सुरुवात करण्यासाठी</li>
+                                            <li>स्वतःचा व्यवसाय Online वाढवण्यासाठी</li>
+                                            <li>नवीन तंत्रज्ञान सहज शिकण्यासाठी</li>
+                                            <li>नोकरीसाठी लागणारी कौशल्ये मिळवण्यासाठी</li>
+                                            <li>भविष्यातील संधी ओळखण्यासाठी</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="course-price mt-3 d-flex justify-content-between align-items-center">
+                                        <h4 class="h4-title mb-0">
+                                            <%= course_info[i].course_price ? '₹' + course_info[i].course_price : 'Free'
+                                                %>
+                                                /-
+                                        </h4>
+                                        <a href="/course_details/<%= course_info[i].slug %>">
+                                            <button class="explore-btn">
+                                                <span>Explore More</span>
+                                                <i class="fa fa-arrow-right ms-2"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } %>
+
+
+                                <!-- Then show all other courses except 28 -->
+                                <% for(let i=0; i < course_info.length; i++) { %>
+                                    <% if(course_info[i].course_id !=28) { %>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-4 mb-3 grid-item pb-0 mb-0"
+                                            data-type="computer-science" data-aos="zoom-in">
+                                            <div class="common-post-card border shadow  p-4 pb-0 mb-0">
+                                                <!-- SAME DESIGN (paste same content as above) -->
+
+                                                <div class="post-image-box-wp mb-0 pb-3">
+                                                    <div class="post-image" style="height: 170px;">
+                                                        <a href="/course_details/<%= course_info[i].slug %>"
+                                                            title="<%= course_info[i].course_title %>">
+                                                            <img src="/uploads/<%= course_info[i].course_image %>"
+                                                                alt="Course Image">
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="common-post-content">
+                                                    <div class="post-lessons-info">
+                                                        <ul>
+                                                            <li>
+                                                                <span class="post-info-icon">
+                                                                    <img src="/user_assets/images/book-icon.svg"
+                                                                        width="26" height="18" alt="Book Icon">
+                                                                </span>
+                                                                <span class="post-info-text">
+                                                                    Career-Ready Skills
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="post-info-icon">
+                                                                    <img src="/user_assets/images/clock-icon.svg"
+                                                                        width="20" height="20" alt="Clock Icon">
+                                                                </span>
+                                                                <span class="post-info-text">
+                                                                    <%= course_info[i].course_duration %>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="post-content-title">
+                                                        <a href="/course_details/<%= course_info[i].slug %>"
+                                                            title="<%= course_info[i].course_title %>">
+                                                            <h4 class="h4-title">
+                                                                <%= course_info[i].course_title %>
+                                                            </h4>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post-author-review-info px-3 py-3 mt-3 benefits-card">
+                                                        <ul class="benefits-list mb-0">
+                                                            <li>Affordable Monthly Installments</li>
+                                                            <li>Globally Recognized Certification</li>
+                                                            <li>Work on Real Client Projects</li>
+                                                            <li>6-Month Full-Time Internship</li>
+                                                            <li>Mock Interviews & GD Practice</li>
+                                                            <li>Soft Skills & Stress Management</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div
+                                                        class="course-price mt-3 d-flex justify-content-between align-items-center">
+                                                        <h4 class="h4-title mb-0">
+                                                            <%= course_info[i].course_price ? '₹' +
+                                                                course_info[i].course_price : 'Free' %>
+                                                                /-
+                                                        </h4>
+                                                        <a href="/course_details/<%= course_info[i].slug %>">
+                                                            <button class="explore-btn">
+                                                                <span>Explore More</span>
+                                                                <i class="fa fa-arrow-right ms-2"></i>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- Top Course End -->
+
+    <%- include("footer.ejs") %>

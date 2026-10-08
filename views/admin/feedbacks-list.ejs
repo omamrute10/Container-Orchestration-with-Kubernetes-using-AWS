@@ -1,0 +1,446 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        /* Container + header */
+        .reg-card {
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+        }
+
+        .reg-header {
+            background: linear-gradient(90deg, #5b21b6, #7c3aed);
+            color: #fff;
+            padding: 18px 24px;
+        }
+
+        .reg-header h3 {
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: .2px;
+            color: white;
+        }
+
+        /* Table visuals */
+        .table-modern {
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .table-modern thead th {
+            position: sticky;
+            top: 0;
+            background: #2d0659;
+            color: #fff;
+            border: 0;
+            font-weight: 600;
+            padding: 12px 10px;
+            vertical-align: middle;
+        }
+
+        .table-modern tbody td {
+            padding: 10px 12px;
+            vertical-align: middle;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .table-modern tbody tr:hover {
+            background: rgba(124, 58, 237, 0.06);
+        }
+
+        .badge-mode {
+            display: inline-block;
+            padding: 6px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+            background: linear-gradient(90deg, #e9d5ff, #ede9fe);
+            color: #5b21b6;
+            border: 1px solid rgba(91, 33, 182, 0.08);
+        }
+
+        .badge-cert {
+            display: inline-block;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: #f3f4f6;
+            color: #111827;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        /* controls row */
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 14px 0;
+        }
+
+        .input-search {
+            width: 350px;
+            max-width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: none;
+        }
+
+        /* result count pill */
+        .count-pill {
+            background: rgba(91, 33, 182, 0.08);
+            color: #5b21b6;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* action icons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* responsive tweaks */
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .input-search {
+                width: 100%;
+            }
+
+            .table-modern thead th {
+                font-size: 13px;
+                padding: 10px 6px;
+            }
+
+            .table-modern tbody td {
+                font-size: 13px;
+                padding: 10px 6px;
+            }
+        }
+    </style>
+
+    <div class="container-fluid mt-5">
+        <div class="reg-card">
+            <div class="reg-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Workshop Feedbacks List</h3>
+                    <div class="text-white">Latest feedbacks shown first • Clean, responsive view</div>
+                </div>
+                <div class="text-right">
+                    <div class="text-white font-weight-bold">Total Feedbacks</div>
+                    <div style="font-weight:700; font-size:18px;">
+                        <%= feedbacks.length %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <!-- Controls -->
+                <div class="controls">
+                    <input id="liveSearch" class="input-search" type="text"
+                        placeholder="Search name, phone, mode, certifications..." />
+
+                    <button id="clearBtn" class="btn btn-outline-secondary" type="button">Clear</button>
+
+                    <div class="ml-auto d-flex align-items-center" style="gap:10px;">
+                        <div class="count-pill" id="resultsCount">
+                            <%= feedbacks.length %> Results
+                        </div>
+                        <!-- Export CSV (client-side) -->
+                        <button id="exportCsv" class="btn btn-sm btn-primary">Export CSV</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-responsive mt-4">
+                    <table class="table-modern w-100" id="dataTable" role="table" aria-label="Registrations table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Overall</th>
+                                <th>Instructor</th>
+                                <th>Hands-On</th>
+                                <th>Combined</th>
+                                <th>Suggestions</th>
+                                <th>Intership</th>
+                                <th>Recemmended</th>
+                                <!-- <th>Time</th> -->
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <% for(var i=0; i < feedbacks.length; i++) { const r=feedbacks[i]; %>
+                                <tr class="data-row">
+                                    <td class="text-center">
+                                        <%= i + 1 %>
+                                    </td>
+
+                                    <!-- Student with avatar initials -->
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div>
+                                                <div style="font-weight:600;">
+                                                    <%= r.name %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div style="font-weight:600;">
+                                            <%= r.mobile %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge-cert">
+                                            <%= r.overall_rating %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class=" badge-cert">
+                                            <%= r.instructor_rating %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class=" badge-cert">
+                                            <%= r.handson_rating %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class=" badge-cert">
+                                            <%= r.combined_rating %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="">
+                                            <%= r.suggestions %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="" style="text-transform: capitalize;">
+                                            <%= r.internship_interest %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="" style="text-transform: capitalize;">
+                                            <%= r.recommend %>
+                                        </span>
+                                    </td>
+                                    <!-- <td class=" small-muted" style="text-transform: upp;">
+                                                            <%= new Date(r.created_at).toLocaleDateString() %>,
+                                                                <%= new Date(r.created_at).toLocaleTimeString([], {
+                                                                    hour: '2-digit' , minute: '2-digit' }) %>
+
+                                    </td> -->
+
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>
+
+        <script>
+            // Debounce helper
+            function debounce(fn, delay) {
+                let t;
+                return function (...args) {
+                    clearTimeout(t);
+                    t = setTimeout(() => fn.apply(this, args), delay);
+                };
+            }
+
+            const searchInput = document.getElementById('liveSearch');
+            const tableBody = document.getElementById('tableBody');
+            const resultsCount = document.getElementById('resultsCount');
+            const clearBtn = document.getElementById('clearBtn');
+            const exportBtn = document.getElementById('exportCsv');
+
+            // helper to get current row elements (live)
+            function getRows() {
+                return Array.from(tableBody.querySelectorAll('tr'));
+            }
+
+            function updateCount(visible) {
+                resultsCount.textContent = visible + (visible === 1 ? ' Result' : ' Results');
+            }
+
+            function normalize(s) { return (s || '').toString().toLowerCase().replace(/\s+/g, ' ').trim(); }
+
+            // Decide which columns to search (0-based td indexes)
+            // 0: No, 1: Name, 2: Mobile, 3: Overall, 4: Instructor, 5: Hands-On, 6: Combined, 7: Suggestions, 8: Internship, 9: Recommend
+            const searchableIndexes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+            function rowMatchesQuery(row, tokens) {
+                // combine searchable columns text
+                const cells = row.querySelectorAll('td');
+                let hay = '';
+                searchableIndexes.forEach(idx => {
+                    if (cells[idx]) hay += ' ' + cells[idx].innerText;
+                });
+                hay = normalize(hay);
+
+                // check every token exists in hay (AND logic). For OR behaviour change as needed.
+                return tokens.every(t => hay.includes(t));
+            }
+
+            function clearHighlights(row) {
+                row.querySelectorAll('.match-highlight').forEach(el => {
+                    const text = el.textContent; // keep text only
+                    el.replaceWith(document.createTextNode(text));
+                });
+                row.classList.remove('match');
+            }
+
+            function performSearch() {
+                const q = normalize(searchInput.value);
+                const tokens = q ? q.split(' ').filter(Boolean) : [];
+
+                const rows = getRows();
+                let visible = 0;
+
+                rows.forEach(row => {
+                    // clear previous highlights / classes
+                    clearHighlights(row);
+
+                    if (tokens.length === 0) {
+                        row.style.display = '';
+                        row.classList.remove('match');
+                        visible++;
+                        return;
+                    }
+
+                    const isMatch = rowMatchesQuery(row, tokens);
+                    row.style.display = isMatch ? '' : 'none';
+                    if (isMatch) {
+                        row.classList.add('match');
+                        visible++;
+                        // optional: highlight matched tokens in suggestion or name columns
+                        // we'll highlight tokens inside the Suggestions (td index 7) and Name (1)
+                        const highlightCols = [1, 7]; // name and suggestions
+                        highlightCols.forEach(idx => {
+                            const cell = row.querySelectorAll('td')[idx];
+                            if (!cell) return;
+                            let html = cell.innerText;
+                            tokens.forEach(t => {
+                                if (!t) return;
+                                const re = new RegExp(`(${escapeRegExp(t)})`, 'ig');
+                                html = html.replace(re, '<span class="match-highlight">$1</span>');
+                            });
+                            cell.innerHTML = html;
+                        });
+                    } else {
+                        row.classList.remove('match');
+                    }
+                });
+
+                updateCount(visible);
+            }
+
+            // small utility to escape regex tokens
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            // debounce for smoother typing
+            const debouncedSearch = debounce(performSearch, 180);
+            searchInput.addEventListener('input', debouncedSearch);
+
+            clearBtn.addEventListener('click', function () {
+                searchInput.value = '';
+                performSearch();
+                searchInput.focus();
+            });
+
+            // Export visible rows to CSV (client-side) — correct headers mapping
+            exportBtn.addEventListener('click', function () {
+                const visibleRows = getRows().filter(r => r.style.display !== 'none');
+                if (visibleRows.length === 0) {
+                    alert('No rows to export');
+                    return;
+                }
+
+                const headers = ['Sr.No', 'Name', 'Mobile', 'Overall', 'Instructor', 'Hands-On', 'Combined', 'Suggestions', 'Internship', 'Recommended'];
+                const csv = [];
+                csv.push(headers.join(','));
+
+                visibleRows.forEach(r => {
+                    const cells = r.querySelectorAll('td');
+
+                    const rowArr = [
+                        (cells[0] ? cells[0].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[1] ? cells[1].innerText.trim() : '').replace(/,/g, ' '),
+                        (cells[2] ? cells[2].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[3] ? cells[3].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[4] ? cells[4].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[5] ? cells[5].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[6] ? cells[6].innerText.trim() : '').replace(/,/g, ''),
+                        (cells[7] ? cells[7].innerText.trim() : '').replace(/,/g, ' '),
+                        (cells[8] ? cells[8].innerText.trim() : '').replace(/,/g, ' '),
+                        (cells[9] ? cells[9].innerText.trim() : '').replace(/,/g, ' ')
+                    ];
+
+                    csv.push(rowArr.join(','));
+                });
+
+                const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'feedbacks.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+
+            // initial count set
+            updateCount(getRows().length);
+        </script>
+
+        <style>
+            /* optional highlight style */
+            .match {
+                background: rgba(124, 58, 237, 0.06);
+            }
+
+            .match-highlight {
+                background: yellow;
+                border-radius: 2px;
+                padding: 0 2px;
+            }
+        </style>

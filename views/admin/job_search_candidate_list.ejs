@@ -1,0 +1,124 @@
+<%- include('navbar.ejs') %>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Job Search Candidates List</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr style="white-space: nowrap; width: 10%;">
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>DOB</th>
+                                <th>12th PY</th>
+                                <th>12th Marks</th>
+                                <th>Graduation</th>
+                                <th>Graduation PY</th>
+                                <th>Graduation Marks</th>
+                                <th>Masters</th>
+                                <th>Masters PY</th>
+                                <th>Masters Marks</th>
+                                <th>Certificate</th>
+                                <th>Institute</th>
+                                <th>Job Title</th>
+                                <th>Company Name</th>
+                                <th>Years Of Experience</th>
+                                <th>Salary</th>
+                                <th>Resume</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < candidates.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_candidate/<%= candidates[i].id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].full_name %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].mobile_number %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].email %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(candidates[i].date_of_birth).toLocaleDateString('en-GB') %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].twelfth_passing_year %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].twelfth_marks %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].graduation_degree %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].graduation_passing_year %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].graduation_marks %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].masters_degree %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].masters_passing_year %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].masters_marks %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].certificate_name %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].certificate_institute %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].job_title %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].company_name %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].years_of_experience %>
+                                    </td>
+                                    <td>
+                                        <%= candidates[i].expected_salary %>
+                                    </td>
+                                    <td class="font-weight-bold" style="white-space: nowrap; width: 10%;">
+                                        <a href="javascript:void(0);"
+                                            onclick="viewPDF('/uploads/<%= candidates[i].resume %>')">
+                                            View Resume
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function viewPDF(pdfUrl) {
+            window.open(pdfUrl, '_blank', 'width=800,height=600');
+        }
+    </script>
+
+    <%- include('footer.ejs') %>

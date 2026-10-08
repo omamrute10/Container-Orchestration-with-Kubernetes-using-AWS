@@ -1,0 +1,45 @@
+<%- include('navbar.ejs') %>
+
+
+<div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">User Contact Details</h3>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive ">
+            <table class="table table-bordered table-striped mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Action</th>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody class="p-0">
+                    <% for(var i = 0; i < user_contact.length; i++) { %>
+                        <tr class="text-dark">
+                            <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                <a style="text-decoration: none;" href="/admin/delete_user_contact/<%= user_contact[i].user_contact_id %>" onclick="return confirm('Are You Sure')">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                            </td>
+                            <td><%= i + 1 %></td>
+                            <td style="white-space: nowrap; width: 10%;"><%= user_contact[i].user_name %></td>
+                            <td><%= user_contact[i].user_mobile %></td>
+                            <td><%= user_contact[i].user_email %></td>
+                            <td><%= user_contact[i].user_message %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('footer.ejs') %>

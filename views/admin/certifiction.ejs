@@ -1,0 +1,121 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container p-4 mt-5 border shadow bg-white font-weight-bold" style="width: 100%;color: black;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3">Add Certificate</h3>
+            </div>
+            <div class="col-12 mt-2">
+                <form action="/admin/save_certificate" method="post" enctype="multipart/form-data"
+                    onsubmit="return validateForm()">
+                    <label class="mt-3" for="student_name">Enter Name</label>
+                    <input type="text" name="student_name" placeholder="Enter Full Name" class="form-control" required>
+
+                    <label class="mt-3" for="student_mobile">Enter Mobile</label>
+                    <input type="text" name="student_mobile" id="student_mobile" placeholder="Enter Mobile"
+                        class="form-control" required oninput="validateMobile()">
+                    <small id="mobile_error" class="text-danger"></small>
+                    <br>
+
+                    <label for="student_certificate">Upload Certificate</label>
+                    <input type="file" name="student_certificate" class="form-control" required>
+
+                    <label class="mt-3" for="certificate_type">Select Certificate Type</label>
+                    <select name="certificate_type" id="certificate_type" class="form-control"
+                        onchange="toggleSubOptions()" required>
+                        <option value="">-- Select Type --</option>
+                        <option value="course">Course</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="internship">Internship</option>
+                    </select>
+
+                    <!-- Course Sub-options -->
+                    <div id="course_options" style="display: none;">
+                        <label class="mt-3" for="course_name">Select Course</label>
+                        <select name="course_name" class="form-control">
+                            <option value="web_dev">Web Development</option>
+                            <option value="data_science">Data Science</option>
+                            <option value="ai_ml">AI/ML</option>
+                            <option value="cyber_security">Cyber Security</option>
+                        </select>
+                    </div>
+
+                    <!-- Workshop Sub-options -->
+                    <div id="workshop_options" style="display: none;">
+                        <label class="mt-3" for="workshop_name">Select Workshop</label>
+                        <select name="workshop_name" class="form-control">
+                            <option value="digital_marketing">Digital Marketing</option>
+                            <option value="graphic_design">Graphic Design</option>
+                            <option value="public_speaking">Public Speaking</option>
+                            <option value="business_analytics">Business Analytics</option>
+                        </select>
+                    </div>
+
+                    <!-- Internship Sub-options -->
+                    <div id="internship_options" style="display: none;">
+                        <label class="mt-3" for="internship_name">Select Internship</label>
+                        <select name="internship_name" class="form-control">
+                            <option value="software_dev">Software Development</option>
+                            <option value="hr_management">HR Management</option>
+                            <option value="finance_analysis">Finance Analysis</option>
+                            <option value="content_writing">Content Writing</option>
+                        </select>
+                    </div>
+
+                    <label class="mt-3" for="student_certificate_number">Enter Certificate Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text">UCN-KD-</span>
+                        <input type="text" id="student_certificate_number" name="student_certificate_number"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" id="submit_btn" class="btn btn-primary font-weight-bold">Add
+                            Certificate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubOptions() {
+            var type = document.getElementById("certificate_type").value;
+            document.getElementById("course_options").style.display = "none";
+            document.getElementById("workshop_options").style.display = "none";
+            document.getElementById("internship_options").style.display = "none";
+
+            if (type === "course") {
+                document.getElementById("course_options").style.display = "block";
+            } else if (type === "workshop") {
+                document.getElementById("workshop_options").style.display = "block";
+            } else if (type === "internship") {
+                document.getElementById("internship_options").style.display = "block";
+            }
+        }
+
+        function validateMobile() {
+            var mobile = document.getElementById("student_mobile").value;
+            var error = document.getElementById("mobile_error");
+            var submitBtn = document.getElementById("submit_btn");
+
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                error.innerText = "Please enter a valid 10-digit mobile number.";
+                submitBtn.disabled = true;
+            } else {
+                error.innerText = "";
+                submitBtn.disabled = false;
+            }
+        }
+
+        function validateForm() {
+            var mobile = document.getElementById("student_mobile").value;
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                return false; // Prevent form submission if mobile is invalid
+            }
+            alert("Certificate added successfully!");
+            return true;
+        }
+    </script>
+
+    <%- include('footer.ejs') %>

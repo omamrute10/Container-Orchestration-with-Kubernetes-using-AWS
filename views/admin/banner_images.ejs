@@ -1,0 +1,93 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        .table-cell {
+            max-width: 200px;
+            /* Fixed width */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <form action="/admin/save_banner_images" method="post" enctype="multipart/form-data" style="width: 100%;">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Add Banner Images For Home
+                    </h3>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="banner_image" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Title</label>
+                    <input type="text" name="banner_title" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="font-weight-bold" for="">Enter Sub Title</label>
+                    <input type="text" name="banner_sub_title" class="form-control">
+                </div>
+                <div class="col-md-12 mt-2 text-center">
+                    <button class="font-weight-bold btn btn-primary">Add Banner</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Banner Image List</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Banner Image</th>
+                                <th>Banner Title</th>
+                                <th>Banner Sub Title</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < home_banner.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_home_banner/<%= home_banner[i].home_banner_Id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                        <a style="text-decoration: none;"
+                                            href="/admin/edit_home_banner/<%= home_banner[i].home_banner_Id %>">
+                                            <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <img src="/uploads/<%= home_banner[i].banner_image %>" alt="Card Image"
+                                            style="max-width: 120px;height: 60px;">
+                                    </td>
+                                    <td>
+                                        <%=home_banner[i].banner_title%>
+                                    </td>
+                                    <td class="table-cell">
+                                        <%=home_banner[i].banner_sub_title%>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>

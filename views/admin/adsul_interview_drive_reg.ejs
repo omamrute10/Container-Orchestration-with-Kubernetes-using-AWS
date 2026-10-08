@@ -1,0 +1,190 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        .registration-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+        }
+
+        .page-title {
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+        }
+
+        .table thead {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .table td {
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        .badge-yes {
+            background: #28a745;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .badge-no {
+            background: #dc3545;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-weight: 500;
+        }
+    </style>
+
+
+    <div class="container-fluid mt-5">
+
+        <div class="registration-card">
+
+            <div class="row mb-4">
+
+                <div class="col-md-12">
+                    <h3 class="page-title text-center">
+                        Adsul's Interview Drive Registrations
+                    </h3>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="stat-box">
+                        Total Registrations :
+                        <strong>
+                            <%= registrations.length %>
+                        </strong>
+                    </div>
+
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+
+                    <input type="text" id="searchInput" class="form-control search-box" placeholder="Search student...">
+
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered ">
+
+                    <thead>
+                        <tr>
+                            <th>Sr</th>
+                            <th>Full Name</th>
+                            <th>Mobile</th>
+                            <th>Course</th>
+                            <th>Year</th>
+                            <th>Career Preference</th>
+                            <th>Internship</th>
+                            <th>Workshop</th>
+                            <th>WhatsApp</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tableBody">
+
+                        <% for(var i=0;i<registrations.length;i++){ %>
+
+                            <tr>
+
+                                <td>
+                                    <%= i+1 %>
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        <%= registrations[i].full_name %>
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    <%= registrations[i].mobile %>
+                                </td>
+
+                                <td>
+                                    <%= registrations[i].course_name %>
+                                </td>
+
+                                <td>
+                                    <%= registrations[i].course_year %>
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-info">
+                                        <%= registrations[i].career %>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <% if(registrations[i].internship=="Yes" ){ %>
+                                        <span class="badge-yes">Yes</span>
+                                        <% } else { %>
+                                            <span class="badge-no">No</span>
+                                            <% } %>
+                                </td>
+
+                                <td>
+                                    <%= registrations[i].guest_lecture %>
+                                </td>
+
+                                <td>
+                                    <%= registrations[i].job_alerts %>
+                                </td>
+
+                            </tr>
+
+                            <% } %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+
+            let value = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#tableBody tr");
+
+            rows.forEach(function (row) {
+
+                row.style.display = row.innerText.toLowerCase().includes(value) ? "" : "none";
+
+            });
+
+        });
+
+    </script>
+
+
+    <%- include('footer.ejs') %>

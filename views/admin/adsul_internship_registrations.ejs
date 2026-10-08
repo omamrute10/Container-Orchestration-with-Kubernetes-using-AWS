@@ -1,0 +1,102 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0 rounded-lg">
+
+            <!-- Header -->
+            <div class="card-header bg-primary text-white text-center">
+                <h3 class="mb-0 font-weight-bold" style="color: white;">Adsul Internship Registrations</h3>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="mt-4 mb-4 bg-light">
+                <input type="text" id="searchInput" class="form-control p-2 w-100"
+                    placeholder="Search by Name, Mobile, Email, Domain...">
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table table-striped mb-0" id="dataTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Full Name</th>
+                            <th>Mobile</th>
+                            <th>Domain</th>
+                            <th>Training Mode</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% for(var i=0; i < registrations.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <%= registrations[i].student_name %>
+                                </td>
+                                <td>
+                                    <%= registrations[i].student_mobile %>
+                                </td>
+                                <td>
+                                    <%= registrations[i].internship_domain %>
+                                </td>
+                                <td>
+                                    <%= registrations[i].internship_mode.split(' ')[0] %>
+</td>
+                               <td>
+    <%= new Date(registrations[i].created_at).toLocaleString() %>
+</td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>
+
+                                        <!-- JS Search Script -->
+                                        <script>
+                                            document.getElementById("searchInput").addEventListener("keyup", function () {
+                                                let value = this.value.toLowerCase();
+                                                let rows = document.querySelectorAll("#dataTable tbody tr");
+
+                                                rows.forEach(row => {
+                                                    let text = row.innerText.toLowerCase();
+                                                    row.style.display = text.includes(value) ? "" : "none";
+                                                });
+                                            });
+                                        </script>
+
+                                        <!-- Optional Styling -->
+                                        <style>
+                                            body {
+                                                background: #f4f6f9;
+                                            }
+
+                                            .card {
+                                                border-radius: 12px;
+                                                overflow: hidden;
+                                            }
+
+                                            .table th,
+                                            .table td {
+                                                vertical-align: middle;
+                                                white-space: nowrap;
+                                            }
+
+                                            #searchInput {
+                                                border-radius: 8px;
+                                                border: 1px solid #ddd;
+                                            }
+
+                                            #searchInput:focus {
+                                                box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+                                                border-color: #007bff;
+                                            }
+                                        </style>

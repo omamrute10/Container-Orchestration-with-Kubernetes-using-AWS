@@ -1,0 +1,306 @@
+<style>
+    /* certification */
+    /* Parent container responsive */
+    @media (max-width: 768px) {
+
+        /* Main wrapper flex → column */
+        div[style*="display: flex"][style*="justify-content: space-between"] {
+            flex-direction: column !important;
+            text-align: center !important;
+            padding: 16px !important;
+        }
+
+        /* Left text section full width */
+        div[style*="flex: 1"][style*="padding-right: 30px"] {
+            padding-right: 0 !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
+        }
+
+        /* Image wrapper full width */
+        div[style*="flex: 1"][style*="text-align: center"] {
+            width: 100% !important;
+        }
+
+        /* Image full responsive */
+        div[style*="flex: 1"][style*="text-align: center"] img {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
+        }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+        div[style*="display: flex"][style*="justify-content: space-between"] {
+            padding: 12px !important;
+        }
+
+        .unique-cert-title {
+            font-size: 22px !important;
+        }
+
+        .unique-cert-desc {
+            font-size: 15px !important;
+            line-height: 1.5 !important;
+        }
+    }
+
+
+    @media(max-width:767px) {
+        .registration-form {
+            margin-top: -30px;
+        }
+
+        .navbar .register-btn {
+            display: none;
+        }
+    }
+
+    .cert-btn {
+        margin: 6px 6px 6px 0;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+        width: 137px;
+    }
+
+    @media(max-width:767px) {
+        .cert-btn {
+            width: 46%;
+        }
+    }
+
+
+    /* Large tablets / small desktops */
+    @media (max-width: 992px) {
+        .price-section {
+            max-width: 720px;
+            padding: 20px;
+            padding-top: 8px;
+            border-radius: 16px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+        }
+
+        .feature-item2 {
+            padding: 10px 16px;
+            border-radius: 10px;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+    }
+
+    /* Tablets / landscape phones */
+    @media (max-width: 768px) {
+        .price-section {
+            margin: 28px 16px 0;
+            max-width: calc(100% - 32px);
+            padding: 16px;
+            padding-top: 6px;
+            border-radius: 14px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+        }
+
+        .feature-item2 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            font-size: 0.92rem;
+        }
+    }
+
+    /* Mobile portrait */
+    @media (max-width: 480px) {
+        .price-section {
+            margin: 20px 12px 0;
+            padding: 12px;
+            padding-top: 6px;
+            max-width: calc(100% - 24px);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14);
+        }
+
+        .feature-item2 {
+            /* stack content vertically on very small widths for readability */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* if feature item contains an icon + text, ensure icon stays small */
+        .feature-item2 img,
+        .feature-item2 .icon,
+        .feature-item2 svg {
+            width: 36px;
+            height: 36px;
+            flex: 0 0 36px;
+        }
+
+        .feature-item2 .text {
+            width: 100%;
+        }
+    }
+
+    /* Very small devices */
+    @media (max-width: 360px) {
+        .price-section {
+            margin: 16px 8px 0;
+            padding: 10px;
+            padding-top: 6px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-item2 {
+            padding: 8px 10px;
+            gap: 6px;
+            font-size: 0.86rem;
+        }
+
+        .feature-item2 img,
+        .feature-item2 .icon,
+        .feature-item2 svg {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+        }
+    }
+
+    /* Accessibility: reduce motion and simplify effects on small screens */
+    @media (prefers-reduced-motion: reduce) {
+
+        .price-section,
+        .price-section::before,
+        .feature-item2 {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+
+    /* Optional: ensure backdrop-filter fallback for older browsers */
+    @supports (not (backdrop-filter: blur(10px))) {
+        .feature-item2 {
+            background: rgba(255, 255, 255, 0.06);
+            /* slightly darker fallback */
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    }
+
+
+
+    /* ----------------------------
+   Responsive: tablets & phones
+   ---------------------------- */
+
+    /* At widths <= 992px, slightly reduce spacing */
+    @media (max-width: 992px) {
+        .star-an-learn-footer {
+            padding: 26px 18px;
+        }
+
+        .star-an-learn-footer .sal-left-content {
+            gap: 16px;
+        }
+
+        .star-an-learn-footer .sal-brand {
+            font-size: 1.05rem;
+        }
+
+        .star-an-learn-footer .sal-brand i {
+            font-size: 1.35rem;
+        }
+    }
+
+    /* Mobile: stack to single column, center content, full-width text */
+    @media (max-width: 767px) {
+        .star-an-learn-footer {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f1021, #1b1464);
+            color: #ffffff;
+            padding: 20px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1320px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .star-an-learn-footer .sal-left-content {
+            flex-direction: column;
+            align-items: center;
+            /* center everything */
+            text-align: center;
+            /* center text for mobile */
+            gap: 10px;
+        }
+
+        .star-an-learn-footer .sal-brand {
+            justify-content: center;
+            font-size: 1.05rem;
+        }
+
+        .star-an-learn-footer .sal-brand i {
+            font-size: 1.5rem;
+        }
+
+        .star-an-learn-footer .sal-tagline {
+            font-size: 0.95rem;
+            margin-top: 6px;
+            max-width: 100%;
+        }
+
+        .star-an-learn-footer .sal-tagline:last-of-type {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Small phones: compact sizes */
+    @media (max-width: 480px) {
+        .star-an-learn-footer {
+            padding: 16px 12px;
+        }
+
+        .star-an-learn-footer .sal-brand {
+            font-size: 1rem;
+        }
+
+        .star-an-learn-footer .sal-brand i {
+            font-size: 1.3rem;
+        }
+
+        .star-an-learn-footer .sal-tagline {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .star-an-learn-footer .sal-tagline:last-of-type {
+            font-size: 0.75rem;
+        }
+    }
+
+    /* Accessibility: reduced motion & high-contrast friendly */
+    @media (prefers-reduced-motion: reduce) {
+        .star-an-learn-footer * {
+            transition: none !important;
+        }
+    }
+
+    /* Optional: ensure links/icons remain clickable and not too small */
+    .star-an-learn-footer a,
+    .star-an-learn-footer button {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+    }
+</style>

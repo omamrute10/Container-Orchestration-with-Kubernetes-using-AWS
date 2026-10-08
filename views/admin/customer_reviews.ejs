@@ -1,0 +1,67 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        .table-cell {
+            max-width: 200px;
+            /* Fixed width */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Customer Reviews</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Position</th>
+                                <th>Review</th>
+                                <!-- <th>Course Button Link</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < reviews.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_review/<%= reviews[i].customer_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= reviews[i].customer_name %>
+                                    </td>
+                                    <td>
+                                        <%= reviews[i].customer_company_name %>
+                                    </td>
+                                    <td>
+                                        <%= reviews[i].customer_position %>
+                                    </td>
+                                    <td class="table-cell">
+                                        <%= reviews[i].customer_review %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('footer.ejs') %>

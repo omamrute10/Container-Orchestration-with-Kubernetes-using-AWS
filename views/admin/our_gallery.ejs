@@ -1,0 +1,68 @@
+<%- include('navbar.ejs') %>
+
+    <form action="/admin/save_gallery" method="post" enctype="multipart/form-data">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Gallery</h3>
+                </div>
+                <div class="col-md-12 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="gallery_image" class="form-control">
+                </div>
+                <div class="col-md-12 mt-4 text-center">
+                    <button class="font-weight-bold btn btn-primary">Add Image</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Gallery</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Gallery Image</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < gallery.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_gallery/<%= gallery[i].image_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                        <a style="text-decoration: none;"
+                                            href="/admin/edit_gallery/<%= gallery[i].image_id %>">
+                                            <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <img src="/uploads/<%= gallery[i].gallery_image %>" alt="Card Image"
+                                            style="max-width: 120px;height: 60px;">
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>

@@ -1,0 +1,91 @@
+# ================================
+# Node.js
+# ================================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ================================
+# Environment / Secrets
+# ================================
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep example environment file
+!.env.example
+
+# ================================
+# Temporary Files
+# ================================
+
+tmp/
+temp/
+*.tmp
+
+# ================================
+# Logs
+# ================================
+
+logs/
+*.log
+
+# ================================
+# OS Generated Files
+# ================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# ================================
+# IDE / Editor
+# ================================
+
+.vscode/
+.idea/
+*.code-workspace
+
+# ================================
+# Build / Coverage
+# ================================
+
+dist/
+build/
+coverage/
+
+# ================================
+# Cache
+# ================================
+
+.cache/
+.npm/
+.parcel-cache/
+
+# ================================
+# Local Database / Runtime Files
+# ================================
+
+*.sqlite
+*.sqlite3
+*.db
+
+# ================================
+# Uploaded / Generated Files
+# ================================
+
+# Uncomment if user_assets contains
+# private/generated uploads:
+# public/user_assets/*

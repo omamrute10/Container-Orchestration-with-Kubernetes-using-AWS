@@ -1,0 +1,443 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Digital Marketing Course in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="digital marketing course Ahmednagar, IT training institute Ahmednagar, best digital marketing course Ahmednagar, website designer Ahmednagar, web design training Ahmednagar, IT courses with placement Ahmednagar, graphic design course near me, machine learning course near me, data science course near me">
+    <meta name="description"
+        content="Kanak Digifex – Ahmednagar’s trusted IT training institute offering comprehensive digital marketing courses alongside website development, cloud solutions, and design services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%- include('header.ejs') %>
+
+    <!-- Banner Start -->
+    <section class="inner-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="inner-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h1 class="h1-title">Our Expert's Team</h1>
+                        <div class="banner-breadcrum">
+                            <ul>
+                                <li><a href="/" title="Our Team">Home</a></li>
+                                <li><i class="fa-solid fa-angle-right"></i></li>
+                                <li>Our Team</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <!-- Best Instructor Start -->
+    <!-- <section class="best-instructor-sec" style="margin-top:55px;">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-12 text-center">
+                    <span class="sub-title">OUR TEAM</span>
+                    <h2 class="h2-title" style="color: rgb(175,11,78); font-weight: bold;">Our Skilled Leaders</h2>
+                    <p class="lead">
+                        Meet the visionaries behind <strong>Kanak Digifex</strong> — innovators, educators, and tech
+                        leaders transforming careers through practical learning and real-time project experience.<br>
+                        Together, we are committed to delivering <strong>NextGen IT training</strong> with industry
+                        expertise and a learner-first approach.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="professional-instructor-slider-wp wow fadeup-animation" data-wow-duration="0.8s"
+                data-wow-delay="0.2s">
+                <div class="swiper professional-instructor-slider">
+                    <div class="swiper-wrapper">
+                        <% for(var i=0;i<employee.length;i++) { %>
+                            <div class="swiper-slide">
+                                <div class="instructor-box">
+                                    <div class="instructor-image-box">
+                                        <img src="/uploads/<%=employee[i].employee_image%>" alt="Team Member Image"
+                                            width="416" height="500" class="rounded">
+                                    </div>
+                                    <div class="instructor-content-info">
+                                        <div class="instructor-text text-center">
+                                            <h4 class="h4-title pt-3 mb-1">
+                                                <%=employee[i].employee_name%>
+                                            </h4>
+                                            <span class="instructor-profession d-block font-weight-bold">
+                                                <%=employee[i].employee_position%>
+                                            </span>
+                                        </div>
+                                        <div class="instructor-social-info mt-3">
+                                            <div class="social-container">
+                                                <div class="share-icon">
+                                                    <img src="/user_assets/images/share-icon.svg" width="14" height="16"
+                                                        alt="Share Icon">
+                                                </div>
+                                                <div class="social-icons">
+                                                    <a href="https://facebook.com/" title="Facebook" target="_blank"><i
+                                                            class="fa-brands fa-facebook-f"></i></a>
+                                                    <a href="https://instagram.com/" title="Instagram"
+                                                        target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                                    <a href="https://linkedin.com/" title="Linkedin" target="_blank"><i
+                                                            class="fa-brands fa-linkedin-in"></i></a>
+                                                    <a href="https://twitter.com/" title="Twitter" target="_blank"><i
+                                                            class="fa-brands fa-x-twitter"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Best Instructor End -->
+
+
+
+
+    <!-- Testimonial Start -->
+    <section class="testimonial-sec pb-5 pt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sec-title text-center">
+                        <span class="sub-title">Testimonial</span>
+                        <h2 class="h2-title">See What Our Clients Say</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slider-wp wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+            <div class="container-fluid">
+                <div class="swiper testimonial-slider">
+                    <div class="swiper-wrapper" style="height: auto;">
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" width="80" height="80"
+                                            alt="Rohan Sharma">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Rohan Sharma</h4>
+                                        <span class="client-profession">Student</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Kanak Digifex helped me develop practical skills that boosted my confidence and
+                                        career prospects.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/women/65.jpg" width="80"
+                                            height="80" alt="Sneha Patel">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Sneha Patel</h4>
+                                        <span class="client-profession">Entrepreneur</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“The Kanak Digifex team created a professional website that perfectly represents
+                                        my business.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" width="80" height="80"
+                                            alt="Arjun Kumar">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Arjun Kumar</h4>
+                                        <span class="client-profession">Freelancer</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Kanak Digifex’s digital marketing strategies significantly improved my freelance
+                                        projects.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" width="80"
+                                            height="80" alt="Priya Desai">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Priya Desai</h4>
+                                        <span class="client-profession">Corporate Client</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Professional, reliable, and creative — Kanak Digifex exceeded our expectations.”
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/33.jpg" width="80" height="80"
+                                            alt="Ankit Mehta">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Ankit Mehta</h4>
+                                        <span class="client-profession">Startup Founder</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Thanks to Kanak Digifex, our product launch was a huge success with excellent
+                                        digital support.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper testimonial-slider-2">
+            <div class="swiper-wrapper" style="height: auto;">
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/33.jpg" width="80" height="80"
+                                    alt="Ankit Mehta">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Ankit Mehta</h4>
+                                <span class="client-profession">Startup Founder</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Thanks to Kanak Digifex, our product launch was a huge success with excellent digital
+                                support.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" width="80" height="80"
+                                    alt="Priya Desai">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Priya Desai</h4>
+                                <span class="client-profession">Corporate Client</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Professional, reliable, and creative — Kanak Digifex exceeded our expectations.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/54.jpg" width="80" height="80"
+                                    alt="Arjun Kumar">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Arjun Kumar</h4>
+                                <span class="client-profession">Freelancer</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Kanak Digifex’s digital marketing strategies significantly improved my freelance
+                                projects.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" width="80" height="80"
+                                    alt="Sneha Patel">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Sneha Patel</h4>
+                                <span class="client-profession">Entrepreneur</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“The Kanak Digifex team created a professional website that perfectly represents my
+                                business.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" width="80" height="80"
+                                    alt="Rohan Sharma">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Rohan Sharma</h4>
+                                <span class="client-profession">Student</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Kanak Digifex helped me develop practical skills that boosted my confidence and career
+                                prospects.”</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Testimonial End -->
+
+
+    <%- include('footer.ejs') %>

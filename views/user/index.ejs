@@ -1,0 +1,2646 @@
+<title>Kanak Digifex NextGen Pvt. Ltd. | IT & Software Company in Ahilyanagar | Ahmednagar</title>
+  <!-- FavIcon Link -->
+    <link rel="shortcut icon" type="image/x-icon" href="/user_assets/images/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="IT Company in Ahilyanagar, Software Development Company in Ahilyanagar, Website Development Company in Ahilyanagar, Website Designer in Ahmednagar, Digital Marketing Agency in Ahilyanagar, Graphic Designer in Ahilyanagar, Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex NextGen Pvt. Ltd. is Ahilyanagar’s first corporate IT company, offering website development, digital marketing, SEO, software development, mobile app development, and graphic design services across India and worldwide.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%- include('header.ejs') %>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-container {
+            width: 90%;
+            max-width: 500px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9) translateY(50px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .popup-overlay.active .popup-container {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .popup-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF9933, #FFFFFF, #138808);
+            animation: rainbow 8s linear infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .popup-header {
+            padding: 30px 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .festive-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .festive-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg,
+                    #FF9933 0%,
+                    #FF9933 33.33%,
+                    white 33.33%,
+                    white 66.66%,
+                    #138808 66.66%,
+                    #138808 100%);
+            border-radius: 3px;
+        }
+
+        .offer-tag {
+            display: inline-block;
+            padding: 8px 25px;
+            background: rgb(205, 92, 252);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 30px;
+            margin: 15px 0;
+            box-shadow: 0 0px 4px rgb(205, 92, 252);
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .popup-content {
+            padding: 0 30px 30px;
+            color: #fff;
+        }
+
+        .offer-details {
+            margin-bottom: 25px;
+        }
+
+        .offer-details li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+        }
+
+        .offer-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: rgb(205, 92, 252);
+            font-weight: bold;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700, #FF5733);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, rgb(123, 53, 153), rgb(205, 92, 252));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0px 4px rgb(205, 92, 252);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0px 4px rgb(205, 92, 252);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .festive-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .flag {
+            position: absolute;
+            width: 40px;
+            height: 25px;
+            background-size: cover;
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+        }
+
+        .flag-1 {
+            top: 20%;
+            left: 10%;
+            background: linear-gradient(to bottom, #FF9933 33%, white 33%, white 66%, #138808 66%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .flag-2 {
+            bottom: 15%;
+            right: 10%;
+            background: linear-gradient(to bottom, #FF9933, #FF9933 50%, white 50%, white);
+            animation: float 10s ease-in-out infinite 2s;
+        }
+
+        .rakhi {
+            position: absolute;
+            font-size: 24px;
+            color: #FF5733;
+            animation: spin 15s linear infinite;
+        }
+
+        .rakhi-1 {
+            top: 15%;
+            right: 15%;
+        }
+
+        .rakhi-2 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            opacity: 0;
+        }
+
+        @media (max-width: 480px) {
+            .popup-header {
+                padding: 20px 20px 10px;
+            }
+
+            .festive-title {
+                font-size: 1.5rem;
+            }
+
+            .popup-content {
+                padding: 0 20px 20px;
+            }
+
+            .countdown-item {
+                min-width: 50px;
+                padding: 8px;
+            }
+
+            .countdown-number {
+                font-size: 1.2rem;
+            }
+        }
+
+        .explore-btn {
+            background: linear-gradient(135deg, rgb(195, 86, 252) 0%, #9c0b4a 100%);
+            border: none;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .explore-btn:hover {
+            background: linear-gradient(135deg, rgb(146, 64, 190) 0%, #c9417c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 65, 108, 0.4);
+        }
+
+        .explore-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .h4-title {
+            color: rgb(146, 64, 190);
+        }
+
+        .explore-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .benefits-card {
+            background-color: #f8f9faa0;
+            border: 1px solid #e2e6ea;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            top: -6px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits-list li {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 1.2em;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .benefits-list li::before {
+            content: '✔️';
+            position: absolute;
+            left: -8px;
+        }
+
+        .highlight-banner {
+            background-color: rgb(128, 42, 129);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .banner-content img {
+            animation: pulse 2s infinite;
+
+        }
+
+        /*========== Services Section CSS Start ==========*/
+
+.services-section {
+    padding: 50px 0;
+    background: #f8f9fc;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    font-size: 16px;
+    color: #666;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Service Card */
+.service-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Service Image */
+.service-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Service Content */
+.service-content {
+    padding: 25px;
+}
+
+.service-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #111;
+    font-weight: 600;
+}
+
+.service-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Responsive CSS */
+
+@media(max-width: 991px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 576px) {
+
+    .services-section {
+        padding: 60px 0;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-image img {
+        height: 200px;
+    }
+}
+
+/*========== Services Section CSS End ==========*/
+/*========== Service Points Professional UI ==========*/
+
+.service-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-points li {
+    position: relative;
+    padding: 12px 0 12px 28px;
+    font-size: 15px;
+    color: #444;
+    font-weight: 500;
+    border-bottom: 1px dashed #cfcfcf;
+    transition: 0.3s ease;
+}
+
+/* Remove line from last point */
+.service-points li:last-child {
+    border-bottom: none;
+}
+
+/* Custom Professional Icon */
+.service-points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 18px;
+    height: 18px;
+    background: #0d6efd;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover Effect */
+.service-points li:hover {
+    color: #0d6efd;
+    padding-left: 32px;
+}
+    </style>
+    <!-- Banner Start -->
+    <section class="main-banner">
+        <div class="main-banner-bg-shape">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+        <div class="main-banner-bg-aliment-wp">
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-2 animate-this">
+                <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-3 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-4 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-5 animate-this">
+                <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-6 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-7 rotate-animation">
+                <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-8 animate-this">
+                <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+            </div>
+            <div class="bg-aliment-9 animate-this">
+                <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+            </div>
+            <div class="bg-aliment-10 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-11 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+            </div>
+            <div class="bg-aliment-12 animate-this">
+                <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+            </div>
+            <div class="bg-aliment-13 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+            </div>
+            <div class="bg-aliment-14 rotate-animation">
+                <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <div class="bg-aliment-15 zoom-fade-animation">
+                <img src="/user_assets/images/aliment-03.svg" width="58" height="58" alt="Aliment">
+            </div>
+            <div class="bg-aliment-16 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+            <div class="bg-aliment-17 rotate-animation">
+                <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+            </div>
+        </div>
+
+        <!-- Popup start -->
+
+        <!-- <div class="popup-overlay" id="festivePopup">
+            <div class="popup-container">
+
+                <button class="close-btn" id="closePopup">✕</button>
+
+                <div class="popup-header">
+                    <h1 class="festive-title">Rakshabandhan & Independence Day Special</h1>
+                    <div class="offer-tag">50% Discount</div>
+                    <p style="color: rgb(205,92,252);font-size: 20px;font-weight: bold;text-transform: capitalize;">
+                        Celebrate with us and invest in your future!</p>
+                </div>
+
+                <div class="popup-content">
+                    <ul class="offer-details">
+                        <li>Exclusive offer valid until August 15th</li>
+                        <li>New batches starting from August 18th</li>
+                        <li>All courses included in this special discount</li>
+                        <li>Globally Recognized Certification</li>
+                        <li>Work on Real Client Projects</li>
+                        <li>6-Month Full-Time Internship</li>
+                        <li>Mock Interviews & GD Practice</li>
+                        <li>Soft Skills & Stress Management</li>
+                    </ul>
+
+                    <a href="/courses#courses">
+                        <button class="cta-button" id="claimOffer">Claim Your Discount Now</button>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="container" style="margin-top: -20px;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner-content">
+                        <div>
+                            <!-- <img src="/user_assets/images/NextGen_Nagar_Kanak_Digifex.png" style="width: 300px;"
+                                alt="NextGen_Nagar_Kanak_Digifex"> -->
+                            <h1 class="h1-title wow fadeup-animation" style="font-size: 44px;" data-wow-duration="0.8s"
+                                data-wow-delay="0.3s">
+                                <!-- Advance Internship Program</h1> -->
+                                  First Ever Corporate IT Company Of Ahilyanagar </h1>
+
+                            <p style="font-size: 15px;font-weight: bold;">
+                                <!-- For Students, Working Professionals, Beginners to Advanced Learners, Freshers, Job
+                                Seekers,
+                                IT & Non-IT Backgrounds, College & University Students,
+                                Anyone Looking to Build Strong Tech Skills, and Students Seeking Real Industry Exposure. -->
+                                 Established in Mumbai, Kanak Digifex is a technology-driven
+                        IT company delivering innovative digital solutions including
+                        Web Development, Mobile App Development, Digital Marketing,
+                        Software Solutions, and other technology services for
+                        businesses and organizations.
+                            </p>
+                            <br>
+                        </div>
+
+                        <!-- <div class="highlight-banner ">
+                            Hurry! First 200 registrations get special benefits and exciting new perks!
+                        </div>
+
+                        <div class="banner-btn wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <a href="/advanced-internship-registration" class="sec-btn" title="Get Started"><span>Start
+                                    From 2nd - March
+                                    2026</span></a>
+
+                            <a href="/advanced-internship-registration" class="sec-btn" style="margin-left: 20px;"
+                                title="Get Started"><span>Register Now</span></a>
+                        </div> -->
+
+                        <div class="banner-btn wow fadeup-animation"
+    data-wow-duration="0.8s"
+    data-wow-delay="0.5s">
+
+    <!-- Button 1 - Our Services -->
+    <a href="/services" class="sec-btn" title="Best IT Company in Ahilyanagar">
+        <span>Our Services</span>
+    </a>
+
+    <!-- Button 2 - Corporate Training -->
+    <a href="/courses" class="sec-btn" title="Cloud Computing | Data Science | Full Stack Development">
+        <span>Corporate Training</span>
+    </a>
+
+    <!-- Button 3 - Internships -->
+    <a href="/advanced-internship-registration" class="sec-btn" title="Internships For Final Year Computer Students">
+        <span>Internships</span>
+    </a>
+
+</div>
+
+                    </div>
+                    <!-- <div class="banner-content">
+                        <span class="sub-title wow fadeup-animation" data-wow-duration="0.8s"
+                            data-wow-delay="0.2s">Proudly Trained <b>5000+</b> Future Professionals</span>
+                        <h1 class="h1-title wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                            Transforming Ahilyanagar into a Digital Talent Hub!</h1>
+                        <div class="banner-description-wp wow fadeup-animation" data-wow-duration="0.8s"
+                            data-wow-delay="0.4s">
+                            <div class="banner-description-text">
+                                <p>Experience world-class learning from Ahilyanagar’s first corporate IT company.</p>
+                            </div>
+                            <div class="students-list mt-4">
+                                <ul>
+                                    <li>
+                                        <div class="students-image">
+                                            <img src="/user_assets/images/student-01.jpg" width="60" height="60"
+                                                alt="Students Have Passed">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="students-image">
+                                            <img src="/user_assets/images/student-02.jpg" width="60" height="60"
+                                                alt="Students Have Passed">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="students-image">
+                                            <img src="/user_assets/images/student-03.jpg" width="60" height="60"
+                                                alt="Students Have Passed">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="students-image">
+                                            <div class="students-counter-box" id="students_Passed_counter">
+                                                <h5 class="h5-title"><span class="counting" data-count="100">0</span>+
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="students-list-text mt-3">
+                                    <b>
+                                        <p>Monthly Enrollments</p>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-btn wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <a href="/contact" class="sec-btn" title="Get Started"><span>Get Started</span></a>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-lg-6" style="position: relative;top: -40px;">
+                    <div class="banner-image-content wow fadeup-animation" data-wow-duration="0.8s"
+                        data-wow-delay="0.4s">
+                        <div class="banner-image-shape">
+                            <img src="/user_assets/images/arrow-aliment.svg" class="move-element-animation-1"
+                                width="123" height="142" alt="Arrow Aliment">
+                        </div>
+                        <div class="banner-image-box">
+                            <div class="banner-image">
+                                <img src="/user_assets/images/banner-img1.png" width="510" height="697"
+                                    alt="Kanak Digifex NextGen Pvt. Ltd. corporate IT company in Ahilyanagar Ahmednagar" title="Kanak Digifex NextGen IT Company in Ahilyanagar">
+                            </div>
+                        </div>
+                        <!-- <div class="congra-box move-element-animation-2">
+                            <div class="congra-icon">
+                                <img src="/user_assets/images/note-icon.svg" width="24" height="30" alt="Note Icon">
+                            </div>
+                            <div class="congra-text">
+                                <h5 class="h5-title">Welcome to Kanak Digifex</h5>
+                                <p>We Build Your Digital Identity</p>
+                            </div>
+                        </div> -->
+                        <div class="certification-box-wp">
+                            <div class="certification-icon">
+                                <img src="/user_assets/images/right-big-icon.svg" width="30" height="15"
+                                    alt="Right Icon">
+                            </div>
+                            <div class="certification-box">
+                                <div class="certification-text">
+                                    <p>Career-Focused IT Programs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+    <!-- Main Partners Start -->
+    <!-- <div class="main-partners" style="height: 160px;">
+        <div class="container-fluid">
+            <div class="swiper partners-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-1.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-2.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-3.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-4.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-5.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-6.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-7.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-8.jpg" alt="Our Client's Logo">
+                    </div>
+                    <div class="swiper-slide partners-slide">
+                        <img src="/user_assets/images/client-9.jpg" alt="Our Client's Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Main Partners End -->
+
+
+    <!-- Main Clients Slider Start -->
+<div class="main-partners corporate-clients-section">
+
+    <div class="container-fluid">
+
+        <div class="swiper partners-slider">
+
+            <div class="swiper-wrapper">
+
+                <!-- 01 Creative Hub -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/creative-hub-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Creative Hub">
+                    </div>
+                </div>
+
+                <!-- 02 Hunk -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/hunk-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Hunk">
+                    </div>
+                </div>
+
+                <!-- 03 10 Fingers -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/10-fingers-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="10 Fingers">
+                    </div>
+                </div>
+
+                <!-- 04 Ad Hoc -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/ad-hoc-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Ad Hoc">
+                    </div>
+                </div>
+
+                <!-- 05 Adurced -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/adurced-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Adurced">
+                    </div>
+                </div>
+
+                <!-- 06 Askuva -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/askuva-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Askuva">
+                    </div>
+                </div>
+
+                <!-- 07 ATGT -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/atgt-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="ATGT">
+                    </div>
+                </div>
+
+                <!-- 08 Authentic -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/authentic-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Authentic">
+                    </div>
+                </div>
+
+                <!-- 09 Awes Tuffs -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/awes-tuffs-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Awes Tuffs">
+                    </div>
+                </div>
+
+                <!-- 10 BC -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/bc-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="BC">
+                    </div>
+                </div>
+
+                <!-- 11 Be Water -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/be-water-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Be Water">
+                    </div>
+                </div>
+
+                <!-- 12 Biyani's Super 30 -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/biyanis-super30-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Biyani's Super 30">
+                    </div>
+                </div>
+
+                <!-- 13 Build -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/build-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Build">
+                    </div>
+                </div>
+
+                <!-- 14 UnispaceX -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/unispacex-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="UnispaceX">
+                    </div>
+                </div>
+
+                <!-- 15 Tax Genix -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/tax-genix-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Tax Genix">
+                    </div>
+                </div>
+
+                <!-- 16 Swami -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/swami-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Swami">
+                    </div>
+                </div>
+
+                <!-- 17 MA -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/ma-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="MA">
+                    </div>
+                </div>
+
+                <!-- 18 APDI Pode -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/apdi-pode-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="APDI Pode">
+                    </div>
+                </div>
+
+                <!-- 19 Black -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/black-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Black">
+                    </div>
+                </div>
+
+                <!-- 20 Laxmi Lifters -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/laxmi-lifters-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Laxmi Lifters">
+                    </div>
+                </div>
+
+                <!-- 21 VM Buying -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/vm-buying-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="VM Buying">
+                    </div>
+                </div>
+
+                <!-- 22 Char Concepts -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/char-concepts-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Char Concepts">
+                    </div>
+                </div>
+
+                <!-- 23 Cow -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/cow-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Cow">
+                    </div>
+                </div>
+
+                <!-- 24 Creative Hub -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/creative-hub-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Creative Hub">
+                    </div>
+                </div>
+
+                <!-- 25 Dapp Fite -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/dapp-fite-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Dapp Fite">
+                    </div>
+                </div>
+
+                <!-- 26 Dar At Nur -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/dar-at-nur-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Dar At Nur">
+                    </div>
+                </div>
+
+                <!-- 27 DK News -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/dk-news-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="DK News">
+                    </div>
+                </div>
+
+                <!-- 28 Freelance -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/freelance-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Freelance">
+                    </div>
+                </div>
+
+                <!-- 29 Gold -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/gold-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Gold">
+                    </div>
+                </div>
+
+                <!-- 30 Hayo -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/hayo-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Hayo">
+                    </div>
+                </div>
+
+                <!-- 31 Huumas Beauty -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/huumas-beauty-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Huumas Beauty">
+                    </div>
+                </div>
+
+                <!-- 32 Institute of Management -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/institute-of-management-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Institute of Management">
+                    </div>
+                </div>
+
+                <!-- 33 ISA -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/isa-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="ISA">
+                    </div>
+                </div>
+
+                <!-- 34 Jan -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/jan-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Jan">
+                    </div>
+                </div>
+
+                <!-- 35 Juneja -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/juneja-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Juneja">
+                    </div>
+                </div>
+
+                <!-- 36 Just Charpo -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/just-charpo-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Just Charpo">
+                    </div>
+                </div>
+
+                <!-- 37 KBC -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/kbc-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="KBC">
+                    </div>
+                </div>
+
+                <!-- 38 Mars -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/mars-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Mars">
+                    </div>
+                </div>
+
+                <!-- 39 MCS -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/mcs-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="MCS">
+                    </div>
+                </div>
+
+                <!-- 40 Meraki -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/meraki-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Meraki">
+                    </div>
+                </div>
+
+                <!-- 41 Mudra -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/mudra-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Mudra">
+                    </div>
+                </div>
+
+                <!-- 42 Nature -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/nature-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Nature">
+                    </div>
+                </div>
+
+                <!-- 43 Neelam Factory -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/neelam-factory-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Neelam Factory">
+                    </div>
+                </div>
+
+                <!-- 44 Park On -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/park-on-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Park On">
+                    </div>
+                </div>
+
+                <!-- 45 Perfect -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/perfect-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Perfect">
+                    </div>
+                </div>
+
+                <!-- 46 PNC -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/pnc-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="PNC">
+                    </div>
+                </div>
+
+                <!-- 47 Poonam -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/poonam-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Poonam">
+                    </div>
+                </div>
+
+                <!-- 48 Prolific -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/prolific-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Prolific">
+                    </div>
+                </div>
+
+                <!-- 49 Race -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/race-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Race">
+                    </div>
+                </div>
+
+                <!-- 50 Ria Tours -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/ria-tours-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Ria Tours">
+                    </div>
+                </div>
+
+                <!-- 51 Roasted -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/roasted-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Roasted">
+                    </div>
+                </div>
+
+                <!-- 52 Rumi -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/rumi-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Rumi">
+                    </div>
+                </div>
+
+                <!-- 53 Samarth -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/samarth-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Samarth">
+                    </div>
+                </div>
+
+                <!-- 54 Sam -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/sam-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Sam">
+                    </div>
+                </div>
+
+                <!-- 55 Sam Steel -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/sam-steel-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Sam Steel">
+                    </div>
+                </div>
+
+                <!-- 56 Shashi Tech -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/shashi-tech-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Shashi Tech">
+                    </div>
+                </div>
+
+                <!-- 57 Shem Production -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/shem-production-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Shem Production">
+                    </div>
+                </div>
+
+                <!-- 58 Simply Shadi -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/simply-shadi-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Simply Shadi">
+                    </div>
+                </div>
+
+                <!-- 59 SJ Logistics -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/sj-logistics-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="SJ Logistics">
+                    </div>
+                </div>
+
+                <!-- 60 Smarketing -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/smarketing-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Smarketing">
+                    </div>
+                </div>
+
+                <!-- 61 Star Facilities -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/star-facilities-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Star Facilities">
+                    </div>
+                </div>
+
+                <!-- 62 Super Comfy -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/super-comfy-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Super Comfy">
+                    </div>
+                </div>
+
+                <!-- 63 Teta Investments -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/teta-investments-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Teta Investments">
+                    </div>
+                </div>
+
+                <!-- 64 Tradeomatic -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/tradeomatic-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Tradeomatic">
+                    </div>
+                </div>
+
+                <!-- 65 Trek Yatri -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/trek-yatri-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Trek Yatri">
+                    </div>
+                </div>
+
+                <!-- 66 Xclusive -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/xclusive-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Xclusive">
+                    </div>
+                </div>
+
+                <!-- 67 Zarah -->
+                <div class="swiper-slide partners-slide">
+                    <div class="client-slider-card">
+                        <img src="/user_assets/clientslogos/zarah-in-ahilyanagar-ahmednagar-kanak-digifex.jpg"
+                            alt="Zarah">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Main Clients Slider End -->
+     <!--========== Services Section Start ==========-->
+<div class="services-section">
+    <div class="container">
+
+        <!-- Section Title -->
+        <div class="section-title">
+            <h2>Services We Provide</h2>
+            <p>
+                Kanak Digifex provides modern digital IT solutions for businesses,
+                startups, and organizations.
+            </p>
+        </div>
+
+     <!--========== Services Section Start ==========-->
+
+<section class="services-section">
+
+<div class="container">
+
+<div class="row g-4">
+
+<% for(var i=0; i<services.length; i++) { %>
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="services-card">
+
+        <div class="services-image">
+        <img src="/user_assets/images/<%= services[i].service_image %>" alt="Website development services by Kanak Digifex in Ahilyanagar Ahmednagar" title="Website Development Company in Ahilyanagar">
+        </div>
+
+        <div class="services-content">
+
+            <h3>
+            <a href="/service/<%= services[i].service_slug %>" class="service-link">
+    <%= services[i].service_title %>
+</a>
+            </h3>
+
+            <ul class="services-points">
+                <li><%= services[i].point1 %></li>
+                <li><%= services[i].point2 %></li>
+                <li><%= services[i].point3 %></li>
+                <li><%= services[i].point4 %></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<% } %>
+
+</div>
+</div>
+
+    </div>
+
+</section>
+
+<!--========== Services Section End ==========-->
+    <br>
+    <!-- Top Category List Start -->
+    <section class="top-category-list-sec sec-space pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sec-title text-center">
+                        <span class="sub-title">Top Category</span>
+                        <h2 class="h2-title">Explore Our Best Online Courses</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row top-category-list-row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-1.svg" class="category-icon" width="50"
+                                height="55" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-1.svg" class="category-icon hover-icon"
+                                width="50" height="55" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="Web Development">
+                                <h4 class="h4-title">Web Development</h4>
+                            </a>
+                            <p>02 Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-2.svg" class="category-icon" width="50"
+                                height="50" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-2.svg" class="category-icon hover-icon"
+                                width="50" height="50" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="App Development">
+                                <h4 class="h4-title">App Development</h4>
+                            </a>
+                            <p>05 Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.8s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-6.svg" class="category-icon" width="50"
+                                height="50" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-6.svg" class="category-icon hover-icon"
+                                width="50" height="50" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="Digital Marketing">
+                                <h4 class="h4-title">Digital Marketing</h4>
+                            </a>
+                            <p>09 Courses</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.6s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-4.svg" class="category-icon" width="50"
+                                height="50" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-4.svg" class="category-icon hover-icon"
+                                width="50" height="50" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="Data Science">
+                                <h4 class="h4-title">Data Science</h4>
+                            </a>
+                            <p>15 Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.7s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-5.svg" class="category-icon" width="50"
+                                height="50" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-5.svg" class="category-icon hover-icon"
+                                width="50" height="50" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="Artificial Intelligence">
+                                <h4 class="h4-title">Artificial Intelligence</h4>
+                            </a>
+                            <p>08 Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="category-list-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                        <div class="category-list-icon">
+                            <img src="/user_assets/images/category-icon-3.svg" class="category-icon" width="51"
+                                height="49" alt="Category Icon">
+                            <img src="/user_assets/images/category-hover-icon-3.svg" class="category-icon hover-icon"
+                                width="51" height="49" alt="Category Icon">
+                        </div>
+                        <div class="category-list-text">
+                            <a href="#" title="Cloud Computing">
+                                <h4 class="h4-title">Cloud Computing</h4>
+                            </a>
+                            <p>10 Courses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Top Category List End -->
+    <hr>
+   <!-- Top Course Start -->
+<section class="top-course-sec sec-space-top pb-5 pt-5" id="courses">
+    <div class="container">
+        <div class="top-course-title">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="sec-title">
+                        <center><span class="sub-title">Top Courses</span></center>
+                        <center>
+                            <h2 class="h2-title">Industry-Ready Corporate Training Programs</h2>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">
+
+            <% if (typeof course_info !== 'undefined' && course_info && course_info.length > 0) { %>
+
+                <!-- 1. Show course_id = 28 first (if it exists) -->
+                <% course_info.forEach(function(course) { %>
+                    <% if (course.course_id == 28) { %>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-4 mb-3 grid-item pb-0 mb-0" data-type="computer-science" data-aos="zoom-in">
+                            <div class="common-post-card border shadow p-4 pb-0 mb-0">
+                                
+                                <div class="post-image-box-wp mb-0 pb-3">
+                                    <div class="post-image" style="height: 170px;">
+                                        <a href="/course_details/<%= course.slug %>" title="<%= course.course_title %>">
+                                            <img src="/uploads/<%= course.course_image %>" alt="Course Image">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="common-post-content">
+                                    <div class="post-lessons-info">
+                                        <ul>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/book-icon.svg" width="26" height="18" alt="Book Icon">
+                                                </span>
+                                                <span class="post-info-text">करिअर कौशल्ये</span>
+                                            </li>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/clock-icon.svg" width="20" height="20" alt="Clock Icon">
+                                                </span>
+                                                <span class="post-info-text"><%= course.course_duration %></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="post-content-title">
+                                        <a href="/course_details/<%= course.slug %>" title="<%= course.course_title %>">
+                                            <h4 class="h4-title" style="font-size: 20px;"><%= course.course_title %></h4>
+                                        </a>
+                                    </div>
+
+                                    <div class="post-author-review-info px-3 py-3 mt-3 benefits-card">
+                                        <ul class="benefits-list mb-0">
+                                            <li>IT क्षेत्राची ओळख करून देण्यासाठी</li>
+                                            <li>करिअरला योग्य सुरुवात करण्यासाठी</li>
+                                            <li>स्वतःचा व्यवसाय Online वाढवण्यासाठी</li>
+                                            <li>नवीन तंत्रज्ञान सहज शिकण्यासाठी</li>
+                                            <li>नोकरीसाठी लागणारी कौशल्ये मिळवण्यासाठी</li>
+                                            <li>भविष्यातील संधी ओळखण्यासाठी</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="course-price mt-3 d-flex justify-content-between align-items-center">
+                                        <h4 class="h4-title mb-0">
+                                            <%= course.course_price ? '₹' + course.course_price : 'Free' %> /-
+                                        </h4>
+                                        <a href="/course_details/<%= course.slug %>">
+                                            <button class="explore-btn">
+                                                <span>Explore More</span>
+                                                <i class="fa fa-arrow-right ms-2"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <% } %>
+                <% }); %>
+
+
+                <!-- 2. Show all other courses dynamically -->
+                <% course_info.forEach(function(course) { %>
+                    <% if (course.course_id != 28) { %>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-4 mb-3 grid-item pb-0 mb-0" data-type="computer-science" data-aos="zoom-in">
+                            <div class="common-post-card border shadow p-4 pb-0 mb-0">
+
+                                <div class="post-image-box-wp mb-0 pb-3">
+                                    <div class="post-image" style="height: 170px;">
+                                        <a href="/course_details/<%= course.slug %>" title="<%= course.course_title %>">
+                                            <img src="/uploads/<%= course.course_image %>" alt="Course Image">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="common-post-content">
+                                    <div class="post-lessons-info">
+                                        <ul>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/book-icon.svg" width="26" height="18" alt="Book Icon">
+                                                </span>
+                                                <span class="post-info-text">Career-Ready Skills</span>
+                                            </li>
+                                            <li>
+                                                <span class="post-info-icon">
+                                                    <img src="/user_assets/images/clock-icon.svg" width="20" height="20" alt="Clock Icon">
+                                                </span>
+                                                <span class="post-info-text"><%= course.course_duration %></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="post-content-title">
+                                        <a href="/course_details/<%= course.slug %>" title="<%= course.course_title %>">
+                                            <h4 class="h4-title"><%= course.course_title %></h4>
+                                        </a>
+                                    </div>
+
+                                    <div class="post-author-review-info px-3 py-3 mt-3 benefits-card">
+                                        <ul class="benefits-list mb-0">
+                                            <li>Affordable Monthly Installments</li>
+                                            <li>Globally Recognized Certification</li>
+                                            <li>Work on Real Client Projects</li>
+                                            <li>6-Month Full-Time Internship</li>
+                                            <li>Mock Interviews & GD Practice</li>
+                                            <li>Soft Skills & Stress Management</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="course-price mt-3 d-flex justify-content-between align-items-center">
+                                        <h4 class="h4-title mb-0">
+                                            <%= course.course_price ? '₹' + course.course_price : 'Free' %> /-
+                                        </h4>
+                                        <a href="/course_details/<%= course.slug %>">
+                                            <button class="explore-btn">
+                                                <span>Explore More</span>
+                                                <i class="fa fa-arrow-right ms-2"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <% } %>
+                <% }); %>
+
+            <% } else { %>
+                <div class="col-12 text-center py-4">
+                    <p>No courses available at the moment.</p>
+                </div>
+            <% } %>
+
+        </div>
+    </div>
+</section>
+<!-- Top Course End -->
+    <hr>
+    <!-- About Us Start -->
+    <section class="about-sec pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-image-content wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <div class="about-image-box-wp">
+                            <div class="about-image-box-bg">
+                                <div class="about-image-bg-shape"></div>
+                            </div>
+                            <div class="about-image">
+                                <img src="/user_assets/images/about-us-image.png" width="444" height="557"
+                                    alt="About Us Image">
+                            </div>
+                            <div class="about-image-icon-wp">
+                                <div class="about-image-icon top-icon">
+                                    <img src="/user_assets/images/ribbon-tag-1-icon.png" width="56" height="56"
+                                        alt="About Image Icon">
+                                </div>
+                                <div class="about-image-icon bottom-icon">
+                                    <img src="/user_assets/images/academic-cap-1.png" width="56" height="56"
+                                        alt="About Image Icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="students-endroll-box move-element-animation-2">
+                            <div class="students-endroll-title">
+                                <h5 class="h5-title">Monthly Enrollment</h5>
+                            </div>
+                            <div class="students-endroll-image">
+                                <img src="/user_assets/images/graph-image.svg" width="217" height="80"
+                                    alt="Graph Image">
+                            </div>
+                            <div class="students-endroll-text">
+                                <p>Up by 100% from Last Month</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="about-content wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <div class="sec-title">
+                            <span class="sub-title">About Kanak Digifex</span>
+                            <h2 class="h2-title">Ahilyanagar's First Corporate IT Company</h2>
+                        </div>
+                        <div class="about-text">
+                            <p>Kanak Digifex is a trailblazing IT company founded in the heart of Ahilyanagar. We
+                                specialize in web development, mobile applications, digital marketing, and cloud-based
+                                enterprise solutions. Our mission is to digitally transform businesses with reliable,
+                                scalable, and innovative technology services.</p>
+                        </div>
+                        <!-- <div class="about-feature-info mt-4">
+                            <div class="about-feature-box">
+                                <div class="about-feature-icon">
+                                    <img src="/user_assets/images/learn-icon.svg" width="25" height="25"
+                                        alt="Learn The Best Image">
+                                </div>
+                                <div class="about-feature-text">
+                                    <h4 class="h4-title">100% Satisfaction</h4>
+                                    <p>Happy clients, every time.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-box">
+                                <div class="about-feature-icon">
+                                    <img src="/user_assets/images/users-icon.svg" width="29" height="20"
+                                        alt="Expert Instructors Image">
+                                </div>
+                                <div class="about-feature-text">
+                                    <h4 class="h4-title">Expert Team</h4>
+                                    <p>Industry-trained professionals.</p>
+                                </div>
+                            </div>
+
+                        </div> -->
+
+
+                        Kanak Digifex NextGen Pvt. Ltd., formerly known as Kanak Digifex Pvt. Ltd., is a leading corporate IT company providing professional digital and technology solutions in Ahilyanagar, Maharashtra, across India, and internationally.
+
+Established in 2015 in Mumbai, Kanak Digifex has its head office in Mumbai and has successfully built a strong reputation by serving reputed clients across India and in 7–8 countries worldwide. 
+                        <div class="about-content-btn" style="width: 100%;">
+                            <a href="/about" class="sec-btn" title="Read More"><span>Read More</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-counter-row wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s"
+                        id="about_counter">
+                        <div class="about-counter-box-wp">
+                            <div class="about-counter-box">
+                                <h3 class="h3-title"><span class="counting" data-count="1000">0</span>+</h3>
+                                <div class="about-counter-text">
+                                    <p>Projects Delivered</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-counter-box-wp">
+                            <div class="about-counter-box">
+                                <h3 class="h3-title"><span class="counting" data-count="2500">0</span>+</h3>
+                                <div class="about-counter-text">
+                                    <p>Satisfied Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-counter-box-wp">
+                            <div class="about-counter-box">
+                                <h3 class="h3-title"><span class="counting" data-count="99">0</span>+</h3>
+                                <div class="about-counter-text">
+                                    <p>Uptime Guarantee</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-counter-box-wp">
+                            <div class="about-counter-box">
+                                <h3 class="h3-title"><span class="counting" data-count="24"></span>/7</h3>
+                                <div class="about-counter-text">
+                                    <p>Support Availability</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- About Us End -->
+
+    <!-- Our Event Start -->
+    <!-- <section class="our-event-sec sec-space mt-0 pt-5 pb-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="our-event-content">
+                        <div class="sec-title text-center">
+                            <span class="sub-title">Our Workshops</span>
+                            <h2 class="h2-title">Join Our Upcoming Workshops</h2>
+                        </div>
+                        <div class="our-event-box-wp"> -->
+                            <!-- Workshop 1 -->
+                            <!-- <div class="our-event-box wow fadeup-animation" data-wow-duration="0.8s"
+                                data-wow-delay="0.2s">
+                                <div class="our-event-image-text">
+                                    <div class="our-event-image">
+                                        <img src="/user_assets/images/data-science-workshop.jpg" width="270"
+                                            height="150" alt="Data Science">
+                                    </div>
+                                    <div class="our-event-text">
+                                        <div class="our-event-title">
+                                            <a href="#" title="Data Science Workshop">
+                                                <h4 class="h4-title">Data Science Workshop</h4>
+                                            </a>
+                                        </div>
+                                        <div class="our-event-info post-lessons-info">
+                                            <ul>
+                                                <li style="width: 140px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/date-icon.svg" width="20"
+                                                            height="17" alt="Date Icon"></span>
+                                                    <span class="post-info-text">20 July, 2025</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/clock-icon.svg" width="20"
+                                                            height="20" alt="Clock Icon"></span>
+                                                    <span class="post-info-text">Flexible Timing (Saturday)</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/location-icon.svg" width="15"
+                                                            height="20" alt="Location Icon"></span>
+                                                    <span class="post-info-text">Kanak Digifex, Ahilyanagar</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="our-event-btn">
+                                    <a href="#" class="sec-btn" title="Get Ticket"><span>Register</span></a>
+                                </div>
+                            </div> -->
+
+                            <!-- Workshop 2 -->
+                            <!-- <div class="our-event-box wow fadeup-animation" data-wow-duration="0.8s"
+                                data-wow-delay="0.3s">
+                                <div class="our-event-image-text">
+                                    <div class="our-event-image">
+                                        <img src="/user_assets/images/cloud-computing-workshop.jpg" width="270"
+                                            height="150" alt="Cloud Computing">
+                                    </div>
+                                    <div class="our-event-text">
+                                        <div class="our-event-title">
+                                            <a href="#" title="Cloud Computing Workshop">
+                                                <h4 class="h4-title">Cloud Computing Workshop</h4>
+                                            </a>
+                                        </div>
+                                        <div class="our-event-info post-lessons-info">
+                                            <ul>
+                                                <li style="width: 140px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/date-icon.svg" width="20"
+                                                            height="17" alt="Date Icon"></span>
+                                                    <span class="post-info-text">27 July, 2025</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/clock-icon.svg" width="20"
+                                                            height="20" alt="Clock Icon"></span>
+                                                    <span class="post-info-text">Flexible Timing (Saturday)</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/location-icon.svg" width="15"
+                                                            height="20" alt="Location Icon"></span>
+                                                    <span class="post-info-text">Kanak Digifex, Ahilyanagar</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="our-event-btn">
+                                    <a href="#" class="sec-btn" title="Get Ticket"><span>Register</span></a>
+                                </div>
+                            </div> -->
+
+                            <!-- Workshop 3 -->
+                            <!-- <div class="our-event-box wow fadeup-animation" data-wow-duration="0.8s"
+                                data-wow-delay="0.4s">
+                                <div class="our-event-image-text">
+                                    <div class="our-event-image">
+                                        <img src="/user_assets/images/machine-learning-workshop.jpg" width="270"
+                                            height="150" alt="Machine Learning">
+                                    </div>
+                                    <div class="our-event-text">
+                                        <div class="our-event-title">
+                                            <a href="#" title="Machine Learning Workshop">
+                                                <h4 class="h4-title">Machine Learning Workshop</h4>
+                                            </a>
+                                        </div>
+                                        <div class="our-event-info post-lessons-info">
+                                            <ul>
+                                                <li style="width: 140px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/date-icon.svg" width="20"
+                                                            height="17" alt="Date Icon"></span>
+                                                    <span class="post-info-text">3 August, 2025</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/clock-icon.svg" width="20"
+                                                            height="20" alt="Clock Icon"></span>
+                                                    <span class="post-info-text">Flexible Timing (Saturday)</span>
+                                                </li>
+                                                <li style="width: 230px;">
+                                                    <span class="post-info-icon"><img
+                                                            src="/user_assets/images/location-icon.svg" width="15"
+                                                            height="20" alt="Location Icon"></span>
+                                                    <span class="post-info-text">Kanak Digifex, Ahilyanagar</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="our-event-btn">
+                                    <a href="#" class="sec-btn" title="Get Ticket"><span>Register</span></a>
+                                </div>
+                            </div> -->
+                            <!-- End Workshops -->
+                            <!-- <div class="about-content-btn text-center pt-4" style="width: 100%;">
+                                <a href="/workshop" class="sec-btn" title="View All Workshops"><span>View All
+                                        Workshops</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Our Event End -->
+
+    <!-- Workshop Registration Modal -->
+    <!-- <div id="workshopModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>Workshop Registration</h3>
+            <form id="workshopForm">
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <input type="tel" name="mobile" placeholder="Mobile Number" required />
+                <input type="text" name="workshop" id="selectedWorkshop" placeholder="Workshop Name" readonly
+                    required />
+                <textarea name="message" placeholder="Your Message (Optional)"></textarea>
+                <div class="our-event-btn">
+                    <button type="submit" class="sec-btn">Confirm Registration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <style>
+        .modal {
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style> -->
+
+    <!-- SweetAlert2 CDN -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script> -->
+        <!-- // Open modal with specific workshop name
+        // const registerButtons = document.querySelectorAll('.our-event-btn a');
+        // registerButtons.forEach(button => {
+        //     button.addEventListener('click', function (e) {
+        //         e.preventDefault();
+        //         const title = this.closest('.our-event-box').querySelector('.h4-title').innerText;
+        //         document.getElementById('selectedWorkshop').value = title;
+        //         document.getElementById('workshopModal').style.display = 'flex';
+        //     });
+        // });
+
+        // Close modal
+        // function closeModal() {
+        //     document.getElementById('workshopModal').style.display = 'none';
+        // }
+
+        // Submit form with SweetAlert
+    //     document.getElementById('workshopForm').addEventListener('submit', function (e) {
+    //         e.preventDefault();
+
+    //         const form = this;
+    //         const formData = {
+    //             customer_name: form.name.value,
+    //             customer_email: form.email.value,
+    //             customer_mobile: form.mobile.value,
+    //             customer_workshop: form.workshop.value,
+    //             customer_message: form.message.value
+    //         };
+
+    //         fetch('/save_workshop_details', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify(formData)
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Registration Successful!',
+    //                     text: data.message || 'You have been registered for the workshop.',
+    //                     confirmButtonColor: '#007bff'
+    //                 });
+
+    //                 form.reset();
+    //                 closeModal();
+    //             })
+    //             .catch(err => {
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Oops!',
+    //                     text: 'Something went wrong. Please try again later.',
+    //                     confirmButtonColor: '#dc3545'
+    //                 });
+    //             });
+    //     }); -->
+     </script>
+     <hr>
+
+
+
+    <!-- Our Skills Start -->
+    <section class="our-skills-sec sec-space pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 w-100">
+                    <div class="our-skills-content wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <div class="sec-title">
+                            <span class="sub-title">Our Skills</span>
+                            <h2 class="h2-title">Upgrade Your IT Skills with Kanak Digifex</h2>
+                        </div>
+                        <div class="our-skills-text">
+                            <p>At <strong>Kanak Digifex</strong>, we offer industry-ready programs designed to enhance
+                                your IT career. Learn from experts, work on live projects, and get hands-on experience
+                                that prepares you for the real world.</p>
+                        </div>
+                        <div class="our-skills-feature-info">
+                            <div class="our-skills-feature-box">
+                                <div class="our-skills-feature-icon-title">
+                                    <div class="our-skills-feature-icon">
+                                        <img src="/user_assets/images/circle-check-icon.svg" width="20" height="20"
+                                            alt="Circle Check Icon">
+                                    </div>
+                                    <h4 class="h4-title">Expert Trainers</h4>
+                                </div>
+                                <div class="our-skills-feature-text">
+                                    <p>Our trainers are IT professionals with real-time experience in development and
+                                        deployment.</p>
+                                </div>
+                            </div>
+                            <div class="our-skills-feature-box">
+                                <div class="our-skills-feature-icon-title">
+                                    <div class="our-skills-feature-icon">
+                                        <img src="/user_assets/images/circle-check-icon.svg" width="20" height="20"
+                                            alt="Circle Check Icon">
+                                    </div>
+                                    <h4 class="h4-title">Live Project Learning</h4>
+                                </div>
+                                <div class="our-skills-feature-text">
+                                    <p>All courses are taught using real-time live projects to give you practical
+                                        exposure.</p>
+                                </div>
+                            </div>
+                            <div class="our-skills-feature-box">
+                                <div class="our-skills-feature-icon-title">
+                                    <div class="our-skills-feature-icon">
+                                        <img src="/user_assets/images/circle-check-icon.svg" width="20" height="20"
+                                            alt="Circle Check Icon">
+                                    </div>
+                                    <h4 class="h4-title">Career-Oriented Approach</h4>
+                                </div>
+                                <div class="our-skills-feature-text">
+                                    <p>Our training modules are focused on getting you placed in top IT companies and
+                                        startups.</p>
+                                </div>
+                            </div>
+                            <div class="our-skills-feature-box">
+                                <div class="our-skills-feature-icon-title">
+                                    <div class="our-skills-feature-icon">
+                                        <img src="/user_assets/images/circle-check-icon.svg" width="20" height="20"
+                                            alt="Circle Check Icon">
+                                    </div>
+                                    <h4 class="h4-title">Affordable & Flexible</h4>
+                                </div>
+                                <div class="our-skills-feature-text">
+                                    <p>We offer flexible timings and affordable pricing plans to fit every learner’s
+                                        need.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Skills End -->
+
+    <hr>
+
+    <!-- Testimonial Start -->
+    <section class="testimonial-sec pb-5 pt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sec-title text-center">
+                        <span class="sub-title">Testimonial</span>
+                        <h2 class="h2-title">See What Our Clients Say</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slider-wp wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+            <div class="container-fluid">
+                <div class="swiper testimonial-slider">
+                    <div class="swiper-wrapper" style="height: auto;">
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" width="80" height="80"
+                                            alt="Rohan Sharma">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Rohan Sharma</h4>
+                                        <span class="client-profession">Student</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Kanak Digifex helped me develop practical skills that boosted my confidence and
+                                        career prospects.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/women/65.jpg" width="80"
+                                            height="80" alt="Sneha Patel">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Sneha Patel</h4>
+                                        <span class="client-profession">Entrepreneur</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“The Kanak Digifex team created a professional website that perfectly represents
+                                        my business.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" width="80" height="80"
+                                            alt="Arjun Kumar">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Arjun Kumar</h4>
+                                        <span class="client-profession">Freelancer</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Kanak Digifex’s digital marketing strategies significantly improved my freelance
+                                        projects.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" width="80"
+                                            height="80" alt="Priya Desai">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Priya Desai</h4>
+                                        <span class="client-profession">Corporate Client</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Professional, reliable, and creative — Kanak Digifex exceeded our expectations.”
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-box">
+                                <span class="quote-icon"><img width="33" height="24"
+                                        src="/user_assets/images/quote-icon.svg" alt="Quote"></span>
+                                <div class="client-image-title-wp">
+                                    <div class="client-image">
+                                        <img src="https://randomuser.me/api/portraits/men/33.jpg" width="80" height="80"
+                                            alt="Ankit Mehta">
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="h4-title">Ankit Mehta</h4>
+                                        <span class="client-profession">Startup Founder</span>
+                                        <div class="star-group">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                                class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client-review-text">
+                                    <p>“Thanks to Kanak Digifex, our product launch was a huge success with excellent
+                                        digital support.”</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper testimonial-slider-2">
+            <div class="swiper-wrapper" style="height: auto;">
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/33.jpg" width="80" height="80"
+                                    alt="Ankit Mehta">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Ankit Mehta</h4>
+                                <span class="client-profession">Startup Founder</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Thanks to Kanak Digifex, our product launch was a huge success with excellent digital
+                                support.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" width="80" height="80"
+                                    alt="Priya Desai">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Priya Desai</h4>
+                                <span class="client-profession">Corporate Client</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Professional, reliable, and creative — Kanak Digifex exceeded our expectations.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/54.jpg" width="80" height="80"
+                                    alt="Arjun Kumar">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Arjun Kumar</h4>
+                                <span class="client-profession">Freelancer</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Kanak Digifex’s digital marketing strategies significantly improved my freelance
+                                projects.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" width="80" height="80"
+                                    alt="Sneha Patel">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Sneha Patel</h4>
+                                <span class="client-profession">Entrepreneur</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“The Kanak Digifex team created a professional website that perfectly represents my
+                                business.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-box">
+                        <span class="quote-icon"><img width="33" height="24" src="/user_assets/images/quote-icon.svg"
+                                alt="Quote"></span>
+                        <div class="client-image-title-wp">
+                            <div class="client-image">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" width="80" height="80"
+                                    alt="Rohan Sharma">
+                            </div>
+                            <div class="client-info">
+                                <h4 class="h4-title">Rohan Sharma</h4>
+                                <span class="client-profession">Student</span>
+                                <div class="star-group">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-review-text">
+                            <p>“Kanak Digifex helped me develop practical skills that boosted my confidence and career
+                                prospects.”</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Testimonial End -->
+
+    <script>
+        // Show popup after delay
+        setTimeout(() => {
+            document.getElementById('festivePopup').classList.add('active');
+            createConfetti();
+        }, 1500);
+
+        // Close popup
+        document.getElementById('closePopup').addEventListener('click', () => {
+            document.getElementById('festivePopup').classList.remove('active');
+        });
+
+        // Close when clicking outside
+        document.getElementById('festivePopup').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('festivePopup')) {
+                document.getElementById('festivePopup').classList.remove('active');
+            }
+        });
+
+        // Countdown timer
+        function updateCountdown() {
+            const offerEndDate = new Date('August 15, 2024 23:59:59').getTime();
+            const now = new Date().getTime();
+            const distance = offerEndDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.querySelector('.countdown').innerHTML = '<div style="color:#FF5733; font-weight:bold;">Offer Expired!</div>';
+            }
+        }
+
+        updateCountdown();
+        const countdownTimer = setInterval(updateCountdown, 1000);
+
+        // CTA button action
+        document.getElementById('claimOffer').addEventListener('click', () => {
+            alert('Redirecting to offer page...');
+            // window.location.href = 'https://yourwebsite.com/special-offer';
+        });
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#FF9933', '#FFFFFF', '#138808', '#FFD700', '#FF5733'];
+            const container = document.querySelector('.popup-container');
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = -10 + 'px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.style.opacity = '1';
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    confetti.style.setProperty('--end-y', Math.random() * 100 + 50 + '%');
+                    confetti.style.setProperty('--end-x', Math.random() * 100 - 50 + '%');
+                }, i * 100);
+            }
+
+            // Add CSS for confetti animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to {
+                        transform: translate(var(--end-x), var(--end-y)) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+
+    <%- include('footer.ejs') %>

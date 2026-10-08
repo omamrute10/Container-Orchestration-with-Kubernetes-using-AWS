@@ -1,0 +1,951 @@
+<style>
+    :root {
+        --primary-color: #6a11cb;
+        --secondary-color: #c95afc;
+        --accent-color: #c95afc;
+        --dark-color: #c95afc;
+        --light-color: #f8f9fa;
+    }
+
+    body {
+        background: linear-gradient(135deg, rgba(70, 186, 231, 0.1), rgba(175, 11, 78, 0.1));
+        font-family: 'Poppins', sans-serif;
+        background-attachment: fixed;
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: 50px auto;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .registration-card {
+        border-radius: 16px;
+        background-color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: none;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+
+    .registration-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        z-index: 2;
+    }
+
+    .header-title {
+        font-size: 28px;
+        color: var(--dark-color);
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .header-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .sub-header {
+        color: var(--dark-color);
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .description {
+        color: #555;
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: justify;
+        font-weight: 400;
+    }
+
+    .website-link a {
+        font-weight: 600;
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .website-link a:hover {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .website-link a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+        text-decoration: none;
+    }
+
+    .website-link a:hover::after {
+        width: 100%;
+    }
+
+    .experience-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-top: 25px;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .experience-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .experience-list {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .experience-list li {
+        font-size: 16px;
+        padding: 10px 0;
+        color: #555;
+        position: relative;
+        padding-left: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .experience-list li:hover {
+        color: var(--dark-color);
+        transform: translateX(5px);
+    }
+
+    .experience-list li::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        font-size: 20px;
+    }
+
+    .info-banner {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-top: 25px;
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .info-banner:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(106, 17, 203, 0.4);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .form-group:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(106, 17, 203, 0.2);
+    }
+
+    .input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container label {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+
+    .input-container input {
+        border: none;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 10px 0;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .input-container input:focus {
+        border-bottom-color: transparent;
+    }
+
+    .input-underline {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        transition: width 0.4s ease;
+    }
+
+    .input-container input:focus~.input-underline {
+        width: 100%;
+    }
+
+    .form-card {
+        margin: 25px 0;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .form-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(106, 17, 203, 0.2);
+    }
+
+    .form-title {
+        font-size: 18px;
+        color: var(--dark-color);
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .form-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .custom-radio {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .custom-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        position: relative;
+    }
+
+    .custom-radio input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .custom-radio input[type="radio"]:checked {
+        border-color: var(--secondary-color);
+        background-color: white;
+        box-shadow: 0 0 0 5px white, 0 0 0 7px var(--secondary-color);
+    }
+
+    .custom-radio label {
+        color: #555;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .custom-radio:hover label {
+        color: var(--dark-color);
+    }
+
+    .custom-radio input[type="radio"]:checked+label {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+    }
+
+    .btn-submit::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .btn-submit:hover::after {
+        left: 100%;
+    }
+
+    .btn-clear {
+        background: #f8f9fa;
+        color: var(--dark-color);
+        border: 1px solid #ddd;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-left: 15px;
+    }
+
+    .btn-clear:hover {
+        background: #e9ecef;
+        border-color: #ccc;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    /* Floating animation for decorative elements */
+    @keyframes floating {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .floating-element {
+        animation: floating 3s ease-in-out infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767.98px) {
+        .form-container {
+            padding: 0 10px;
+        }
+
+        .header-title {
+            font-size: 24px;
+        }
+
+        .form-card,
+        .form-group {
+            padding: 20px;
+        }
+
+        .btn-group {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-clear {
+            margin-left: 0;
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .header-title {
+            font-size: 22px;
+        }
+
+        .experience-list li {
+            font-size: 15px;
+            padding-left: 25px;
+        }
+
+        .form-title {
+            font-size: 16px;
+        }
+
+        .btn-submit,
+        .btn-clear {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    }
+
+    .h1-title span {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: -5px;
+    }
+
+    @media (max-width: 576px) {
+        .h1-title span {
+            font-size: 1rem;
+            margin-top: 0;
+        }
+
+        .btn-clear {
+            margin-left: 44px;
+        }
+
+        .btn-submit {
+            margin-left: 40px;
+
+        }
+    }
+</style>
+
+<head>
+    <title>Kanak Digifex Nextgen Pvt.Ltd</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="Kanak Digifex, Ahilyanagar IT Company, First Corporate IT Company Ahilyanagar, Web Development, Digital Marketing, Software Solutions, IT Services, App Development, Cloud Solutions, AI Tools, UI UX Design, Branding Services, SEO, SMO, Education Technology">
+    <meta name="description"
+        content="Kanak Digifex – The first ever corporate IT company of Ahilyanagar, delivering next-generation web development, digital marketing, AI-based solutions, software, and education technology services for businesses and institutions.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <!-- Don' remove  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%-include('header.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
+    <body>
+        <!-- Banner Start -->
+        <section class="inner-banner">
+            <div class="main-banner-bg-shape">
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+            </div>
+            <div class="inner-banner-bg-aliment-wp">
+                <div class="bg-aliment-1 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-2 animate-this">
+                    <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-3 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-4 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-5 animate-this">
+                    <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-6 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-7 rotate-animation">
+                    <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-8 animate-this">
+                    <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+                </div>
+                <div class="bg-aliment-9 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+                </div>
+                <div class="bg-aliment-10 rotate-animation">
+                    <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-11 animate-this">
+                    <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+                </div>
+                <div class="bg-aliment-12 animate-this">
+                    <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-13 rotate-animation">
+                    <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-14 animate-this">
+                    <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1 class="h1-title animate__animated animate__fadeInDown text-center">
+                                Industry Insights – With Kanak Digifex<br>
+                                <span class="d-block" style="font-weight: 500; font-size: 1.4rem;">
+                                    Redefining Careers in Tech
+                                </span>
+                            </h1>
+                            <div class="banner-breadcrum">
+                                <ul>
+                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="/adsul-guest-lecture-reg" title="Course">Guest Lecture</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner End -->
+
+        <div class="container">
+            <div class="form-container">
+                <div class="registration-card p-4 p-md-5 animate__animated animate__fadeIn">
+                    <h3 class="header-title">
+                        Expert Lecture on
+                        <strong class="text-gradient">Career Opportunities in the IT Industry and Emerging Technologies
+                            in the Age of AI</strong>
+                        by Kanak Digifex Nextgen Pvt. Ltd.
+                        (First Corporate IT Company of Ahilyanagar)
+                        at Adsul's Technical Campus, Ahilyanagar
+                        <span>— 13<sup>th</sup> October 2025</span>
+                    </h3>
+
+
+                    <p style="color: rgb(171,64,120);font-weight: bold;">Guest Lecturer - Mr.Tejas Shrirang Gaikwad
+                        (Director) <br><span style="color: rgba(0, 0, 0, 0.557);">Cyber Security | AI | ML | Cloud
+                            Expert</span></p>
+
+                    <hr class="my-4">
+
+                    <p class="description animate__animated animate__fadeIn animate__delay-1s">
+                        It is our immense pleasure to conduct a Guest Lecture on <strong>Career Opportunities in IT
+                            Industry in the Era of Artificial Intelligence</strong> at your esteemed institute.
+                        We, <strong>Kanak Digifex Nextgen Pvt. Ltd.</strong>, Ahilyanagar's First Corporate IT Company,
+                        are excited to interact with you and share valuable insights about how AI and emerging
+                        technologies are shaping IT careers.
+                    </p>
+
+                    <p class="description animate__animated animate__fadeIn animate__delay-1s">
+                        Since 2015, we have been delivering cutting-edge IT & Data Solutions to clients worldwide, with
+                        our <strong>Registered Office in Mumbai</strong> and a Branch Office in Ahilyanagar.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <p class="website-link animate__animated animate__fadeIn animate__delay-2s">
+                        Know more about us –
+                        <a href="https://www.kanakdigifex.in" target="_blank">www.kanakdigifex.in</a> &nbsp; & &nbsp;
+                        <a href="https://www.kanakdigifex.com" target="_blank">www.kanakdigifex.com</a>
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h5 class="experience-title animate__animated animate__fadeIn animate__delay-2s">
+                        Explore the Future – Career Opportunities in IT & AI
+                        In This Guest Lecture, You Will Learn About:
+                    </h5>
+
+                    <ul class="experience-list">
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s">Overview of IT
+                            Industry in the Era of Artificial Intelligence</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.2s">How AI is
+                            Transforming Traditional IT Roles</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.3s">Emerging
+                            Technologies: Cloud, Data Science, Cyber Security, and More</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.4s">Key Programming
+                            Skills: Python, Java, React, and AI Frameworks</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.5s">The Role of AI &
+                            Machine Learning in Modern IT Careers</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.6s">Real-World
+                            Applications of AI in Different Industries</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.7s">Career Pathways
+                            in IT: Developer, Analyst, Designer, Security Expert</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.8s">Skillsets
+                            Required for Thriving in AI-Driven IT Industry</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 0.9s">How Students Can
+                            Build a Strong Career Portfolio in AI & IT</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 1s">Interactive Q&A
+                            Session with Industry Experts</li>
+                        <li class="animate__animated animate__fadeInLeft" style="animation-delay: 1.1s">Ask anything
+                            about jobs, internships, AI tools, or learning paths!</li>
+                    </ul>
+
+                    <hr class="my-4">
+
+                    <div class="info-banner animate__animated animate__fadeIn animate__delay-3s">
+                        We are Thrilled to Inspire Future IT Professionals and Proudly Contribute to Building
+                        Ahilyanagar into an Emerging Tech & AI Hub!
+                    </div>
+                </div>
+
+
+
+                <form action="/save-adsul-guest-lecture-reg" method="post"
+                    class="mt-5 animate__animated animate__fadeIn" id="myForm">
+                    <!-- Personal Information Fields -->
+                    <div class="form-group animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                        <div class="input-container">
+                            <label>Your First Name <span class="text-danger">*</span></label>
+                            <input type="text" name="first_name" placeholder="Your answer" required>
+                            <span class="input-underline"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group animate__animated animate__fadeIn" style="animation-delay: 0.3s">
+                        <div class="input-container">
+                            <label>Your Last Name<span class="text-danger">*</span></label>
+                            <input type="text" name="last_name" placeholder="Your answer" required>
+                            <span class="input-underline"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group animate__animated animate__fadeIn" style="animation-delay: 0.4s">
+                        <div class="input-container">
+                            <label>Email ID <span class="text-danger">*</span></label>
+                            <input type="email" id="email" name="email_id" placeholder="Your answer" required>
+                            <span class="input-underline"></span>
+                            <small id="emailError" class="text-danger font-weight-bold d-none">
+                                Please enter a valid email address (e.g., example@domain.com)
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group animate__animated animate__fadeIn" style="animation-delay: 0.5s">
+                        <div class="input-container">
+                            <label>Mobile Number (WhatsApp Enabled) <span class="text-danger">*</span></label>
+                            <input type="text" id="mobile" name="mobile" placeholder="Your answer"
+                                pattern="[6-9]{1}[0-9]{9}" maxlength="10" required>
+                            <span class="input-underline"></span>
+                            <small id="mobileError" class="text-danger font-weight-bold d-none">Enter a valid 10-digit
+                                number starting with 6-9</small>
+                        </div>
+                    </div>
+
+                    <!-- Career Technology Selection -->
+                    <div class="form-card animate__animated animate__fadeIn" style="animation-delay: 0.6s">
+                        <h4 class="form-title">In Which Technology You Want to Make Your Career? <span
+                                class="text-danger">*</span></h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="custom-radio">
+                                    <input type="radio" id="web-tech" value="Web Technology" name="career"
+                                        class="custom-input" required>
+                                    <label for="web-tech">Web Technology</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="mobile-dev" value="Mobile App Development" name="career"
+                                        class="custom-input" required>
+                                    <label for="mobile-dev">Mobile App Development</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="digital-marketing" value="Digital Marketing" name="career"
+                                        class="custom-input" required>
+                                    <label for="digital-marketing">Digital Marketing</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="python-dev" value="Python Developer" name="career"
+                                        class="custom-input" required>
+                                    <label for="python-dev">Python Developer</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="java-fullstack" value="Java Full Stack Developer"
+                                        name="career" class="custom-input" required>
+                                    <label for="java-fullstack">Java Full Stack Developer</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="graphic-design" value="Corporate Graphic Designer"
+                                        name="career" class="custom-input" required>
+                                    <label for="graphic-design">Corporate Graphic Designer</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="cyber-security" value="Ethical Hacking & Cyber Security"
+                                        name="career" class="custom-input" required>
+                                    <label for="cyber-security">Ethical Hacking & Cyber Security</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="custom-radio">
+                                    <input type="radio" id="data-science" value="Data Science" name="career"
+                                        class="custom-input" required>
+                                    <label for="data-science">Data Science</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="cloud-computing" value="Cloud Computing" name="career"
+                                        class="custom-input" required>
+                                    <label for="cloud-computing">Cloud Computing</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="wordpress-shopify" value="WordPress & Shopify" name="career"
+                                        class="custom-input" required>
+                                    <label for="wordpress-shopify">WordPress & Shopify</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="software-dev" value="Software Developer" name="career"
+                                        class="custom-input" required>
+                                    <label for="software-dev">Software Developer</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="software-tester" value="Software Tester" name="career"
+                                        class="custom-input" required>
+                                    <label for="software-tester">Software Tester</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="react-dev" value="React.JS Developer" name="career"
+                                        class="custom-input" required>
+                                    <label for="react-dev">React.JS Developer</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" id="other" value="Any Other" name="career" class="custom-input"
+                                        required>
+                                    <label for="other">Any Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Options -->
+                    <div class="form-card animate__animated animate__fadeIn" style="animation-delay: 0.7s">
+                        <h4 class="form-title">Are You Interested in Internships?</h4>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="intern-yes" value="internship-yes" name="internship"
+                                        class="custom-input">
+                                    <label for="intern-yes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="intern-no" value="internship-no" name="internship"
+                                        class="custom-input">
+                                    <label for="intern-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card animate__animated animate__fadeIn" style="animation-delay: 0.8s">
+                        <h4 class="form-title">Are You Interested in Guest Lectures and Workshops on Various Career
+                            Oriented IT Technologies from Our Industry Experts?</h4>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="guest-lecture-yes" value="guest-lecture-yes"
+                                        name="guest_lecture" class="custom-input">
+                                    <label for="guest-lecture-yes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="guest-lecture-no" value="guest-lecture-no"
+                                        name="guest_lecture" class="custom-input">
+                                    <label for="guest-lecture-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card animate__animated animate__fadeIn" style="animation-delay: 0.9s">
+                        <h4 class="form-title">Would You Like To Get Information About Internship, Job Openings, Current
+                            Updates in IT Industry on Your WhatsApp?</h4>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="job-alerts-yes" value="job-alerts-yes" name="job_alerts"
+                                        class="custom-input">
+                                    <label for="job-alerts-yes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="custom-radio">
+                                    <input type="radio" id="job-alerts-no" value="job-alerts-no" name="job_alerts"
+                                        class="custom-input">
+                                    <label for="job-alerts-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group animate__animated animate__fadeIn pt-0 mt-4 mb-4" style="animation-delay: 1s">
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane mr-2"></i> Submit Application
+                        </button>
+                        <button type="button" id="clearBtn" class="btn-clear">
+                            <i class="fas fa-eraser mr-2"></i> Clear Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Clear form confirmation
+            document.getElementById("clearBtn").addEventListener("click", function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you really want to clear the form?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#6a11cb",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, clear it!",
+                    cancelButtonText: "Cancel",
+                    backdrop: `rgba(106, 17, 203, 0.2)`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById("myForm").reset();
+                        Swal.fire({
+                            title: "Cleared!",
+                            text: "The form has been cleared.",
+                            icon: "success",
+                            confirmButtonColor: "#6a11cb"
+                        });
+                    }
+                });
+            });
+
+            // Mobile number validation
+            document.getElementById("mobile").addEventListener("input", function () {
+                let mobileInput = this.value;
+                let mobilePattern = /^[6-9][0-9]{9}$/;
+                let errorMessage = document.getElementById("mobileError");
+
+                if (mobilePattern.test(mobileInput)) {
+                    this.classList.remove("is-invalid");
+                    errorMessage.classList.add("d-none");
+                } else {
+                    this.classList.add("is-invalid");
+                    errorMessage.classList.remove("d-none");
+                }
+            });
+
+            // Email validation
+            document.getElementById("email").addEventListener("input", function () {
+                let emailInput = this.value;
+                let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let errorMessage = document.getElementById("emailError");
+
+                if (emailPattern.test(emailInput)) {
+                    this.classList.remove("is-invalid");
+                    errorMessage.classList.add("d-none");
+                } else {
+                    this.classList.add("is-invalid");
+                    errorMessage.classList.remove("d-none");
+                }
+            });
+
+            // Form submission animation
+            document.getElementById("myForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Validate form
+                if (this.checkValidity()) {
+                    const submitBtn = document.querySelector(".btn-submit");
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+                    submitBtn.disabled = true;
+
+                    // Simulate form submission
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Your registration has been submitted successfully.",
+                            icon: "success",
+                            confirmButtonColor: "#6a11cb"
+                        }).then(() => {
+                            this.submit();
+                        });
+                    }, 1500);
+                } else {
+                    this.classList.add("was-validated");
+                }
+            });
+
+            // Add animation to elements when they come into view
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll(".animate__animated");
+
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementPosition < windowHeight - 100) {
+                        const animation = element.getAttribute("class").split(" ").find(cls => cls.startsWith("animate__"));
+                        element.classList.add(animation);
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", animateOnScroll);
+            window.addEventListener("load", animateOnScroll);
+        </script>
+
+        <%-include('footer.ejs') %>

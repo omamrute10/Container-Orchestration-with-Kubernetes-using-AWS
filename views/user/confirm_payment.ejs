@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirm Payment</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, rgb(70, 186, 231), rgb(175, 11, 78));
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+            margin: 40px auto;
+        }
+
+        .payment-info h4,
+        .payment-info h5 {
+            font-weight: 700;
+        }
+
+        .payment-info p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .qr-code {
+            width: 100%;
+            max-width: 358px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 20px auto;
+        }
+
+        .cta-btn {
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <div class="payment-card">
+            <div class="row align-items-center">
+                <!-- Payment Information Column -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="payment-info">
+                        <h4 class="mb-3 fwb"><b>Payment Confirmation</b></h4>
+                        <p>Your application has been submitted successfully.</p>
+                        <p>For activation of your <b>Job Alert Subscription for 1 year</b>, please make a payment of
+                            <strong>INR 499/-</strong>.
+                        </p>
+                        <p>You can pay via UPI on <strong>777 000 8009</strong> or scan the QR code.</p>
+                        <p>Once you have made the payment, please share your payment screenshot on <br> <strong>777 000
+                                8009</strong>.</p>
+                        <p>For further assistance, contact us at <strong>916 777 6161</strong>.</p>
+                        <div class="mt-5 text-center">
+                            <a href="/" class="btn btn-primary cta-btn">Return Home</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- QR Code Column -->
+                <div class="col-md-6 text-center">
+                    <img src="/user_assets/images/qr_code.jpg" alt="QR Code" class="qr-code img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

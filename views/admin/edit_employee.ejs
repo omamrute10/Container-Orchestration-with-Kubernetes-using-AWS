@@ -1,0 +1,33 @@
+<%- include('navbar.ejs') %>
+
+<form action="/admin/update_employee" method="post" enctype="multipart/form-data">
+
+    <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" name="employee_id" value="<%=employee.employee_id %>">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Update Team Member</h3>
+            </div>
+            <div class="col-md-8 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Upload Image</label>
+                <input type="file" accept="image/*" name="employee_image"value="" class="form-control">
+            </div>
+            <div class="col-md-2 mb-2 mt-2">
+                <img src="/uploads/<%= employee.employee_image %>" class="w-100">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Name</label>
+                <input type="text" name="employee_name" value="<%= employee.employee_name %>" class="form-control">
+            </div>
+            <div class="col-md-6 mb-4 mt-3">
+                <label class="font-weight-bold" for="">Enter Position</label>
+                <input type="text" name="employee_position" value="<%= employee.employee_position %>" class="form-control">
+            </div>
+            <div class="col-md-12 text-center mt-4">
+                <button class="font-weight-bold btn btn-primary">Update Employee</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<%- include('footer.ejs') %>

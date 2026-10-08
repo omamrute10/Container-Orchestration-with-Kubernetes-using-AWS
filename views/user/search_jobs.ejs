@@ -1,0 +1,860 @@
+<head>
+    <title>Kanak Digifex NextGen Pvt. Ltd | Corporate IT Company in Ahilyanagar / Ahmednagar</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="web development company Ahmednagar, website development company Ahmednagar, top IT companies Ahmednagar, professional web developers Ahmednagar, IT company near Savedi, Java full stack course near me, cloud computing course near me, digital marketing course near me, graphic design course Ahmednagar, machine learning course Ahmednagar">
+    <meta name="description"
+        content="Kanak Digifex – Empowering Ahmednagar businesses with expert web development, mobile app solutions, cloud software, and digital marketing services.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<%- include('header.ejs') %>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, rgb(70, 186, 231), rgb(175, 11, 78));
+        }
+
+        .is-invalid {
+            border: 2px solid red !important;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        /* Base style for very small devices */
+        .job_container {
+            width: 100%;
+            margin-top: 4%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Small devices (≥576px) */
+        @media (min-width: 576px) {
+            .job_container {
+                width: 80%;
+            }
+        }
+
+        /* Medium devices (≥768px) */
+        @media (min-width: 768px) {
+            .job_container {
+                width: 70%;
+            }
+        }
+
+        /* Large devices (≥992px) */
+        @media (min-width: 992px) {
+            .job_container {
+                width: 65%;
+            }
+        }
+
+        /* Extra large devices (≥1200px) */
+        @media (min-width: 1200px) {
+            .job_container {
+                width: 60%;
+            }
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-btn {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-weight: 500;
+            color: #333;
+            margin: 5px;
+        }
+
+        .btn {
+            font-weight: bold;
+        }
+
+        .job-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .job-btn.selected {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border-color: #0056b3;
+            font-weight: bold;
+            box-shadow: 0px 3px 10px rgba(0, 123, 255, 0.4);
+        }
+
+        .selected-jobs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .selected-job-badge {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0px 3px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .selected-job-badge i {
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <!-- Banner Start -->
+        <section class="inner-banner">
+            <div class="main-banner-bg-shape">
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+            </div>
+            <div class="inner-banner-bg-aliment-wp">
+                <div class="bg-aliment-1 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-2 animate-this">
+                    <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-3 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-4 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-5 animate-this">
+                    <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-6 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-7 rotate-animation">
+                    <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-8 animate-this">
+                    <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+                </div>
+                <div class="bg-aliment-9 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+                </div>
+                <div class="bg-aliment-10 rotate-animation">
+                    <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-11 animate-this">
+                    <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+                </div>
+                <div class="bg-aliment-12 animate-this">
+                    <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-13 rotate-animation">
+                    <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-14 animate-this">
+                    <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1 class="h1-title">Find Your Dream Job</h1>
+                            <div class="banner-breadcrum">
+                                <ul>
+                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="/search_jobs" title="Course">Search Jobs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner End -->
+
+        <div class="container job_container bg-white p-0 rounded">
+            <div class="job_card shadow-lg p-4 mt-4 mb-5">
+                <h3 class="text-center mb-3 font-weight-bold border-bottom pb-2">Apply for Job Opportunities</h3>
+
+                <p>We provide access to exclusive <b>job opportunities</b> for skilled IT professionals across India and
+                    abroad. By subscribing to our service, you'll receive <b>personalized job alerts, references, and
+                        hiring notifications</b> directly via WhatsApp and email — for up to <b>1 full year</b>.</p>
+                <p>Whether you're a fresher or an experienced candidate, our network connects you with trusted
+                    recruiters, companies, and hiring platforms. <b>Apply now to accelerate your career with verified
+                        leads and real-time updates.</b></p>
+
+                <form action="/save_information" method="post" enctype="multipart/form-data">
+                    <div class="form-step active" id="step-1">
+                        <h5 class="mb-3 mt-4 font-weight-bold">Candidate's Basic Information : </h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-label">Full Name <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="full_name" placeholder="Full Name"
+                                    required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Mobile Number <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="mobile_number" id="mobile_number"
+                                    placeholder="Mobile" required>
+                                <small id="mobile_error" class="text-danger"></small>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Email <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                    required>
+                                <small id="email_error" class="text-danger"></small>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Date of Birth <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="date" class="form-control" name="date_of_birth" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Nationality <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="nationality" placeholder="Nationality"
+                                    required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Marital Status (Optional)</label>
+                                <select class="form-select form-control" name="marital_status" class="">
+                                    <option value="">Select</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-8">
+                                <label class="form-label">Address <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="address" placeholder="Address" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Pin Code (6 digits) <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="pin_code" placeholder="Pin Code"
+                                    pattern="\d{6}" required>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Have You Completed Any Internship?</label>
+                                <select class="form-select form-control" name="internship_completed" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-3">
+                            <button type="button" class="btn btn-primary mt-3 next-btn">
+                                Continue to Next Step &nbsp; <i class="fa fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-step" id="step-2">
+                        <h5 class="mb-3 font-weight-bold">Select Up to 3 Job Titles That Best Match Your Skills :</h5>
+
+                        <div class="job-list">
+                            <button type="button" class="btn job-btn" data-value="Web Developer">Web Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Frontend Developer">Frontend
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Graphic Designer">Graphic
+                                Designer</button>
+                            <button type="button" class="btn job-btn" data-value="Digital Marketing Executive">Digital
+                                Marketing Executive</button>
+                            <button type="button" class="btn job-btn" data-value="Python Developer">Python
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Node.js Developer">Node.js
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="React.js Developer">React.js
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Power BI Expert">Power BI
+                                Expert</button>
+                            <button type="button" class="btn job-btn" data-value="Cyber Security Expert">Cyber Security
+                                Expert</button>
+                            <button type="button" class="btn job-btn" data-value="Java Developer">Java
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="PHP Developer">PHP Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Mobile App Developer">Mobile App
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Software Tester">Software
+                                Tester</button>
+                            <button type="button" class="btn job-btn" data-value="Technical Support">Technical
+                                Support</button>
+                            <button type="button" class="btn job-btn" data-value="Angular Developer">Angular
+                                Developer</button>
+                            <button type="button" class="btn job-btn" data-value="Any Other">Any Other</button>
+                        </div>
+
+                        <div class="mt-3">
+                            <h6 class="font-weight-bold">Selected Job Titles:</h6>
+                            <div id="selectedJobs" class="selected-jobs"></div>
+                        </div>
+
+                        <small class="text-danger mt-2 d-block" id="jobError"></small>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary prev-btn"><i
+                                    class="fa fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="btn btn-primary next-btn">Next <i
+                                    class="fa fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+
+                    <div class="form-step" id="step-3">
+                        <h5 class="font-weight-bold mb-3">Academic Details : </h5>
+                        <div class="row g-3">
+                            <!-- 12th Standard Details -->
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-school"></i> 12th Board <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="twelfth_board" placeholder="Board Name"
+                                    required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-building"></i> School Name (Optional)</label>
+                                <input type="text" class="form-control" name="school_name"
+                                    placeholder="Enter School Name">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-calendar-alt"></i> Passing Year <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="number" class="form-control" name="twelfth_passing_year" placeholder="Year"
+                                    required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-percentage"></i> Marks (%) <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="number" class="form-control" name="twelfth_marks" placeholder="%" required>
+                            </div>
+
+                            <!-- Graduation Details -->
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-user-graduate"></i> Graduation Degree <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control" name="graduation_degree"
+                                    placeholder="E.g., B.Tech, B.Com" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-university"></i> University Name
+                                    (Optional)</label>
+                                <input type="text" class="form-control" name="graduation_university"
+                                    placeholder="University Name">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-calendar-alt"></i> Passing Year <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="number" class="form-control" name="graduation_passing_year"
+                                    placeholder="Year" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-percentage"></i> Marks (%) <span
+                                        class="text-danger font-weight-bold">*</span></label>
+                                <input type="number" class="form-control" name="graduation_marks" placeholder="%"
+                                    required>
+                            </div>
+
+                            <!-- Master's Details (Optional) -->
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-user-graduate"></i> Master's Degree</label>
+                                <input type="text" class="form-control" name="masters_degree"
+                                    placeholder="E.g., M.Tech, MBA">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fa fa-university"></i> University Name</label>
+                                <input type="text" class="form-control" name="masters_university"
+                                    placeholder="University Name">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-calendar-alt"></i> Passing Year</label>
+                                <input type="number" class="form-control" name="masters_passing_year"
+                                    placeholder="Year">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fa fa-percentage"></i> Marks (%)</label>
+                                <input type="number" class="form-control" name="masters_marks" placeholder="%">
+                            </div>
+
+                            <!-- Certifications -->
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa fa-certificate"></i> Certification Name</label>
+                                <input type="text" class="form-control" name="certification_name"
+                                    placeholder="Certification Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa fa-building"></i> Institute Name</label>
+                                <input type="text" class="form-control" name="certification_institute"
+                                    placeholder="Institute Name">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary prev-btn"><i
+                                    class="fa fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="btn btn-primary next-btn">Next <i
+                                    class="fa fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step-4">
+                        <h5 class="font-weight-bold mb-3">Work Experience :</h5>
+
+                        <!-- Experience Level Options -->
+                        <div class="mb-3">
+                            <label class="form-label">Experience Level</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="experience_level"
+                                        id="exp_fresher" value="Fresher">
+                                    <label class="form-check-label" for="exp_fresher">Fresher</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="experience_level" id="exp_1_3"
+                                        value="1-3 Years">
+                                    <label class="form-check-label" for="exp_1_3">1-3 Years of Experience</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="experience_level" id="exp_3plus"
+                                        value="3+ Years">
+                                    <label class="form-check-label" for="exp_3plus">3+ Years Of Experience</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Work Experience Details Container -->
+                        <div class="work-experience-container" id="workExperienceContainer">
+                            <div class="work-experience-item border p-3 rounded mb-3">
+                                <div class="row g-3">
+                                    <!-- Job Title -->
+                                    <div class="col-md-4">
+                                        <label class="form-label"><i class="fa fa-briefcase"></i> Job Title <span
+                                                class="text-danger font-weight-bold">*</span></label>
+                                        <input type="text" class="form-control" name="job_title"
+                                            placeholder="E.g., Software Engineer" required>
+                                    </div>
+                                    <!-- Company Name -->
+                                    <div class="col-md-4">
+                                        <label class="form-label"><i class="fa fa-building"></i> Company Name <span
+                                                class="text-danger font-weight-bold">*</span></label>
+                                        <input type="text" class="form-control" name="company_name"
+                                            placeholder="Company Name" required>
+                                    </div>
+                                    <!-- Years of Experience -->
+                                    <div class="col-md-4">
+                                        <label class="form-label"><i class="fa fa-calendar-alt"></i> Years of Experience
+                                            <span class="text-danger font-weight-bold">*</span></label>
+                                        <input type="number" class="form-control" name="years_of_experience"
+                                            placeholder="Years" min="0" required>
+                                    </div>
+                                    <!-- Job Description -->
+                                    <div class="col-md-12">
+                                        <label class="form-label"><i class="fa fa-file-alt"></i> Job Description</label>
+                                        <textarea class="form-control" name="job_description" rows="3"
+                                            placeholder="Briefly describe your responsibilities"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add More Experience Button (optional) -->
+                        <button type="button" class="btn btn-outline-primary" id="addExperienceBtn">
+                            <i class="fa fa-plus"></i> Add More Experience
+                        </button>
+
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary prev-btn">
+                                <i class="fa fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next-btn">
+                                Next <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step-5">
+                        <h5 class="mb-3 font-weight-bold">Salary Expectations & Resume Upload : </h5>
+
+                        <div class="p-3 border rounded bg-light">
+                            <!-- Expected Salary -->
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fa fa-money-bill-wave"></i> Expected Salary (In Rs)
+                                </label>
+                                <input type="number" class="form-control" name="expected_salary"
+                                    placeholder="Enter expected salary" min="0">
+                                <small class="text-muted">Please enter your salary expectation in numeric
+                                    format.</small>
+                            </div>
+
+                            <!-- Resume Upload -->
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fa fa-file-upload"></i> Upload Resume (PDF/DOC)
+                                    <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="file" class="form-control pb-3" name="resume" id="resumeUpload"
+                                    accept=".pdf,.doc,.docx" required>
+                                <small class="text-muted">Accepted formats: PDF, DOC, DOCX (Max: 5MB)</small>
+                            </div>
+
+                            <!-- Resume Preview -->
+                            <div id="resumePreview" class="mt-2"></div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-outline-secondary prev-btn">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    Submit <i class="fa fa-check-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                let currentStep = 1;
+                const totalSteps = 5;
+
+                function showStep(step) {
+                    $('.form-step').removeClass('active');
+                    $('#step-' + step).addClass('active');
+                }
+
+                $('.next-btn').click(function () {
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                });
+
+                $('.prev-btn').click(function () {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+
+                $('#jobTitles').change(function () {
+                    let selected = $(this).val();
+                    if (selected.length > 3) {
+                        $('#jobError').text('You can select up to 3 job titles only.');
+                        $(this).val(selected.slice(0, 3));
+                    } else {
+                        $('#jobError').text('');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                let selectedJobs = [];
+
+                $('.job-btn').click(function () {
+                    let job = $(this).attr('data-value');
+
+                    if ($(this).hasClass('selected')) {
+                        // Remove job from list
+                        selectedJobs = selectedJobs.filter(item => item !== job);
+                        $(this).removeClass('selected');
+                    } else {
+                        if (selectedJobs.length < 3) {
+                            selectedJobs.push(job);
+                            $(this).addClass('selected');
+                        } else {
+                            $('#jobError').text('You can only select up to 3 job titles.');
+                            return;
+                        }
+                    }
+
+                    updateSelectedJobs();
+                    $('#jobError').text('');
+                });
+
+                function updateSelectedJobs() {
+                    $('#selectedJobs').html('');
+                    selectedJobs.forEach(job => {
+                        $('#selectedJobs').append(
+                            `<span class="selected-job-badge">${job} <i class="fa fa-times remove-job" data-value="${job}"></i></span>`
+                        );
+                    });
+                }
+
+                $(document).on('click', '.remove-job', function () {
+                    let jobToRemove = $(this).attr('data-value');
+                    selectedJobs = selectedJobs.filter(job => job !== jobToRemove);
+                    $('.job-btn[data-value="' + jobToRemove + '"]').removeClass('selected');
+                    updateSelectedJobs();
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const jobButtons = document.querySelectorAll(".job-btn");
+                const selectedJobsContainer = document.getElementById("selectedJobs");
+                const jobError = document.getElementById("jobError");
+                const nextButton = document.querySelector("#step-2 .next-btn");
+                let selectedJobs = [];
+
+                jobButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+                        const jobTitle = this.getAttribute("data-value");
+
+                        if (selectedJobs.includes(jobTitle)) {
+                            // Remove if already selected
+                            selectedJobs = selectedJobs.filter(job => job !== jobTitle);
+                            this.classList.remove("btn-success");
+                            this.classList.add("btn-primary");
+                        } else {
+                            if (selectedJobs.length < 3) {
+                                // Add if less than 3 selected
+                                selectedJobs.push(jobTitle);
+                                this.classList.remove("btn-primary");
+                                this.classList.add("btn-success");
+                            } else {
+                                jobError.innerText = "You can select up to 3 job titles only.";
+                                return;
+                            }
+                        }
+
+                        // Update UI
+                        selectedJobsContainer.innerHTML = selectedJobs.map(job => `<span class="badge bg-success me-2">${job}</span>`).join("");
+                        jobError.innerText = selectedJobs.length === 0 ? "Please select at least one job title." : "";
+
+                        // Enable/Disable Next Button
+                        nextButton.disabled = selectedJobs.length === 0;
+                    });
+                });
+
+                // Initially disable Next button
+                nextButton.disabled = true;
+            });
+
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#addExperienceBtn').click(function () {
+                    let experienceHTML = `
+                <div class="work-experience-item border p-3 rounded mb-3">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label"><i class="fa fa-briefcase"></i> Job Title <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="text" class="form-control" placeholder="E.g., Software Engineer" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label"><i class="fa fa-building"></i> Company Name <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="text" class="form-control" placeholder="Company Name" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label"><i class="fa fa-calendar-alt"></i> Years of Experience <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="number" class="form-control" placeholder="Years" min="0" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label"><i class="fa fa-file-alt"></i> Job Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Briefly describe your responsibilities"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 remove-experience-btn"><i class="fa fa-trash"></i> Remove</button>
+                </div>`;
+                    $('.work-experience-container').append(experienceHTML);
+                });
+
+                $(document).on('click', '.remove-experience-btn', function () {
+                    $(this).closest('.work-experience-item').remove();
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById("resumeUpload").addEventListener("change", function () {
+                let file = this.files[0];
+                let fileSize = file.size / 1024 / 1024; // Convert to MB
+                let fileName = file.name;
+                let previewContainer = document.getElementById("resumePreview");
+
+                if (fileSize > 5) {
+                    alert("File size exceeds 5MB. Please upload a smaller file.");
+                    this.value = "";
+                    previewContainer.innerHTML = "";
+                    return;
+                }
+
+                previewContainer.innerHTML = `
+            <div class="alert alert-info mt-2">
+                <i class="fa fa-file"></i> Selected File: <strong>${fileName}</strong>
+            </div>`;
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const steps = document.querySelectorAll(".form-step");
+                const nextBtns = document.querySelectorAll(".next-btn");
+                const prevBtns = document.querySelectorAll(".prev-btn");
+
+                let currentStep = 0;
+
+                function showStep(step) {
+                    steps.forEach((s, index) => {
+                        s.style.display = index === step ? "block" : "none";
+                    });
+                }
+
+                function validateStep(step) {
+                    let inputs = steps[step].querySelectorAll("input[required], select[required], textarea[required]");
+                    let isValid = true;
+
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.classList.add("is-invalid");
+                        } else {
+                            input.classList.remove("is-invalid");
+                        }
+                    });
+
+                    return isValid;
+                }
+
+                nextBtns.forEach((btn, index) => {
+                    btn.addEventListener("click", function () {
+                        if (validateStep(currentStep)) {
+                            currentStep++;
+                            showStep(currentStep);
+                        }
+                    });
+                });
+
+                prevBtns.forEach(btn => {
+                    btn.addEventListener("click", function () {
+                        currentStep--;
+                        showStep(currentStep);
+                    });
+                });
+
+                showStep(currentStep);
+            });
+
+        </script>
+
+        <!-- JavaScript to Toggle Work Experience Section -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const experienceRadios = document.getElementsByName("experience_level");
+                const workExpContainer = document.getElementById("workExperienceContainer");
+
+                // When an experience radio button is changed, toggle the work experience container
+                experienceRadios.forEach(radio => {
+                    radio.addEventListener("change", function () {
+                        if (this.value === "Fresher") {
+                            workExpContainer.style.display = "none";
+                            // Remove required attribute from all inputs and textareas in work experience container
+                            workExpContainer.querySelectorAll("input, textarea").forEach(field => {
+                                field.removeAttribute("required");
+                            });
+                        } else {
+                            workExpContainer.style.display = "block";
+                            // Re-add required attributes to specific fields
+                            workExpContainer.querySelector("input[name='job_title']").setAttribute("required", "required");
+                            workExpContainer.querySelector("input[name='company_name']").setAttribute("required", "required");
+                            workExpContainer.querySelector("input[name='years_of_experience']").setAttribute("required", "required");
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById("mobile_number").addEventListener("input", function () {
+                let mobile = this.value;
+                let mobilePattern = /^[6-9]\d{9}$/;
+                let errorElement = document.getElementById("mobile_error");
+
+                if (!mobilePattern.test(mobile)) {
+                    errorElement.textContent = "Enter a valid 10-digit mobile number starting with 6-9.";
+                    this.classList.add("is-invalid");
+                } else {
+                    errorElement.textContent = "";
+                    this.classList.remove("is-invalid");
+                    this.classList.add("is-valid");
+                }
+            });
+
+            document.getElementById("email").addEventListener("input", function () {
+                let email = this.value;
+                let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let errorElement = document.getElementById("email_error");
+
+                if (!emailPattern.test(email)) {
+                    errorElement.textContent = "Enter a valid email address.";
+                    this.classList.add("is-invalid");
+                } else {
+                    errorElement.textContent = "";
+                    this.classList.remove("is-invalid");
+                    this.classList.add("is-valid");
+                }
+            });
+        </script>
+
+        <!-- FontAwesome for close icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </body>
+
+    </html>
+
+    <%- include('footer.ejs') %>

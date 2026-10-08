@@ -1,0 +1,63 @@
+<%- include('navbar.ejs') %>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Course Registration List</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Action</th>
+                                <th>Sr.No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Course</th>
+                                <th>L-M</th>
+                                <!-- <th>Message</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < registrations.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                        <a style="text-decoration: none;"
+                                            href="/admin/delete_registration/<%= registrations[i].registration_id %>"
+                                            onclick="return confirm('Are You Sure')">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_name %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_email %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].student_mobile %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].selected_course %>
+                                    </td>
+                                    <td>
+                                        <%= registrations[i].course_mode %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('footer.ejs') %>

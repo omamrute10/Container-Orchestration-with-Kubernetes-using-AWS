@@ -1,0 +1,22 @@
+<%- include('navbar.ejs') %>
+
+    <div class="container p-5 mt-5 border shadow bg-white font-weight-bold" style="color: black;width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Disclaimer Details</h3>
+            </div>
+            <div class="col-12">
+                <form action="/admin/save_disclaimer" method="post" enctype="multipart/form-data">
+                    <label for="">Enter Details</label>
+                    <textarea name="disclaimer_details" rows="5"  class="form-control"><%- disclaimer.disclaimer_details %></textarea>
+                    <br>
+                    <div class="text-center">
+                        <button class="btn btn-primary font-weight-bold">Save Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,66 @@
+<%- include('navbar.ejs') %>
+
+    <form action="/admin/save_product" method="post" enctype="multipart/form-data" style="width: 100%;">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Recent Work</h3>
+                </div>
+                <div class="col-md-12 mb-4 mt-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="product_image" class="form-control">
+                </div>
+                <div class="col-md-12 mt-4 text-center">
+                    <button class="font-weight-bold btn btn-primary">Add Details</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Recent Work List</h3>
+            </div>
+            <div class="col-12">
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Action</th>
+                            <th>Sr.No</th>
+                            <th>Work Image</th>
+                        </tr>
+                    </thead>
+                    <tbody class="p-0">
+                        <% for(var i=0; i < product.length; i++) { %>
+                            <tr class="text-dark">
+                                <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                    <a style="text-decoration: none;"
+                                        href="/admin/delete_product/<%= product[i].product_id %>"
+                                        onclick="return confirm('Are You Sure')">
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                    <a style="text-decoration: none;"
+                                        href="/admin/edit_product/<%= product[i].product_id %>">
+                                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <img src="/uploads/<%= product[i].product_image %>" alt="Card Image"
+                                        style="max-width: 120px;height: 60px;">
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>

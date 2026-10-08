@@ -1,0 +1,52 @@
+<%- include('navbar.ejs') %>
+
+<div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Registrations For Internships</h3>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive ">
+
+            <table class="table table-bordered table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Action</th>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>College</th>
+                        <th>Degree</th>
+                        <th>Year</th>
+                        <th>Internships</th>
+                    </tr>
+                </thead>
+                <tbody class="p-0">
+                    <% for(var i=0; i < internships.length; i++) { %>
+                        <tr class="text-dark">
+                            <td class="text-center" >
+                                <a style="text-decoration: none;"
+                                    href="/admin/delete_internship_registration/<%= internships[i].internships_registrations_id %>"
+                                    onclick="return confirm('Are You Sure')">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                            </td>
+                            <td><%= i + 1 %></td>
+                            <td><%= internships[i].student_name %></td>
+                            <td><%= internships[i].student_mobile %></td>
+                            <td><%= internships[i].student_email %></td>
+                            <td><%= internships[i].student_college_name %></td>
+                            <td><%= internships[i].student_degree %></td>
+                            <td><%= internships[i].student_academic_year %></td>
+                            <td><%= internships[i].student_selected_internships %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+</div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,66 @@
+<%- include('navbar.ejs') %>
+
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4"> Samarth College Guest Lecture
+                    Registration List</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center">Sr.No</th>
+                                <th style="white-space: nowrap; width: 10%;">First Name</th>
+                                <th style="white-space: nowrap; width: 10%;">Last Name</th>
+                                <th style="white-space: nowrap; width: 10%;">Email</th>
+                                <th style="white-space: nowrap; width: 10%;">Mobile</th>
+                                <th style="white-space: nowrap; width: 10%;">Career</th>
+                                <th style="white-space: nowrap; width: 10%;">Internship</th>
+                                <th style="white-space: nowrap; width: 10%;">Guest Lecture</th>
+                                <th style="white-space: nowrap; width: 10%;">Job Alerts</th>
+                            </tr>
+                        </thead>
+                        <tbody class="p-0">
+                            <% for(var i=0; i < samarth_guest_lecture_reg.length; i++) { %>
+                                <tr class="text-dark">
+                                    <td class="text-center">
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].first_name %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].last_name %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].email_id %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].mobile %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].career %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].internship %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].guest_lecture %>
+                                    </td>
+                                    <td>
+                                        <%= samarth_guest_lecture_reg[i].job_alerts %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('footer.ejs') %>

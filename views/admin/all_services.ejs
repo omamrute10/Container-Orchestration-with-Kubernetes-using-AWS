@@ -1,0 +1,250 @@
+<%- include('navbar.ejs') %>
+<div id="add-service-page" class="container-fluid">
+
+    <style>
+        #add-service-page {
+            padding: 30px;
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #add-service-page .white_shd {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Top Title Sub-Header Panel Layout Styling */
+        #add-service-page .full.graph_head {
+            background-color: #dbeafe; 
+            border: 1px solid #bfdbfe;
+            padding: 15px 25px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        #add-service-page .heading1 h2 {
+            color: #1e3a8a; 
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* Form Content Layout Structural Elements */
+        #add-service-page .card {
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border-radius: 6px !important;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background: #fff;
+        }
+
+        /* Subsection Title Headings Style */
+        #add-service-page .card-header {
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 20px !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* Color Adjustments to Sync Section Contexts */
+        #add-service-page .card-header.bg-primary { background-color: #0d6efd !important; }
+        #add-service-page .card-header.bg-success { background-color: #198754 !important; }
+        #add-service-page .card-header.bg-warning { background-color: #ffc107 !important; color: #212529 !important; }
+        #add-service-page .card-header.bg-info    { background-color: #0dcaf0 !important; }
+
+        #add-service-page .card-body {
+            padding: 25px !important;
+        }
+
+        /* Form Labels & Interactive Input Fields styling */
+        #add-service-page label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b; 
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        #add-service-page .form-control {
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 4px !important;
+            padding: 10px 14px !important;
+            font-size: 14px !important;
+            color: #334155;
+            background-color: #fff;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        #add-service-page .form-control:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+            outline: none;
+        }
+
+        #add-service-page textarea.form-control {
+            resize: vertical;
+        }
+
+        /* Dynamic FAQ Loop Iteration Blocks */
+        #add-service-page .border.p-3.mb-4 {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 6px;
+            background-color: #f8fafc;
+        }
+
+        #add-service-page .border.p-3.mb-4 h5 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        #add-service-page input[type="file"].form-control {
+            padding: 6px 12px !important;
+        }
+
+        /* Centered Admin Primary Execution Button Control */
+        #add-service-page .btn-primary.btn-lg {
+            background-color: #007bff !important;
+            border-color: #007bff !important;
+            color: #fff !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            padding: 10px 40px !important;
+            border-radius: 4px !important;
+            display: block;
+            margin: 30px auto 10px auto; 
+            box-shadow: 0 4px 6px -1px rgba(0, 123, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        #add-service-page .btn-primary.btn-lg:hover {
+            background-color: #0056b3 !important;
+            border-color: #0056b3 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px -1px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Core Overrides to Seamlessly Align Rich Text Editors */
+        #add-service-page .ck.ck-editor__main>.ck-editor__editable {
+            min-height: 240px;
+            background: #fff !important;
+            border-color: #cbd5e1 !important;
+        }
+    </style>
+    <div class="white_shd full margin_bottom_30">
+        <div class="full graph_head">
+            <div class="heading1 margin_0">
+                <h2>Add New Service</h2>
+            </div>
+        </div>
+        
+        <div class="full price_table padding_infor_info">
+            <form action="/admin/save_service" method="POST" enctype="multipart/form-data">
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        Basic Information
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Service Title</label>
+                                <input type="text" name="service_title" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Service Slug</label>
+                                <input type="text" name="service_slug" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Service Image</label>
+                                <input type="file" name="service_image" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Status</label>
+                                <select name="status" class="form-control">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <label>Description</label>
+                        <textarea name="service_description" id="service_description" class="form-control" rows="6"></textarea>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        Service Points
+                    </div>
+                    <div class="card-body">
+                        <input type="text" name="point1" class="form-control mb-3" placeholder="Point 1">
+                        <input type="text" name="point2" class="form-control mb-3" placeholder="Point 2">
+                        <input type="text" name="point3" class="form-control mb-3" placeholder="Point 3">
+                        <input type="text" name="point4" class="form-control" placeholder="Point 4">
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        SEO Settings
+                    </div>
+                    <div class="card-body">
+                        <label>SEO Title</label>
+                        <input type="text" name="seo_title" class="form-control mb-3">
+                        
+                        <label>Meta Description</label>
+                        <textarea name="meta_description" class="form-control mb-3" rows="4"></textarea>
+                        
+                        <label>Meta Keywords</label>
+                        <textarea name="meta_keywords" class="form-control mb-3" rows="4"></textarea>
+                        
+                        <label>SEO Content</label>
+                        <textarea name="seo_content" id="seo_content" class="form-control" rows="12"></textarea>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        FAQ Section
+                    </div>
+                    <div class="card-body">
+                        <% for(let i=1; i<=10; i++) { %>
+                            <div class="border p-3 mb-4">
+                                <h5>FAQ <%= i %></h5>
+                                <input type="text" name="faq_question<%= i %>" class="form-control mb-2" placeholder="Question">
+                                <textarea name="faq_answer<%= i %>" class="form-control" rows="3" placeholder="Answer"></textarea>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Save Service
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#seo_content'))
+        .catch(error => { console.error(error); });
+
+    ClassicEditor
+        .create(document.querySelector('#service_description'))
+        .catch(error => { console.error(error); });
+</script>
+
+<%- include('footer.ejs') %>

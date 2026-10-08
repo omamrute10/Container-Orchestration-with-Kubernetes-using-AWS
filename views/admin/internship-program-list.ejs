@@ -1,0 +1,486 @@
+<%- include('navbar.ejs') %>
+
+    <style>
+        /* Container + header */
+        .reg-card {
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+        }
+
+        .reg-header {
+            background: linear-gradient(90deg, #5b21b6, #7c3aed);
+            color: #fff;
+            padding: 18px 24px;
+        }
+
+        .reg-header h3 {
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: .2px;
+            color: white;
+        }
+
+        /* Table visuals */
+        .table-modern {
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .table-modern thead th {
+            position: sticky;
+            top: 0;
+            background: #2d0659;
+            color: #fff;
+            border: 0;
+            font-weight: 600;
+            padding: 12px 10px;
+            vertical-align: middle;
+        }
+
+        .table-modern tbody td {
+            padding: 10px 12px;
+            vertical-align: middle;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .table-modern tbody tr:hover {
+            background: rgba(124, 58, 237, 0.06);
+        }
+
+        .badge-mode {
+            display: inline-block;
+            padding: 6px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+            background: linear-gradient(90deg, #e9d5ff, #ede9fe);
+            color: #5b21b6;
+            border: 1px solid rgba(91, 33, 182, 0.08);
+        }
+
+        .badge-cert {
+            display: inline-block;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: #f3f4f6;
+            color: #111827;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        /* controls row */
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 14px 0;
+        }
+
+        .input-search {
+            width: 350px;
+            max-width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: none;
+        }
+
+        /* result count pill */
+        .count-pill {
+            background: rgba(91, 33, 182, 0.08);
+            color: #5b21b6;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* action icons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* responsive tweaks */
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .input-search {
+                width: 100%;
+            }
+
+            .table-modern thead th {
+                font-size: 13px;
+                padding: 10px 6px;
+            }
+
+            .table-modern tbody td {
+                font-size: 13px;
+                padding: 10px 6px;
+            }
+        }
+
+        .status-done {
+            background-color: #d4edda !important;
+            color: #155724 !important;
+            border-color: #c3e6cb !important;
+        }
+
+        .status-not-interested {
+            background-color: #f8d7da !important;
+            color: #721c24 !important;
+            border-color: #f5c6cb !important;
+        }
+    </style>
+
+    <div class="container-fluid mt-5">
+        <div class="reg-card">
+            <div class="reg-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Advanced Internship Registrations</h3>
+                    <div class="text-white">Latest registrations shown first • Clean, responsive view</div>
+                </div>
+                <div class="text-right">
+                    <div class="text-white font-weight-bold">Total registrations</div>
+                    <div style="font-weight:700; font-size:18px;">
+                        <%= intern_reg.length %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <!-- Controls -->
+                <div class="controls">
+                    <input id="liveSearch" class="input-search" type="text"
+                        placeholder="Search name, phone, mode, certifications..." />
+
+                    <button id="clearBtn" class="btn btn-outline-secondary" type="button">Clear</button>
+
+                    <div class="ml-auto d-flex align-items-center" style="gap:10px;">
+                        <div class="count-pill" id="resultsCount">
+                            <%= intern_reg.length %> Results
+                        </div>
+                        <!-- Export CSV (client-side) -->
+                        <button id="exportCsv" class="btn btn-sm btn-primary">Export CSV</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table-modern w-100" id="dataTable" role="table" aria-label="Registrations table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Sr.No</th>
+                                <th style="width: 200px;">Student</th>
+                                <th>Mobile</th>
+                                <th>Mode</th>
+                                <!-- <th colspan="3">Certifications</th> -->
+                                <!-- <th>Registered At</th> -->
+                                <th style="width: 184px;">Payment Status</th>
+                                <th style="width: 184px;">College Name</th>
+                                <th style="width: 184px;">HOD Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <% for(var i=0; i < intern_reg.length; i++) { const r=intern_reg[i]; %>
+                                <tr class="data-row" data-id="<%= r.id %>">
+
+                                    <td class="text-center">
+                                        <%= i + 1 %>
+                                    </td>
+
+                                    <!-- Student with avatar initials -->
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div>
+                                                <div style="font-weight:600;">
+                                                    <%= r.student_name %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div style="font-weight:600;">
+                                            <%= r.phone_number %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge-mode">
+                                            <%= r.learning_mode.split(" ")[0] %>
+                                        </span>
+                                    </td>
+                                    <!-- <td>
+                                        <span class=" badge-cert">
+                                                <%= r.cert_1 ? r.cert_1.split(" ")[0] : '-' %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class=" badge-cert">
+                                                    <%= r.cert_2 ? r.cert_2.split(" ")[0] : '-' %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class=" badge-cert">
+                                                        <%= r.cert_3 ? r.cert_3.split(" ")[0] : '-' %>
+                                        </span>
+                                    </td> -->
+                                    <!-- <td class=" small-muted" style="text-transform: upp;">
+                                                            <%= new Date(r.created_at).toLocaleDateString() %>
+
+                                    </td> -->
+
+                                    <td>
+                                        <select class="form-control payment-select">
+
+                                            <option value="">Select Status</option>
+                                            <option value="Payment Done" <%=r.payment_status=="Payment Done"
+                                                ?"selected":"" %>>Payment Done</option>
+                                            <option value="Ringing but not responded"
+                                                <%=r.payment_status=="Ringing but not responded" ?"selected":"" %>
+                                                >Ringing but not responded</option>
+                                            <option value="Promised to pay" <%=r.payment_status=="Promised to pay"
+                                                ?"selected":"" %>>Promised to pay</option>
+                                            <option value="Call again" <%=r.payment_status=="Call again" ?"selected":""
+                                                %>>Call again</option>
+                                            <option value="Not interested" <%=r.payment_status=="Not interested"
+                                                ?"selected":"" %>>Not interested</option>
+                                        </select>
+
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="form-control college-input"
+                                            value="<%= r.college_name || '' %>" placeholder="Enter College Name">
+
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="form-control hod-input"
+                                            value="<%= r.hod_name || '' %>" placeholder="Enter HOD Name">
+                                    </td>
+
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer.ejs') %>
+
+        <script>
+            // Debounce helper
+            function debounce(fn, delay) {
+                let t;
+                return function (...args) {
+                    clearTimeout(t);
+                    t = setTimeout(() => fn.apply(this, args), delay);
+                }
+            }
+
+            const searchInput = document.getElementById('liveSearch');
+            const tableBody = document.getElementById('tableBody');
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const resultsCount = document.getElementById('resultsCount');
+            const clearBtn = document.getElementById('clearBtn');
+            const exportBtn = document.getElementById('exportCsv');
+
+            function updateCount(visible) {
+                resultsCount.textContent = visible + (visible === 1 ? ' Result' : ' Results');
+            }
+
+            function normalize(s) {
+                return (s || "").toString().toLowerCase();
+            }
+
+            function performSearch() {
+                const q = normalize(searchInput.value).trim();
+                let visible = 0;
+
+                rows.forEach(row => {
+
+                    // Static text
+                    const studentName = normalize(row.children[1].innerText);
+                    const mobile = normalize(row.children[2].innerText);
+                    const mode = normalize(row.children[3].innerText);
+
+                    // 🔴 Payment Status (SELECTED OPTION TEXT)
+                    const paymentSelect = row.querySelector(".payment-select");
+                    const paymentStatus = paymentSelect
+                        ? normalize(paymentSelect.options[paymentSelect.selectedIndex].text)
+                        : "";
+
+                    // Dynamic inputs
+                    const collegeName = normalize(row.querySelector(".college-input")?.value);
+                    const hodName = normalize(row.querySelector(".hod-input")?.value);
+
+                    // Combine all searchable text
+                    const combinedText = `
+            ${studentName}
+            ${mobile}
+            ${mode}
+            ${paymentStatus}
+            ${collegeName}
+            ${hodName}
+        `;
+
+                    // ✅ FINAL MATCH LOGIC
+                    const isMatch =
+                        q === "" // search box empty → show all
+                        || combinedText.includes(q);
+
+                    if (isMatch) {
+                        row.style.display = "";
+                        visible++;
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+
+                updateCount(visible);
+            }
+
+
+
+            // debounce for smoother typing
+            const debouncedSearch = debounce(performSearch, 200);
+            searchInput.addEventListener("input", debounce(performSearch, 200));
+
+
+            document.addEventListener("change", function (e) {
+                if (e.target.classList.contains("payment-select")) {
+                    performSearch();
+                }
+            });
+
+
+            clearBtn.addEventListener("click", function () {
+                searchInput.value = "";
+                performSearch();
+                searchInput.focus();
+            });
+
+            // Export visible rows to CSV (client-side)
+            exportBtn.addEventListener('click', function () {
+                const visibleRows = Array.from(document.querySelectorAll('#tableBody tr')).filter(r => r.style.display !== 'none');
+                if (visibleRows.length === 0) {
+                    alert('No rows to export');
+                    return;
+                }
+                const headers = ['Sr.No', 'Student Name', 'Mobile', 'Mode', 'Cert 1', 'Cert 2', 'Cert 3', 'Registered At'];
+                const csv = [];
+                csv.push(headers.join(','));
+
+                visibleRows.forEach(r => {
+                    const cells = r.querySelectorAll('td');
+                    // Map only relevant columns (adjust if markup changed)
+                    const rowArr = [
+                        cells[0].innerText.trim().replace(/,/g, ''),
+                        cells[1].innerText.trim().replace(/,/g, ' '),
+                        cells[2].innerText.trim().replace(/,/g, ''),
+                        cells[3].innerText.trim().replace(/,/g, ' '),
+                        cells[4].innerText.trim().replace(/,/g, ' '),
+                        cells[5].innerText.trim().replace(/,/g, ' '),
+                        cells[6].innerText.trim().replace(/,/g, ' '),
+                        cells[7].innerText.trim().replace(/,/g, ' ')
+                    ];
+                    csv.push(rowArr.join(','));
+                });
+
+                const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'registrations.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+
+            // initial count set
+            updateCount(rows.length);
+        </script>
+
+        <script>
+            document.addEventListener("change", function (e) {
+
+                if (
+                    e.target.classList.contains("payment-select") ||
+                    e.target.classList.contains("college-input") ||
+                    e.target.classList.contains("hod-input")
+                ) {
+                    const row = e.target.closest("tr");
+                    const id = row.dataset.id;
+
+                    const payment_status = row.querySelector(".payment-select").value;
+                    const college_name = row.querySelector(".college-input").value;
+                    const hod_name = row.querySelector(".hod-input").value;
+
+                    fetch("/admin/update-internship-status", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            id,
+                            payment_status,
+                            college_name,
+                            hod_name
+                        })
+                    });
+                }
+
+            });
+        </script>
+
+        <script>
+            function applyPaymentColor(select) {
+                select.classList.remove("status-done", "status-not-interested");
+
+                if (select.value === "Payment Done") {
+                    select.classList.add("status-done");
+                }
+
+                if (select.value === "Not interested") {
+                    select.classList.add("status-not-interested");
+                }
+            }
+
+            // Page load वर आधीच saved value ला color
+            document.querySelectorAll(".payment-select").forEach(select => {
+                applyPaymentColor(select);
+            });
+
+            // Change झाल्यावर color change
+            document.addEventListener("change", function (e) {
+                if (e.target.classList.contains("payment-select")) {
+                    applyPaymentColor(e.target);
+                }
+            });
+        </script>

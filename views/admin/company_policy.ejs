@@ -1,0 +1,84 @@
+<%- include('navbar.ejs') %>
+
+    <form action="/admin/save_company_policy" method="post" enctype="multipart/form-data">
+
+        <div class="container border shadow p-5 mt-5 bg-white" style="width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-center alert alert-primary p-3">Our Company Policy</h3>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label class="font-weight-bold" for="">Upload Image</label>
+                    <input type="file" accept="image/*" name="company_policy_image" value="" class="form-control">
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label class="font-weight-bold" for="">Enter Title</label>
+                    <input type="text" name="company_policy_title" class="form-control">
+                </div>
+                <div class="col-md-12 mt-3">
+                    <label class="font-weight-bold" for="">Enter Description</label>
+                    <textarea name="company_policy_description" class="form-control"></textarea>
+                </div>
+                <div class="col-md-12 mt-4 text-center">
+                    <button class="font-weight-bold btn btn-primary">Save Details</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container border shadow mt-5 p-4 bg-white" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold text-center alert alert-primary p-3 mb-4">Our Company Policy</h3>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive ">
+
+                <table class="table table-bordered table-striped mt-2">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Action</th>
+                            <th>Sr.No</th>
+                            <th>Image</th>
+                            <th>Policy Title</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="p-0">
+                        <% for(var i=0; i < policy.length; i++) { %>
+                            <tr class="text-dark">
+                                <td class="text-center" style="white-space: nowrap; width: 10%;">
+                                    <a style="text-decoration: none;"
+                                        href="/admin/delete_company_policy/<%= policy[i].policy_id %>"
+                                        onclick="return confirm('Are You Sure')">
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                    <a style="text-decoration: none;"
+                                        href="/admin/edit_company_policy/<%= policy[i].policy_id %>">
+                                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <img src="/uploads/<%= policy[i].company_policy_image %>" alt="Card Image"
+                                        style="max-width: 120px;height: 40px;">
+                                </td>
+                                <td>
+                                    <%= policy[i].company_policy_title %>
+                                </td>
+                                <td>
+                                    <%= policy[i].company_policy_description %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+</div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('footer.ejs') %>

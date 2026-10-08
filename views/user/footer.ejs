@@ -1,0 +1,403 @@
+<!-- Apply Now Start -->
+<section class="apply-now-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="apply-now-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <div class="apply-now-shape animate-this">
+                        <img src="/user_assets/images/newsletter-bg-shape.svg" width="838" height="488"
+                            alt="Apply Now Background Shape">
+                    </div>
+                    <div class="apply-now-content">
+                        <div class="apply-now-image-box">
+                            <img src="/user_assets/images/apply-now-image.png" width="305" height="287"
+                                alt="Apply Now Image">
+                        </div>
+                       <div class="apply-now-text">
+    <div class="sec-title">
+        <!-- 1) Hide "Apply Now" text on service detail screen, show on all others -->
+        <% if (typeof service === 'undefined') { %>
+            <span class="sub-title">Apply Now</span>
+        <% } %>
+
+        <h3 class="h3-title">
+            <% if (typeof service !== 'undefined' && service.cta_title) { %>
+                <%= service.cta_title %>
+            <% } else { %>
+                Get Your Best Skills Certificate Now!
+            <% } %>
+        </h3>
+    </div>
+    
+    <div class="apply-now-btn">
+        <!-- 2) Custom WhatsApp redirect for service screen; standard route fallback for others -->
+        <% if (typeof service !== 'undefined') { %>
+            <% 
+                
+                let whatsappText = encodeURIComponent("Hello, I am interested in your " + service.service_title + " service. Please provide more details.");
+            %>
+            <a href="https://wa.me/919167776161?text=<%= whatsappText %>" target="_blank" class="sec-btn">
+                <span>Get Started</span>
+            </a>
+        <% } else { %>
+            <a href="/get-certificate" class="sec-btn">
+                <span>Get Started</span>
+            </a>
+        <% } %>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Apply Now End -->
+
+<!-- Footer Start -->
+<footer class="site-footer">
+    <div class="top-footer">
+        <div class="footer-bg-aliment-wp">
+            <!-- (Retain all the aliment shape images as is) -->
+            <div class="bg-aliment-1 rotate-animation">
+                <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+            </div>
+            <!-- ... other aliment divs ... -->
+            <div class="bg-aliment-11 animate-this">
+                <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <a href="index.html" title="Kanak Digifex">
+                                <img src="/user_assets/images/logo-2-white.png" width="201" height="36"
+                                    alt="Kanak Digifex">
+                            </a>
+                        </div>
+                       <div class="footer-logo-about-text">
+
+    <p>
+        Kanak Digifex is your trusted partner in IT solutions, training,
+        and digital innovation. We empower individuals and businesses
+        across India with cutting-edge technology services and expert guidance.
+    </p>
+
+    <p>
+        We specialize in web development, mobile app development,
+        software solutions, digital marketing, and emerging technologies.
+        We also provide industry-focused corporate training programs,
+        technical workshops, and skill-development sessions.
+    </p>
+
+</div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="our-link-box">
+                        <div class="our-link-content">
+                            <h4 class="underline-title">Quick Links</h4>
+                            <ul>
+                                <li><a href="/" title="Home">Home</a></li>
+                                <li><a href="/about" title="About Us">About Us</a></li>
+                                <li><a href="/courses" title="Courses">Courses</a></li>
+                                <li><a href="/gallery" title="Gallery">Gallery</a></li>
+                                <li><a href="/certification" title="Certification">Certification</a></li>
+                                <li><a href="/workshop" title="Workshops">Workshops</a></li>
+                                <li><a href="/contact" title="Contact Us">Contact Us</a></li>
+                                <li><a href="/search_jobs" title="Search Jobs">Search Jobs</a></li>
+                                <li><a href="/services" title="Our Services">Our Services</a></li>
+                                <li><a href="/courses" title="Corporate Training">Corporate Training</a></li>
+                                <li><a href="/clients2" title="Our Clients">Our Clients</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="our-link-box">
+                        <div class="our-link-content">
+                            <h4 class="underline-title">Top Categories</h4>
+                            <ul>
+                                <li><a href="/courses" title="Web Development">Web Development</a></li>
+                                <li><a href="/courses" title="Data Science & Analytics">Data Science & Analytics</a></li>
+                                <li><a href="/courses" title="Digital Marketing">Digital Marketing</a></li>
+                                <li><a href="/courses" title="Graphic Design">Graphic Design</a></li>
+                                <li><a href="/courses" title="Cloud Computing">Cloud Computing</a></li>
+                                <li><a href="/courses" title="Software Testing">Software Testing</a></li>
+                                <li><a href="/courses" title="Mobile App Development">Mobile App Development</a></li>
+                                <li><a href="/courses" title="AI & IoT Development">AI & IoT Development</a></li>
+                                <li><a href="/courses" title="Corporate IT Training">Corporate IT Training</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="contact-info-box">
+                        <h4 class="underline-title">Contact Us</h4>
+                        <ul>
+                            <!-- <li>
+                                <span class="contact-icon">
+                                    <img src="/user_assets/images/location-icon-2.svg" width="16" height="18"
+                                        alt="Location Icon">
+                                </span>
+                                <span class="contact-text">
+                                    <a href="https://maps.app.goo.gl/w1bz1cFsFyuKoFb38"
+                                        title="Kanak Digifex Office, Ahilyanagar, Indore" target="_blank">
+                                        Office No.2 - 1st Floor, King Corner, Sonanagar Chowk, Kushthadham Road, Savedi,
+                                        Ahilyanagar, 414003
+                                    </a>
+                                </span>
+                            </li> -->
+
+                           <!-- Head Office Row -->
+<li class="address-item">
+    <span class="contact-icon">
+        <img src="/user_assets/images/location-icon-2.svg" width="16" height="18" alt="Head Office Icon">
+    </span>
+    <span class="contact-text">
+        <strong style="color: #fff; display: block; margin-bottom: 2px;">Head Office:</strong>
+        <a href="https://maps.google.com" title="Head Office - Mumbai" target="_blank">
+            Office No. 96, Cine Prime Mall, Kanakia Road, Near PVR Cinemas, Beverly Park, Mira Road East, Mumbai - 401107
+        </a>
+    </span>
+</li>
+
+<!-- Branch Office Row -->
+<li class="address-item">
+    <span class="contact-icon">
+        <!-- Building/Company Icon for Branch -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+            <path d="M9 22v-4h6v4"></path>
+            <path d="M8 6h.01"></path>
+            <path d="M16 6h.01"></path>
+            <path d="M8 10h.01"></path>
+            <path d="M16 10h.01"></path>
+            <path d="M8 14h.01"></path>
+            <path d="M16 14h.01"></path>
+        </svg>
+    </span>
+    <span class="contact-text">
+        <strong style="color: #fff; display: block; margin-bottom: 2px;">Branch Office:</strong>
+        <a href="https://maps.app.goo.gl/w1bz1cFsFyuKoFb38" title="Office No. 2 - Ahilyanagar" target="_blank">
+            Office No. 2, 1st Floor, King Corner, Sonanagar Chowk, Kushthadham Road, Savedi, Ahilyanagar, 414003
+        </a>
+    </span>
+</li>
+                            <li>
+                                <span class="contact-icon">
+                                    <img src="/user_assets/images/phone-icon.svg" width="19" height="19"
+                                        alt="Phone Icon">
+                                </span>
+                                <span class="contact-text">
+                                    <a href="tel:+919167776161" title="+91 916 777 6161">+91 916 777 6161</a>
+                                    <a href="tel:+917770008009" title="+91 777 000 8009">+91 777 000 8009</a>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="contact-icon">
+                                    <img src="/user_assets/images/mail-icon.svg" width="19" height="13" alt="Mail Icon">
+                                </span>
+                                <span class="contact-text">
+                                    <a href="mailto:contact@kanakdigifex.com"
+                                        title="contact@kanakdigifex.com">contact@kanakdigifex.com</a>
+                                    <a href="mailto:support@kanakdigifex.com"
+                                        title="support@kanakdigifex.com">support@kanakdigifex.com</a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Disclaimer Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="disclaimer-card">
+
+            <div class="disclaimer-header">
+                <span class="disclaimer-badge">Disclaimer</span>
+            </div>
+
+            <p class="disclaimer-text">
+                <strong>Kanak Digifex</strong> is an IT software development and technology services company
+                providing software solutions, digital services, training programs, and workshops.
+                The products, services, goods, business activities, claims, and commitments displayed
+                on our clients' websites are the sole responsibility of the respective clients.
+                Kanak Digifex does not own, control, endorse, or assume responsibility for such content
+                or activities. All logos, trademarks, images, photographs, brand names, and other
+                materials displayed on client websites are the property of their respective owners.
+                Kanak Digifex is not responsible for any transactions, agreements, disputes, losses,
+                damages, or business dealings between website visitors and our clients.
+                Users are advised to independently verify information and deal directly with the
+                respective client or business.
+            </p>
+
+        </div>
+    </div>
+</div>
+<!-- Disclaimer Row End -->
+
+
+<!-- SEO Service Areas Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="service-areas-card">
+
+            <div class="service-areas-title">
+                <span class="title-icon">📍</span> Our Service Locations
+            </div>
+
+            <div class="service-areas-group">
+                <h5 class="area-city">Ahilyanagar</h5>
+                <p class="area-links">
+                    <a href="/courses" title="IT Company in Ahilyanagar">IT Company in Ahilyanagar</a>
+                    <a href="/courses" title="Website Development Company in Ahilyanagar">Website Development Company in Ahilyanagar</a>
+                    <a href="/courses" title="Website Design Company in Ahilyanagar">Website Design Company in Ahilyanagar</a>
+                    <a href="/courses" title="Web Development Company in Ahmednagar">Web Development Company in Ahmednagar</a>
+                    <a href="/courses" title="Digital Marketing Company in Ahilyanagar">Digital Marketing Company in Ahilyanagar</a>
+                    <a href="/courses" title="Digital Marketing Agency in Ahmednagar">Digital Marketing Agency in Ahmednagar</a>
+                    <a href="/courses" title="SEO Company in Ahilyanagar">SEO Company in Ahilyanagar</a>
+                    <a href="/courses" title="SEO Agency in Ahmednagar">SEO Agency in Ahmednagar</a>
+                    <a href="/courses" title="Software Development Company in Ahilyanagar">Software Development Company in Ahilyanagar</a>
+                    <a href="/courses" title="Software Development Company in Ahmednagar">Software Development Company in Ahmednagar</a>
+                    <a href="/courses" title="Custom Software Development Company">Custom Software Development Company</a>
+                    <a href="/courses" title="Mobile App Development Company in Ahilyanagar">Mobile App Development Company in Ahilyanagar</a>
+                    <a href="/courses" title="Mobile App Development Company in Ahmednagar">Mobile App Development Company in Ahmednagar</a>
+                    <a href="/courses" title="Android App Development Company in Maharashtra">Android App Development Company in Maharashtra</a>
+                    <a href="/courses" title="Custom Mobile App Development Company">Custom Mobile App Development Company</a>
+                    <a href="/courses" title="Ecommerce Website Development Company">Ecommerce Website Development Company</a>
+                    <a href="/courses" title="Web Application Development Company in Ahilyanagar">Web Application Development Company in Ahilyanagar</a>
+                    <a href="/courses" title="Social Media Marketing Company in Ahilyanagar">Social Media Marketing Company in Ahilyanagar</a>
+                    <a href="/courses" title="Google Ads Agency in Ahilyanagar">Google Ads Agency in Ahilyanagar</a>
+                    <a href="/courses" title="IT Solutions Company in Ahilyanagar">IT Solutions Company in Ahilyanagar</a>
+                </p>
+            </div>
+
+            <div class="service-areas-divider"></div>
+
+            <div class="service-areas-group">
+                <h5 class="area-city">Mira Road</h5>
+                <p class="area-links">
+                    <a href="/courses" title="Website Designer in Mira Road">Website Designer in Mira Road</a>
+                    <a href="/courses" title="Web Designer in Mira Road">Web Designer in Mira Road</a>
+                    <a href="/courses" title="Website Development Company in Mira Road">Website Development Company in Mira Road</a>
+                    <a href="/courses" title="Website Design Company in Mira Road">Website Design Company in Mira Road</a>
+                    <a href="/courses" title="Web Development Company in Mira Road">Web Development Company in Mira Road</a>
+                    <a href="/courses" title="Website Designing Company in Mira Road">Website Designing Company in Mira Road</a>
+                    <a href="/courses" title="Digital Marketing Agency in Mira Road">Digital Marketing Agency in Mira Road</a>
+                    <a href="/courses" title="Digital Marketing Company in Mira Road">Digital Marketing Company in Mira Road</a>
+                    <a href="/courses" title="Digital Marketing Services in Mira Road">Digital Marketing Services in Mira Road</a>
+                    <a href="/courses" title="SEO Company in Mira Road">SEO Company in Mira Road</a>
+                    <a href="/courses" title="SEO Agency in Mira Road">SEO Agency in Mira Road</a>
+                    <a href="/courses" title="SEO Services in Mira Road">SEO Services in Mira Road</a>
+                    <a href="/courses" title="Social Media Marketing Agency in Mira Road">Social Media Marketing Agency in Mira Road</a>
+                    <a href="/courses" title="Social Media Marketing Company in Mira Road">Social Media Marketing Company in Mira Road</a>
+                    <a href="/courses" title="Google Ads Agency in Mira Road">Google Ads Agency in Mira Road</a>
+                    <a href="/courses" title="Software Development Company in Mira Road">Software Development Company in Mira Road</a>
+                    <a href="/courses" title="Custom Software Development Company in Mira Road">Custom Software Development Company in Mira Road</a>
+                    <a href="/courses" title="Software Company in Mira Road">Software Company in Mira Road</a>
+                    <a href="/courses" title="Mobile App Development Company in Mira Road">Mobile App Development Company in Mira Road</a>
+                    <a href="/courses" title="Android App Development Company in Mira Road">Android App Development Company in Mira Road</a>
+                    <a href="/courses" title="Application Development Company in Mira Road">Application Development Company in Mira Road</a>
+                    <a href="/courses" title="E-commerce Website Development Company in Mira Road">E-commerce Website Development Company in Mira Road</a>
+                    <a href="/courses" title="Web Application Development Company in Mira Road">Web Application Development Company in Mira Road</a>
+                    <a href="/courses" title="Graphic Designer in Mira Road">Graphic Designer in Mira Road</a>
+                    <a href="/courses" title="Graphic Design Company in Mira Road">Graphic Design Company in Mira Road</a>
+                    <a href="/courses" title="Graphic Design Services in Mira Road">Graphic Design Services in Mira Road</a>
+                    <a href="/courses" title="Logo Designer in Mira Road">Logo Designer in Mira Road</a>
+                    <a href="/courses" title="Logo Design Company in Mira Road">Logo Design Company in Mira Road</a>
+                    <a href="/courses" title="Brochure Designer in Mira Road">Brochure Designer in Mira Road</a>
+                    <a href="/courses" title="Brochure Design Company in Mira Road">Brochure Design Company in Mira Road</a>
+                    <a href="/courses" title="Branding Agency in Mira Road">Branding Agency in Mira Road</a>
+                    <a href="/courses" title="UI UX Design Company in Mira Road">UI UX Design Company in Mira Road</a>
+                    <a href="/courses" title="Website Developer in Mira Road">Website Developer in Mira Road</a>
+                    <a href="/courses" title="Web Developer in Mira Road">Web Developer in Mira Road</a>
+                    <a href="/courses" title="IT Company in Mira Road">IT Company in Mira Road</a>
+                    <a href="/courses" title="IT Solutions Company in Mira Road">IT Solutions Company in Mira Road</a>
+                    <a href="/courses" title="Website Design Company in Mira Road East">Website Design Company in Mira Road East</a>
+                    <a href="/courses" title="Digital Marketing Agency in Mira Road East">Digital Marketing Agency in Mira Road East</a>
+                    <a href="/courses" title="Software Development Company in Mira Road East">Software Development Company in Mira Road East</a>
+                    <a href="/courses" title="Graphic Designer in Mira Road East">Graphic Designer in Mira Road East</a>
+                    <a href="/courses" title="Website Designer near Mira Road">Website Designer near Mira Road</a>
+                    <a href="/courses" title="Digital Marketing Agency near Mira Road">Digital Marketing Agency near Mira Road</a>
+                    <a href="/courses" title="Software Development Company near Mira Road">Software Development Company near Mira Road</a>
+                    <a href="/courses" title="Mobile App Development Company near Mira Road">Mobile App Development Company near Mira Road</a>
+                    <a href="/courses" title="Graphic Designer near Mira Road">Graphic Designer near Mira Road</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- SEO Service Areas Row End -->
+
+</div>
+</div>
+
+
+    
+    <div class="bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-bottom-box">
+                        <div class="copy-right">
+                            <p>Copyright © <span id="copy-right-year"></span> | <a href="https://kanakdigifex.com"
+                                    target="_blank" title="Website Design Company in Ahmednagar">Kanak Digifex Nextgen Pvt. Ltd.</a>. <span>| All
+                                    rights reserved.</span></p>
+                        </div>
+                        <div class="footer-bottom-link">
+                            <ul>
+                                <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                                <li><a href="/terms_conditions" title="Terms Of Service">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- Back To Top Start -->
+<div class="scroll-to-top">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+    </svg>
+</div>
+<!-- Back To Top End -->
+
+<!-- Jquery JS Link -->
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="/user_assets/js/jquery-3.7.1.min.js"></script>
+
+<!-- Bootstrap JS Link -->
+<script src="/user_assets/js/bootstrap.min.js"></script>
+
+<!-- Swiper Slider JS Link -->
+<script src="/user_assets/js/swiper-bundle.min.js"></script>
+
+<!-- Bg Moving JS Link -->
+<script src="/user_assets/js/bg-moving.js"></script>
+
+<!-- Isotope JS Link -->
+<script src="/user_assets/js/isotope.pkgd.min.js"></script>
+
+<!-- Wow Animation JS Link -->
+<script src="/user_assets/js/wow.min.js"></script>
+
+<!-- Custom JS Link -->
+<script src="/user_assets/js/custom.js"></script>
+<script src="/user_assets/js/custom-scroll-count.js"></script>
+
+<!-- Back To Top JS Link -->
+<script src="/user_assets/js/back-to-top.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,895 @@
+<style>
+    :root {
+        --primary-color: #6a11cb;
+        --secondary-color: #c95afc;
+        --accent-color: #c95afc;
+        --dark-color: #c95afc;
+        --light-color: #f8f9fa;
+    }
+
+    body {
+        background: linear-gradient(135deg, rgba(70, 186, 231, 0.1), rgba(175, 11, 78, 0.1));
+        font-family: 'Poppins', sans-serif;
+        background-attachment: fixed;
+    }
+
+    .form-container {
+        max-width: 900px;
+        margin: 50px auto;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .registration-card {
+        border-radius: 16px;
+        background-color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: none;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+
+    .registration-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        z-index: 2;
+    }
+
+    .header-title {
+        font-size: 28px;
+        color: var(--dark-color);
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .header-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .sub-header {
+        color: var(--dark-color);
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .description {
+        color: #555;
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: justify;
+        font-weight: 400;
+    }
+
+    .website-link a {
+        font-weight: 600;
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .website-link a:hover {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .website-link a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+        text-decoration: none;
+    }
+
+    .website-link a:hover::after {
+        width: 100%;
+    }
+
+    .experience-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--dark-color);
+        margin-top: 25px;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .experience-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .experience-list {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .experience-list li {
+        font-size: 16px;
+        padding: 10px 0;
+        color: #555;
+        position: relative;
+        padding-left: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .experience-list li:hover {
+        color: var(--dark-color);
+        transform: translateX(5px);
+    }
+
+    .experience-list li::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        font-size: 20px;
+    }
+
+    .info-banner {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-top: 25px;
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .info-banner:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(106, 17, 203, 0.4);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .form-group:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(106, 17, 203, 0.2);
+    }
+
+    .input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container label {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+
+    .input-container input {
+        border: none;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 10px 0;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .input-container input:focus {
+        border-bottom-color: transparent;
+    }
+
+    .input-underline {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        transition: width 0.4s ease;
+    }
+
+    .input-container input:focus~.input-underline {
+        width: 100%;
+    }
+
+    .form-card {
+        margin: 25px 0;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .form-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(106, 17, 203, 0.2);
+    }
+
+    .form-title {
+        font-size: 18px;
+        color: var(--dark-color);
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .form-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .custom-radio {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .custom-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        position: relative;
+    }
+
+    .custom-radio input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .custom-radio input[type="radio"]:checked {
+        border-color: var(--secondary-color);
+        background-color: white;
+        box-shadow: 0 0 0 5px white, 0 0 0 7px var(--secondary-color);
+    }
+
+    .custom-radio label {
+        color: #555;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .custom-radio:hover label {
+        color: var(--dark-color);
+    }
+
+    .custom-radio input[type="radio"]:checked+label {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+    }
+
+    .btn-submit::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .btn-submit:hover::after {
+        left: 100%;
+    }
+
+    .btn-clear {
+        background: #f8f9fa;
+        color: var(--dark-color);
+        border: 1px solid #ddd;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-left: 15px;
+    }
+
+    .btn-clear:hover {
+        background: #e9ecef;
+        border-color: #ccc;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    /* Floating animation for decorative elements */
+    @keyframes floating {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .floating-element {
+        animation: floating 3s ease-in-out infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767.98px) {
+        .form-container {
+            padding: 0 10px;
+        }
+
+        .header-title {
+            font-size: 24px;
+        }
+
+        .form-card,
+        .form-group {
+            padding: 20px;
+        }
+
+        .btn-group {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-clear {
+            margin-left: 0;
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .header-title {
+            font-size: 22px;
+        }
+
+        .experience-list li {
+            font-size: 15px;
+            padding-left: 25px;
+        }
+
+        .form-title {
+            font-size: 16px;
+        }
+
+        .btn-submit,
+        .btn-clear {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    }
+
+    .h1-title span {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: -5px;
+    }
+
+    @media (max-width: 576px) {
+        .h1-title span {
+            font-size: 1rem;
+            margin-top: 0;
+        }
+
+        .btn-clear {
+            margin-left: 44px;
+        }
+
+        .btn-submit {
+            margin-left: 40px;
+
+        }
+    }
+
+    .internship-card {
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .internship-header {
+        background: linear-gradient(135deg, #af0b4e, #6a0d83);
+    }
+
+    .section-title {
+        color: #4c0a78;
+        font-weight: 700;
+        margin: 30px 0 15px;
+        border-bottom: 2px dashed #ddd;
+        padding-bottom: 6px;
+        font-size: 20px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #af0b4e;
+        box-shadow: 0 0 0 0.2rem rgba(175, 11, 78, 0.25);
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, #af0b4e, #6a0d83);
+        color: #fff;
+        border-radius: 30px;
+        border: none;
+        padding: 12px 40px;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+</style>
+
+<head>
+    <title>Kanak Digifex Nextgen Pvt.Ltd</title>
+    <meta charset="UTF-8">
+    <meta name="keywords"
+        content="Kanak Digifex, Ahilyanagar IT Company, First Corporate IT Company Ahilyanagar, Web Development, Digital Marketing, Software Solutions, IT Services, App Development, Cloud Solutions, AI Tools, UI UX Design, Branding Services, SEO, SMO, Education Technology">
+    <meta name="description"
+        content="Kanak Digifex – The first ever corporate IT company of Ahilyanagar, delivering next-generation web development, digital marketing, AI-based solutions, software, and education technology services for businesses and institutions.">
+    <meta name="author" content="Kanak Digifex NextGen Pvt. Ltd.">
+    <!-- Don' remove  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<%-include('header.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
+    <body>
+        <!-- Banner Start -->
+        <section class="inner-banner">
+            <div class="main-banner-bg-shape">
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+            </div>
+            <div class="inner-banner-bg-aliment-wp">
+                <div class="bg-aliment-1 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-2 animate-this">
+                    <img src="/user_assets/images/aliment-02.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-3 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-4 rotate-animation">
+                    <img src="/user_assets/images/aliment-01.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-5 animate-this">
+                    <img src="/user_assets/images/aliment-04.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-6 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="44" height="44" alt="Aliment">
+                </div>
+                <div class="bg-aliment-7 rotate-animation">
+                    <img src="/user_assets/images/aliment-05.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-8 animate-this">
+                    <img src="/user_assets/images/aliment-06.svg" width="19" height="16" alt="Aliment">
+                </div>
+                <div class="bg-aliment-9 zoom-fade-animation">
+                    <img src="/user_assets/images/aliment-03.svg" width="29" height="29" alt="Aliment">
+                </div>
+                <div class="bg-aliment-10 rotate-animation">
+                    <img src="/user_assets/images/aliment-09.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-11 animate-this">
+                    <img src="/user_assets/images/aliment-08.svg" width="34" height="34" alt="Aliment">
+                </div>
+                <div class="bg-aliment-12 animate-this">
+                    <img src="/user_assets/images/aliment-10.svg" width="26" height="22" alt="Aliment">
+                </div>
+                <div class="bg-aliment-13 rotate-animation">
+                    <img src="/user_assets/images/aliment-11.svg" width="30" height="30" alt="Aliment">
+                </div>
+                <div class="bg-aliment-14 animate-this">
+                    <img src="/user_assets/images/aliment-07.svg" width="38" height="32" alt="Aliment">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1 class="h1-title animate__animated animate__fadeInDown text-center">
+                                Internship Registration Form
+                                <span class="d-block" style="font-weight: 500; font-size: 1.4rem;">
+                                    Apply for Industry-Based Internship & Gain Real-World Experience
+                                </span>
+                            </h1>
+
+                            <div class="banner-breadcrum">
+                                <ul>
+                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="/scsmcoe_internship_reg" title="Internship">INTERNSHIP
+                                            REGISTRATION</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner End -->
+
+        <div class="container">
+            <div class="form-container">
+                <div class="registration-card p-4 p-md-5 animate__animated animate__fadeIn">
+
+                    <h3 class="header-title">
+                        Internship Program
+                        <strong class="text-gradient">for Shri Chhatrapati Shivaji Maharaj College of
+                            Engineering</strong>
+                        Conducted at Kanak Digifex Nextgen Pvt. Ltd.
+                        (First Corporate IT Company of Ahilyanagar)
+
+                        <span>— Hybrid Mode (Online + Offline) | Batch Starting Soon</span>
+                    </h3>
+
+                    <p style="color: rgb(171,64,120);font-weight: bold;">
+                        Internship by Industry Experts – Kanak Digifex Nextgen Pvt. Ltd.
+                        <br>
+                        <span style="color: rgba(0, 0, 0, 0.557);">
+                            Web Development | Cloud Computing | AI | Cyber Security | Digital Technologies
+                        </span>
+                    </p>
+
+                    <hr class="my-4">
+
+                    <p class="description animate__animated animate__fadeIn animate__delay-1s">
+                        We are pleased to offer a <strong>Professional Internship Program</strong> specially designed
+                        for
+                        <strong>Shri Chhatrapati Shivaji Maharaj College of Engineering</strong> students.
+                    </p>
+
+                    <p class="description animate__animated animate__fadeIn animate__delay-1s">
+                        This internship will be conducted at the <strong>Kanak Digifex Nextgen Pvt. Ltd.
+                            office</strong>,
+                        providing students with real corporate exposure along with
+                        <strong>online + offline (hybrid) learning support</strong>.
+                    </p>
+
+                    <p class="description animate__animated animate__fadeIn animate__delay-1s">
+                        The internship focuses on hands-on experience through live projects, industry tools, and
+                        real-time
+                        development practices to help students become job-ready professionals.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <p class="website-link animate__animated animate__fadeIn animate__delay-2s">
+                        Know more about us –
+                        <a href="https://www.kanakdigifex.in" target="_blank">www.kanakdigifex.in</a>
+                        &nbsp; & &nbsp;
+                        <a href="https://www.kanakdigifex.com" target="_blank">www.kanakdigifex.com</a>
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h5 class="experience-title animate__animated animate__fadeIn animate__delay-2s">
+                        Internship Program Highlights
+                    </h5>
+
+                    <ul class="experience-list">
+
+                        <li class="animate__animated animate__fadeInLeft">Work in a real corporate IT environment</li>
+
+                        <li class="animate__animated animate__fadeInLeft">Hybrid internship (Online + Offline
+                            flexibility)</li>
+
+                        <li class="animate__animated animate__fadeInLeft">Hands-on experience with live projects</li>
+
+                        <li class="animate__animated animate__fadeInLeft">Guidance from experienced IT professionals
+                        </li>
+
+                        <li class="animate__animated animate__fadeInLeft">Exposure to real IT company workflow and tools
+                        </li>
+
+                        <li class="animate__animated animate__fadeInLeft">Skill development and practical knowledge</li>
+
+                        <li class="animate__animated animate__fadeInLeft">Internship Completion Certificate</li>
+
+                        <li class="animate__animated animate__fadeInLeft">Placement opportunity based on performance
+                        </li>
+
+                    </ul>
+
+                    <hr class="my-4">
+
+                    <div class="info-banner animate__animated animate__fadeIn animate__delay-3s">
+                        Kickstart your career with real industry experience. Join the Internship Program and become
+                        industry-ready!
+                    </div>
+
+                </div>
+
+                <!-- Form -->
+                <div class="container mt-5 mb-5 p-0">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card internship-card shadow-lg border-0">
+
+                                <div class="card-header internship-header text-center py-4">
+                                    <h2 class="text-white fw-bold mb-1">Internship Registration Form</h2>
+                                    <p class="text-white mb-0">Industry-ready Internship Program (Online + Offline)</p>
+                                </div>
+
+                                <div class="card-body p-4">
+                                    <form action="/save_scsmcoe_internship_reg" method="POST">
+
+                                        <!-- Personal Details -->
+                                        <div class="section-title"><i class="fa fa-user"></i> Student Details</div>
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label>Full Name *</label>
+                                                <input type="text" class="form-control" name="student_name" required>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label>Mobile Number *</label>
+                                                <input type="tel" class="form-control" name="student_mobile"
+                                                    pattern="[0-9]{10}" required>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label>Email Address *</label>
+                                                <input type="email" class="form-control" name="student_email" required>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Training Preferences -->
+                                        <div class="section-title"><i class="fa fa-briefcase"></i> Internship
+                                            Preferences
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">
+                                                        Select Internship Domain
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+
+                                                    <select class="form-select" name="internship_domain" required>
+
+                                                        <option value="" disabled selected>Select Internship Domain
+                                                        </option>
+
+                                                        <optgroup label="Development">
+                                                            <option>Web Full Stack</option>
+                                                            <option>Java Full Stack</option>
+                                                            <option>Python Full Stack</option>
+                                                            <option>MERN Stack</option>
+                                                            <option>Mobile App Development</option>
+                                                        </optgroup>
+
+                                                        <optgroup label="Data & AI">
+                                                            <option>Artificial Intelligence</option>
+                                                            <option>Data Science</option>
+                                                            <option>Machine Learning</option>
+                                                            <option>Power BI</option>
+                                                        </optgroup>
+
+                                                        <optgroup label="Other Fields">
+                                                            <option>Software Testing</option>
+                                                            <option>Cloud Computing</option>
+                                                            <option>Cyber Security</option>
+                                                            <option>Digital Marketing</option>
+                                                        </optgroup>
+
+                                                    </select>
+
+                                                    <div class="invalid-feedback">
+                                                        Please select a training domain.
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">
+                                                    Internship Mode
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="form-select" name="internship_mode" required>
+                                                    <option value="" disabled selected>Select Mode</option>
+                                                    <option>Offline (At Company Office)</option>
+                                                    <option>Online</option>
+                                                    <option>Hybrid (Online + Offline)</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Submit -->
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="submit-btn btn-lg">
+                                                <i class="fa fa-paper-plane"></i> Register Now
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <hr>
+
+        <style>
+            .instagram-media {
+                width: 100% !important;
+                min-width: 100% !important;
+            }
+        </style>
+
+        <!-- Instagram Reels Section -->
+        <section class="instagram-section mt-5 mb-5">
+            <div class="container">
+
+                <div class="text-center mb-4">
+                    <h3 class="font-weight-bold">Follow Us on Instagram</h3>
+                    <p class="text-muted">Check out our latest updates, workshops and tech reels</p>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-md-3">
+                        <blockquote class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DVdLKJDE3PA/"
+                            data-instgrm-version="14"></blockquote>
+                    </div>
+
+                    <div class="col-md-3">
+                        <blockquote class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DU7oOE-gkgN/"
+                            data-instgrm-version="14"></blockquote>
+                    </div>
+
+                    <div class="col-md-3">
+                        <blockquote class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DTh5PK2Eygq/"
+                            data-instgrm-version="14"></blockquote>
+                    </div>
+
+                    <div class="col-md-3">
+                        <blockquote class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DP3HmGMkzDo/"
+                            data-instgrm-version="14"></blockquote>
+                    </div>
+
+                </div>
+
+                <script async src="https://www.instagram.com/embed.js"></script>
+
+                <div class="text-center mt-3">
+                    <a href="https://www.instagram.com/kanakdigifex_nagar/" target="_blank" class="btn btn-dark">
+                        <i class="fab fa-instagram mr-2"></i> Follow @kanakdigifex_nagar
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <script>
+            // Add animation to elements when they come into view
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll(".animate__animated");
+
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementPosition < windowHeight - 100) {
+                        const animation = element.getAttribute("class").split(" ").find(cls => cls.startsWith("animate__"));
+                        element.classList.add(animation);
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", animateOnScroll);
+            window.addEventListener("load", animateOnScroll);
+        </script>
+
+        <%-include('footer.ejs') %>
