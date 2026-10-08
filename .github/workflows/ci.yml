@@ -1,0 +1,37 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          find . \
+            -type f \
+            -name "*.js" \
+            -not -path "./node_modules/*" \
+            -print0 | \
+          xargs -0 -n1 node --check
