@@ -89,3 +89,6 @@ coverage/
 # Uncomment if user_assets contains
 # private/generated uploads:
 # public/user_assets/*
+
+# Google service account credentials
+config/service-account.json
