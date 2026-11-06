@@ -1,5 +1,4 @@
-# ☁️ Kanak Digifex
-### Container Orchestration with Kubernetes on AWS
+# ☁️ Container Orchestration with Kubernetes on AWS
 
 **Deploying and managing a Node.js application using Docker, Kubernetes, and AWS Cloud Services.**
 
@@ -24,7 +23,8 @@ An AWS Application Load Balancer (ALB) provides public access to the application
 
 The project demonstrates practical implementation of cloud networking, containerization, Kubernetes orchestration, load balancing, database connectivity, and AWS infrastructure management.
 
-## 🏗️ AWS Architecture
+## 🏗️ Project Architecture
+https://omamrute10.github.io/Container-Orchestration-with-Kubernetes-using-AWS/architecture/aws-eks-architecture.html?utm_source=chatgpt.com
 
 ### Application Traffic Flow
 
